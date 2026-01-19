@@ -29,11 +29,6 @@
 
 
 
-
-
-
-
-
 @font-face {
   font-family: 'Inter Variable';
   font-style: normal;
@@ -53,7 +48,7 @@
 
 
 body {
-  font-family: system-ui;
+  font-family: 'Inter Variable', system-ui; /* Fallback de la fuente*/
   background-color: var(--background);
   color: var(--text-primary);
   min-height: 100vh;
@@ -61,14 +56,7 @@ body {
   flex-direction: column;
   line-height: 1.6;
 }
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -104,12 +92,31 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  
 
   h2 {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-primary);
   }
+}
+
+/* header empleos */
+ 
+
+/* Imagen del header empleos */
+div img{
+height: 2.5rem;
+width: 2.5rem;
+border-radius: 100%;
+}
+
+/* div-nav, div donde se encuentra la imagen del usuario y boton de subir cv */
+.div-nav{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
 }
 
 /* Navegación del header a otras páginas */
@@ -141,6 +148,11 @@ header div a {
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
+  
+  &:hover{
+    background-color: var(--primary-dark) ;
+    color: var(--primary-light)  ;
+  }
   /* TODO */
 }
 
@@ -347,5 +359,22 @@ article {
 
   h3 {
     font-weight: 500;
+  }
+}
+
+
+/* Moviles */
+@media (max-width: 480px) {
+  header {
+    gap: 0.5rem; /* Menos espacio entre elementos */
+    padding: 0.5rem 0.75rem;
+  }
+
+  header h1 {
+    font-size: 1rem; /* El titulo "DevJobs" suele ser muy grande */
+  }
+
+  .div-nav-empleos a {
+    display: none; /* Ocultar "Subir CV" en móviles muy pequeños */
   }
 }
