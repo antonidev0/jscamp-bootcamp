@@ -156,6 +156,26 @@ header div a {
   /* TODO */
 }
 
+/* main de empleos */
+
+.content-main{ 
+margin: 0 auto;
+
+}
+.title-section h1 {
+  text-align: center;
+  margin-bottom: 1rem;
+  margin-top: 3rem;
+  display: block;
+}
+.title-section{
+    text-align: center;
+  margin-bottom: 2rem; 
+}
+
+/* fin de min empleos */
+
+
 /* Hero */
 main > section:nth-child(1) {
   height: 500px;
