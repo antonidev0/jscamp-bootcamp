@@ -4,11 +4,6 @@
   box-sizing: border-box;
 }
 
-
-
-
-
-
 :root {
   --primary: #3b4550;
   --primary-dark: #0a3d66;
@@ -25,30 +20,21 @@
   --hsla-example: hsla(210, 100%, 56%, 1);
 }
 
-
-
-
-
 @font-face {
-  font-family: 'Inter Variable';
+  font-family: "Inter Variable";
   font-style: normal;
   font-display: swap;
   font-weight: 100 900;
-  src: url(https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.woff2) format('woff2-variations');
-  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+  src: url(https://cdn.jsdelivr.net/fontsource/fonts/inter:vf@latest/latin-wght-normal.woff2)
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC,
+    U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212,
+    U+2215, U+FEFF, U+FFFD;
 }
 
-
-
-
-
-
-
-
-
-
 body {
-  font-family: 'Inter Variable', system-ui; /* Fallback de la fuente*/
+  font-family: "Inter Variable", system-ui; /* Fallback de la fuente*/
   background-color: var(--background);
   color: var(--text-primary);
   min-height: 100vh;
@@ -56,11 +42,6 @@ body {
   flex-direction: column;
   line-height: 1.6;
 }
- 
-
-
-
-
 
 /* Títulos principales */
 h1 {
@@ -80,19 +61,18 @@ h1 {
 
 h1 + p {
   text-wrap: balance;
-  margin-bottom: 2rem
+  margin-bottom: 2rem;
 }
 
 /* Header */
 header {
   border-bottom: 1px solid var(--border);
   background: var(--background);
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  
 
   h2 {
     font-size: 1.25rem;
@@ -102,17 +82,16 @@ header {
 }
 
 /* header empleos */
- 
 
 /* Imagen del header empleos */
-div img{
-height: 2.5rem;
-width: 2.5rem;
-border-radius: 100%;
+div img {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 100%;
 }
 
 /* div-nav, div donde se encuentra la imagen del usuario y boton de subir cv */
-.div-nav{
+.div-nav {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -131,7 +110,8 @@ nav {
     transition: color 0.2s;
     font-weight: 500;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       color: var(--primary);
       outline: none;
     }
@@ -148,33 +128,260 @@ header div a {
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
-  
-  &:hover{
-    background-color: var(--primary-dark) ;
-    color: var(--primary-light)  ;
+
+  &:hover {
+    background-color: var(--primary-dark);
+    color: var(--primary-light);
   }
   /* TODO */
 }
 
-/* main de empleos */
+/*/////////////////// main de empleos ////////////////*/
 
-.content-main{ 
-margin: 0 auto;
-
+.content-main {
+  margin: 0 auto;
 }
-.title-section h1 {
+.title h1 {
   text-align: center;
   margin-bottom: 1rem;
   margin-top: 3rem;
   display: block;
+  font-size: 2.5rem;
 }
-.title-section{
-    text-align: center;
-  margin-bottom: 2rem; 
+.title {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
-/* fin de min empleos */
+/* Section de emepleos */
 
+/* search section */
+.search-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* contenedor del form y filtros */
+
+.search-content {
+  width: 80%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* form o search-box */
+
+.search-box {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+/* div contenedor del input */
+.input-content {
+  border: 1px solid var(--border);
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background-color: var(--card-bg);
+}
+
+/* input */
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text-primary);
+}
+
+.search-input::placeholder {
+  color: #64748b;
+}
+
+/* Div contenedor de los filtros */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: start;
+}
+
+/* filtros o elemento select */
+
+.filter-btn {
+  padding: 0.5rem 0.75rem;
+  background-color: var(--card-bg);
+  color: var(--text-primary);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.filter-btn:hover {
+  background-color: #374151;
+}
+
+/* /// fin de seccion de busqueda y filtros /// */
+
+/* Seccion de resultados */
+
+/* elemento section */
+.result-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* contendor div del contenido */
+.result-container {
+  width: 80%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* titutlo */
+.result-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* elemento ul */
+.job-list {
+  display: flex;
+  flex-direction: column; 
+  border: 1px solid var(--border);
+  list-style: none;
+  border-radius: 0.5rem;
+}
+
+/* elementos li  */
+ .job-item {   
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.2s;
+  }
+
+  .job-item:last-child {
+  border-bottom: none;
+}
+
+  .job-item:hover {
+  background-color: rgba(31, 41, 55, 0.3);
+}
+
+/* elemento article. contenido de cada trabajo */
+.job-content {  
+  padding: 2rem;   
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* elemento div, contendor de la informacion de cada trabajo */
+
+.job-info{
+    flex: 1;
+}
+
+/* elemento p , datos del trabajo */
+.job-meta {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+/* segundo p, descripcion del trabajo */
+.job-description {
+  font-size: 0.85rem;
+  color: var(--text-secondary); 
+}
+
+/* Boton de aplicar */ 
+.btn-apply {
+  padding: 0.5rem 1rem;
+  background-color: var(--hsla-example, var(--primary-light)); 
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer; 
+  transition: background-color 0.5s;
+}
+
+.btn-apply:hover {
+  background-color: blue;
+}
+
+/* paginacion */
+
+/* elemento a con el Chevron */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* elemontos a, del 1, 2, 3, 4 y 5.  */
+.page-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: #d1d5db;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.page-link:hover {
+  background-color: #1f2937;
+}
+
+/* esto indica que estamos en la pagina 1 */
+.page-link.active {
+  background-color: #1173d4;
+  color: #fff;
+  font-weight: 600;
+}
+
+.page-nav {
+  color: #9ca3af;
+}
+
+/* Responsive */
+@media (min-width: 640px) {
+  .job-content {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .btn-apply {
+    align-self: auto;
+    margin-top: 0;
+  }
+}
+
+/*/////////////// fin de min empleos ///////////////*/
 
 /* Hero */
 main > section:nth-child(1) {
@@ -197,16 +404,18 @@ main > section:nth-child(1) {
     z-index: -1;
     left: 0;
     right: 0;
-    mask-image: linear-gradient(to bottom, rgba(16, 25, 34, 1) 5%, rgba(16, 25, 34, 0) 80%);
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(16, 25, 34, 1) 5%,
+      rgba(16, 25, 34, 0) 80%
+    );
   }
 }
 
 /* Formulario de Búsqueda */
 form {
-  max-width: 42rem;
   width: 100%;
   margin: 0 auto;
-  padding-inline: 1rem;
 }
 
 form > div {
@@ -256,18 +465,19 @@ button {
   white-space: nowrap;
 
   &:hover, /* pseudo-clase que significa que el ratón está encima */
-  &:focus { /* pseudo-clase que significa que el elemento tiene el foco */
+  &:focus {
+    /* pseudo-clase que significa que el elemento tiene el foco */
     background-color: var(--primary-hover);
     outline: 2px solid white;
     outline-offset: 2px;
   }
 
-  &:active { 
-    transform: scale(0.90)
+  &:active {
+    transform: scale(0.9);
   }
 
   &:disabled {
-    opacity: .5;
+    opacity: 0.5;
     pointer-events: none;
   }
 }
@@ -287,7 +497,7 @@ main > section:nth-child(2) {
     }
 
     p {
-      opacity: .75;
+      opacity: 0.75;
     }
   }
 
@@ -315,7 +525,7 @@ main > section:nth-child(2) > div > div:first-child > p {
 main > section:nth-child(2) footer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 16px
+  gap: 16px;
 }
 
 /* Feature Cards */
@@ -357,7 +567,7 @@ footer {
   }
 }
 
-article {
+.article-index {
   background-color: var(--card-bg);
   padding: 2rem;
   margin-bottom: 16px;
@@ -366,7 +576,7 @@ article {
 
   svg {
     color: var(--primary-light);
-    background: rgba(0, 153, 255, .3);
+    background: rgba(0, 153, 255, 0.3);
     width: 64px;
     height: 64px;
     border-radius: 100%;
@@ -381,7 +591,6 @@ article {
     font-weight: 500;
   }
 }
-
 
 /* Moviles */
 @media (max-width: 480px) {

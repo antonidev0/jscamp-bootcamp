@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="es">
   <head>
@@ -51,12 +51,280 @@
 
     <main>
       <div class="content-main">
-        <!-- Titutlos -->
-        <section class="title-section">
-          <h1>Encuentra tu próximo Trabajo</h1>
-          <p>explora miles de oportunidades en el sector tecnologico</p>
+        <!-- Hero Section -->
+        <section class="title">
+          <h1>Encuentra tu próximo trabajo</h1>
+          <p>Explora miles de oportunidades en el sector tecnológico.</p>
         </section>
-        
+
+        <!-- Busqueda y seccion de filtros -->
+        <section class="search-section" aria-label="Búsqueda y filtros">
+          <div class="search-content">
+            <form class="search-box" role="search">
+              <div class="input-content">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="icon icon-tabler icons-tabler-outline icon-tabler-search"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                  <path d="M21 21l-6 -6" />
+                </svg>
+
+                <input
+                  type="search"
+                  id="job-search"
+                  class="search-input"
+                  placeholder="Buscar trabajos, empresas o habilidades"
+                  autocomplete="off"
+                />
+              </div>
+            </form>
+
+            <!-- filtros -->
+            <div class="filters" role="group" aria-label="Filtros de búsqueda">
+              <select
+                class="filter-btn"
+                name="technology"
+                aria-label="Filtrar por tecnología"
+              >
+                <option value="" disabled selected>Tecnologías</option>
+
+                <optgroup label="Lenguajes de alto nivel">
+                  <option value="javascript">JavaScript</option>
+                  <option value="python">Python</option>
+                  <option value="html">HTML</option>
+                  <option value="css">CSS</option>
+                </optgroup>
+                <optgroup label="Lenguajes de bajo nivel">
+                  <option value="c">C</option>
+                  <option value="c++">C++</option>
+                  <option value="java">Java</option>
+                </optgroup>
+                <optgroup label="orientado a objetos">
+                  <option value="c#">C#</option>
+                </optgroup>
+              </select>
+
+              <select
+                class="filter-btn"
+                name="ubication"
+                aria-label="Filtrar por ubicacion"
+              >
+                <option value="" disabled selected>Ubicacion</option>
+                <option value="javascript">America</option>
+                <option value="python">Europa</option>
+                <option value="html">Africa</option>
+                <option value="css">Asia</option>
+              </select>
+
+              <select
+                class="filter-btn"
+                name="contract"
+                aria-label="Filtrar por ubicacion"
+              >
+                <option value="" disabled selected>Tipo de contrato</option>
+                <option value="Part-time">Part Time</option>
+                <option value="tres-meses">3 mese</option>
+                <option value="indefinido">Indefinido</option>
+              </select>
+
+              <select
+                class="filter-btn"
+                name="experience"
+                aria-label="Filtrar por experiencia"
+              >
+                <option value="" disabled selected>Nivel de experiencia</option>
+                <option value="poca">1 - 2 año</option>
+                <option value="media">2 - 4 años</option>
+                <option value="alta">4 - 6 años</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- resultados de busqueda -->
+        <section aria-labelledby="results" class="result-content">
+          <!-- contendor del contenido -->
+          <div class="result-container">
+            <!-- titulo -->
+            <h2 id="results" class="results result-title">
+              Resultados de búsqueda
+            </h2>
+            <!-- lista  -->
+            <ul class="job-list" role="list">
+              <li class="job-item">
+                <article class="job-content">
+                  <div class="job-info">
+                    <h3 class="job-title">Ingeniero de Software</h3>
+                    <p class="job-meta">
+                      <span class="company">Tech Solutions Inc.</span>
+                      <span aria-hidden="true"> | </span>
+                      <span class="location">Remoto</span>
+                    </p>
+                    <p class="job-description">
+                      Buscamos un ingeniero de software con experiencia en
+                      desarrollo web y conocimientos en JavaScript, React y
+                      Node.js. El candidato ideal debe ser capaz de trabajar en
+                      equipo y tener buenas habilidades de comunicación.
+                    </p>
+                  </div>
+                  <button
+                    class="btn-apply"
+                    type="button"
+                    aria-label="Aplicar a Ingeniero de Software en Tech Solutions Inc."
+                  >
+                    Aplicar
+                  </button>
+                </article>
+              </li>
+
+              <li class="job-item">
+                <article class="job-content">
+                  <div class="job-info">
+                    <h3 class="job-title">Analista de Datos</h3>
+                    <p class="job-meta">
+                      <span class="company">Data Driven Co.</span>
+                      <span aria-hidden="true"> | </span>
+                      <span class="location">Ciudad de México</span>
+                    </p>
+                    <p class="job-description">
+                      Estamos buscando un analista de datos con experiencia en
+                      el manejo de grandes conjuntos de datos y herramientas de
+                      visualización. Se requiere conocimiento en SQL, Python y
+                      R.
+                    </p>
+                  </div>
+                  <button
+                    class="btn-apply"
+                    type="button"
+                    aria-label="Aplicar a Analista de Datos en Data Driven Co."
+                  >
+                    Aplicar
+                  </button>
+                </article>
+              </li>
+
+              <li class="job-item">
+                <article class="job-content">
+                  <div class="job-info">
+                    <h3 class="job-title">
+                      Desarrollador de Aplicaciones Móviles
+                    </h3>
+                    <p class="job-meta">
+                      <span class="company">Mobile Apps Ltd.</span>
+                      <span aria-hidden="true"> | </span>
+                      <span class="location">Guadalajara</span>
+                    </p>
+                    <p class="job-description">
+                      Buscamos un desarrollador de aplicaciones móviles con
+                      experiencia en iOS y/o Android. El candidato debe tener
+                      conocimientos en Swift, Kotlin y el desarrollo de
+                      interfaces de usuario.
+                    </p>
+                  </div>
+                  <button
+                    class="btn-apply"
+                    type="button"
+                    aria-label="Aplicar a Desarrollador de Aplicaciones Móviles en Mobile Apps Ltd."
+                  >
+                    Aplicar
+                  </button>
+                </article>
+              </li>
+
+              <li class="job-item">
+                <article class="job-content">
+                  <div class="job-info">
+                    <h3 class="job-title">Ingeniero de DevOps</h3>
+                    <p class="job-meta">
+                      <span class="company">Cloud Services SA</span>
+                      <span aria-hidden="true"> | </span>
+                      <span class="location">Remoto</span>
+                    </p>
+                    <p class="job-description">
+                      Estamos buscando un ingeniero de DevOps con experiencia en
+                      la gestión de infraestructuras en la nube, automatización
+                      de procesos y herramientas de integración continua. Se
+                      requiere conocimiento en AWS, Azure o GCP.
+                    </p>
+                  </div>
+                  <button
+                    class="btn-apply"
+                    type="button"
+                    aria-label="Aplicar a Ingeniero de DevOps en Cloud Services SA"
+                  >
+                    Aplicar
+                  </button>
+                </article>
+              </li>
+            </ul>
+
+            <!-- paginacion -->
+            <nav class="pagination" aria-label="Paginación de resultados">
+              <a
+                href="#"
+                class="page-link page-nav"
+                aria-label="Página anterior"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 19.5 8.25 12l7.5-7.5"
+                  />
+                </svg>
+              </a>
+
+              <a
+                href="#"
+                class="page-link active"
+                aria-label="Pagina 1"
+                aria-current="page"
+                >1</a
+              >
+              <a href="#" class="page-link" aria-label="Pagina 2">2</a>
+              <a href="#" class="page-link" aria-label="Pagina 3">3</a>
+              <a href="#" class="page-link" aria-label="Pagina 4">4</a>
+              <a href="#" class="page-link" aria-label="Pagina 5">5</a>
+              <a
+                href="#"
+                class="page-link page-nav"
+                aria-label="Página siguiente"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                  />
+                </svg>
+              </a>
+            </nav>
+          </div>
+        </section>
       </div>
     </main>
   </body>
