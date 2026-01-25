@@ -193,7 +193,7 @@ header div a {
 /* input */
 .search-input {
   flex: 1;
-  background: transparent;
+  background: var(--input-bg);
   border: none;
   outline: none;
 
@@ -204,7 +204,7 @@ header div a {
 }
 
 .search-input::placeholder {
-  color: #64748b;
+  color: var(--primary);
 }
 
 /* Div contenedor de los filtros */
@@ -229,7 +229,7 @@ header div a {
 }
 
 .filter-btn:hover {
-  background-color: #374151;
+  background-color: var(--primary);
 }
 
 /* /// fin de seccion de busqueda y filtros /// */
@@ -280,7 +280,8 @@ header div a {
 }
 
   .job-item:hover {
-  background-color: rgba(31, 41, 55, 0.3);
+  background-color: var(--border);
+  border-radius: 0.5rem;
 }
 
 /* elemento article. contenido de cada trabajo */
@@ -346,25 +347,25 @@ header div a {
   height: 40px;
   border-radius: 0.5rem;
   text-decoration: none;
-  color: #d1d5db;
+  color: var(--text-primary);
   font-size: 0.875rem;
   font-weight: 500;
   transition: background-color 0.2s;
 }
 
 .page-link:hover {
-  background-color: #1f2937;
+  background-color: var(--text-muted);
 }
 
 /* esto indica que estamos en la pagina 1 */
 .page-link.active {
-  background-color: #1173d4;
-  color: #fff;
+  background-color: var(--primary-hover);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .page-nav {
-  color: #9ca3af;
+  color: var(--text-muted);
 }
 
 /* Responsive */
@@ -413,9 +414,11 @@ main > section:nth-child(1) {
 }
 
 /* Formulario de Búsqueda */
-form {
+.form-index {
+  max-width: 42rem;
   width: 100%;
   margin: 0 auto;
+  padding-inline: 1rem;
 }
 
 form > div {
