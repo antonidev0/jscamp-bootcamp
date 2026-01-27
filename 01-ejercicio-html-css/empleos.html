@@ -13,6 +13,7 @@
     />
     <link rel="shortcut icon" type="images/png" href="icon-infojob.png" />
     <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="script.js"></script>
     <title>DevJobs - Inicio</title>
   </head>
 
@@ -91,10 +92,12 @@
 
             <!-- filtros -->
             <div class="filters" role="group" aria-label="Filtros de búsqueda">
+
               <select
                 class="filter-btn"
                 name="technology"
                 aria-label="Filtrar por tecnología"
+                id="filter-tecnology"
               >
                 <option value="" disabled selected>Tecnologías</option>
 
@@ -118,18 +121,20 @@
                 class="filter-btn"
                 name="ubication"
                 aria-label="Filtrar por ubicacion"
+                id="filter-location"
               >
                 <option value="" disabled selected>Ubicacion</option>
-                <option value="javascript">America</option>
-                <option value="python">Europa</option>
-                <option value="html">Africa</option>
-                <option value="css">Asia</option>
+                <option value="">Todas</option>
+                <option value="remoto">Remoto</option>
+                <option value="cdmx">Ciudad de Mexico</option>
+                <option value="guadalajara">Guadalajara</option> 
               </select>
 
               <select
                 class="filter-btn"
                 name="contract"
-                aria-label="Filtrar por ubicacion"
+                aria-label="Filtrar por contrato"
+                id="filter-contrat"
               >
                 <option value="" disabled selected>Tipo de contrato</option>
                 <option value="Part-time">Part Time</option>
@@ -141,12 +146,15 @@
                 class="filter-btn"
                 name="experience"
                 aria-label="Filtrar por experiencia"
+                id="filter-experience-level"
               >
                 <option value="" disabled selected>Nivel de experiencia</option>
                 <option value="poca">1 - 2 año</option>
                 <option value="media">2 - 4 años</option>
                 <option value="alta">4 - 6 años</option>
               </select>
+
+              <span id="filter-selected-value"></span>
             </div>
           </div>
         </section>
@@ -162,7 +170,7 @@
             <!-- lista  -->
             <ul class="job-list" role="list">
               <li class="job-item">
-                <article class="job-content">
+                <article data-modalidad="remoto" class="job-content">
                   <div class="job-info">
                     <h3 class="job-title">Ingeniero de Software</h3>
                     <p class="job-meta">
@@ -178,7 +186,7 @@
                     </p>
                   </div>
                   <button
-                    class="btn-apply"
+                    class="btn-apply" 
                     type="button"
                     aria-label="Aplicar a Ingeniero de Software en Tech Solutions Inc."
                   >
@@ -188,7 +196,7 @@
               </li>
 
               <li class="job-item">
-                <article class="job-content">
+                <article data-modalidad="cdmx" class="job-content">
                   <div class="job-info">
                     <h3 class="job-title">Analista de Datos</h3>
                     <p class="job-meta">
@@ -214,7 +222,7 @@
               </li>
 
               <li class="job-item">
-                <article class="job-content">
+                <article data-modalidad="guadalajara" class="job-content">
                   <div class="job-info">
                     <h3 class="job-title">
                       Desarrollador de Aplicaciones Móviles
@@ -242,7 +250,7 @@
               </li>
 
               <li class="job-item">
-                <article class="job-content">
+                <article data-modalidad="remoto" class="job-content">
                   <div class="job-info">
                     <h3 class="job-title">Ingeniero de DevOps</h3>
                     <p class="job-meta">

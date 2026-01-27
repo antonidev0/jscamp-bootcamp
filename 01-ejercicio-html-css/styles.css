@@ -219,19 +219,30 @@ header div a {
 /* filtros o elemento select */
 
 .filter-btn {
-  padding: 0.5rem 0.75rem;
-  background-color: var(--card-bg);
-  color: var(--text-primary);
-  border: none;
+  padding: 0.625rem 1.25rem;
+  background-color: #242d3a;
+  border: 0;
   border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #ddd;
   cursor: pointer;
-  transition: background-color 0.2s;
-}
+  transition: all 0.2s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  padding-right: 2.5rem;
 
-.filter-btn:hover {
-  background-color: var(--primary);
-}
+  &:hover {
+    background-color: var(--primary-hover);
+    color: white;
+  }
 
+  &:focus {
+    outline: 2px solid #1173d4;
+    outline-offset: 2px;
+  }
+}
 /* /// fin de seccion de busqueda y filtros /// */
 
 /* Seccion de resultados */
@@ -263,39 +274,43 @@ header div a {
 /* elemento ul */
 .job-list {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   border: 1px solid var(--border);
   list-style: none;
   border-radius: 0.5rem;
 }
 
 /* elementos li  */
- .job-item {   
-      border-bottom: 1px solid var(--border);
-      transition: background-color 0.2s;
-  }
+.job-item {
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.2s;
+}
 
-  .job-item:last-child {
+.job-item:last-child {
   border-bottom: none;
 }
 
-  .job-item:hover {
+.job-item:hover {
   background-color: var(--border);
   border-radius: 0.5rem;
 }
 
 /* elemento article. contenido de cada trabajo */
-.job-content {  
-  padding: 2rem;   
+.job-content {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  &.is-hidden{
+    display: none;
+  }
 }
 
 /* elemento div, contendor de la informacion de cada trabajo */
 
-.job-info{
-    flex: 1;
+.job-info {
+  flex: 1;
 }
 
 /* elemento p , datos del trabajo */
@@ -308,18 +323,18 @@ header div a {
 /* segundo p, descripcion del trabajo */
 .job-description {
   font-size: 0.85rem;
-  color: var(--text-secondary); 
+  color: var(--text-secondary);
 }
 
-/* Boton de aplicar */ 
+/* Boton de aplicar */
 .btn-apply {
   padding: 0.5rem 1rem;
-  background-color: var(--hsla-example, var(--primary-light)); 
+  background-color: var(--hsla-example, var(--primary-light));
   border-radius: 0.5rem;
   cursor: pointer;
   font-size: 0.85rem;
   font-weight: 600;
-  cursor: pointer; 
+  cursor: pointer;
   transition: background-color 0.5s;
 }
 
