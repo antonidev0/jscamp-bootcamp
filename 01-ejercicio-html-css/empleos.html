@@ -43,6 +43,7 @@
       <!-- div de imagen y subir archivo -->
       <div class="div-nav div-nav-empleos">
         <a href="">Subir CV</a>
+        <!-- Siempre es buena idea colocar el aspecto de tamaño de la imagen con width y height. El valor que tengan no necesariamente es el tamaño final de la imagen, pero ayuda a que el navegador reserve el espacio necesario para la imagen antes de que se cargue. -->
         <img
           src="https://unavatar.io/midudev"
           alt="Imagen de perfil de Miguel Angel Duran"
@@ -65,7 +66,9 @@
           <div class="search-content">
             <form class="search-box" role="search">
               <div class="input-content">
+                <!-- En estos casos en los que el SVG es meramente decorativo, podemos usar el atributo aria-hidden="true" para indicar que el SVG no es relevante para el contenido de la página. Esto hace que no sea visible para los lectores de pantalla. Es necesario usarlo siempre? No, pero no está de más, sobre todo en este ejercicio en donde nos enfocamos en HTML y CSS :) -->
                 <svg
+                  aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -279,9 +282,11 @@
 
             <!-- paginacion -->
             <nav class="pagination" aria-label="Paginación de resultados">
+              <!-- Si bien con `aria-label` alcanza, `title` es un atributo que permite al usuario ver un tooltip con el texto que tiene como valor, cuando hace hover sobre el elemento. Esto viene bien para dar información adicional al usuario -->
               <a
                 href="#"
                 class="page-link page-nav"
+                title="Ir a la página anterior"
                 aria-label="Página anterior"
               >
                 <svg
@@ -314,6 +319,7 @@
               <a
                 href="#"
                 class="page-link page-nav"
+                title="Ir a la página siguiente"
                 aria-label="Página siguiente"
               >
                 <svg
