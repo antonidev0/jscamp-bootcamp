@@ -66,7 +66,9 @@
           <div class="search-content">
             <form class="search-box" role="search">
               <div class="input-content">
+                <!-- En estos casos en los que el SVG es meramente decorativo, podemos usar el atributo aria-hidden="true" para indicar que el SVG no es relevante para el contenido de la página. Esto hace que no sea visible para los lectores de pantalla. Es necesario usarlo siempre? No, pero no está de más, sobre todo en este ejercicio en donde nos enfocamos en HTML y CSS :) -->
                 <svg
+                  aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
@@ -280,9 +282,11 @@
 
             <!-- paginacion -->
             <nav class="pagination" aria-label="Paginación de resultados">
+              <!-- Si bien con `aria-label` alcanza, `title` es un atributo que permite al usuario ver un tooltip con el texto que tiene como valor, cuando hace hover sobre el elemento. Esto viene bien para dar información adicional al usuario -->
               <a
                 href="#"
                 class="page-link page-nav"
+                title="Ir a la página anterior"
                 aria-label="Página anterior"
               >
                 <svg
@@ -315,6 +319,7 @@
               <a
                 href="#"
                 class="page-link page-nav"
+                title="Ir a la página siguiente"
                 aria-label="Página siguiente"
               >
                 <svg
