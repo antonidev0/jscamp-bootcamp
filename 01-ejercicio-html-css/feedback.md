@@ -4,4 +4,6 @@ Felicidades!
 
 Agregamos algunos comentarios en la imagen del avatar, relacionado con el uso de `width` y `height`, fuera de eso, has hecho todo muy bien :)
 
+PD: Hemos agregado también algunos comentarios en `empleos.html` para explicar el uso de `title` y `aria-hidden`.
+
 Un saludo y a seguir avanzando!
