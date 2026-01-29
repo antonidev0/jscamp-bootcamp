@@ -13,3 +13,7 @@ Lo que debes revisar es la pull request que creamos con el nombre `correccion-pr
 La idea es que una vez revises los cambios que hicimos y los comentarios, puedas hacer los cambios pertinentes, y si no hay cambios por hacer, hacer un `merge` a main y continuar.
 
 Si tienes alguna duda de como hacer esto me puedes hablar por Discord (mi usuario es: `madeval` o `Madeval#7117`), y lo vemos por ahí directamente, que será mucho más rápido.
+
+--------
+
+Hola un saludo, ¿Esta bien asi?
