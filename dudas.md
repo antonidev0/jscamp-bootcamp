@@ -17,3 +17,4 @@ Si tienes alguna duda de como hacer esto me puedes hablar por Discord (mi usuari
 --------
 
 Hola un saludo, ¿Esta bien asi?
+Muchas gracias por la atencion, en cuanto tenga mas tiempo escribo por discord. 
