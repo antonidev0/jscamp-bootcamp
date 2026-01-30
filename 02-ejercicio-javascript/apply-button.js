@@ -1,7 +1,7 @@
 /* Aquí va la lógica para dar funcionalidad al botón de "Aplicar" */
 
 // Se selecciona el boton para aplicar
-const jobListingSection = document.querySelector('.jobs-istings');
+const jobListingSection = document.querySelector('.jobs-listings');
 
 // escucho cualquier click que ocurra 
 jobListingSection.addEventListener('click', function
@@ -9,7 +9,7 @@ jobListingSection.addEventListener('click', function
     
     // obtengo el elemento button que fue clickeado
     console.log(event)
-    
+
     const element = event.target
 
     // verifico que tenga la clase 
@@ -19,7 +19,7 @@ jobListingSection.addEventListener('click', function
         // le agrego la clase is applied
         element.classList.add('is-applied')
         // desbilito el boton 
-        element.disable = true
+        element.disabled = true
     }
 })
     

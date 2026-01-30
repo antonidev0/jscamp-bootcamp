@@ -10,7 +10,7 @@ const mensaje = document.querySelector('#filter-selected-value')
 filter.addEventListener('change', function () {
 
     // selecciono todas las tarjetas de trabajo
-    const jobs = document.querySelectorAll('.job-listingcard')
+    const jobs = document.querySelectorAll(".job-listing-card");
 
     // obtengo el valor seleccionado
     const selectedValue = filter.value
@@ -27,7 +27,7 @@ filter.addEventListener('change', function () {
     jobs.forEach(job => { 
 
         // obtengo la modalidad de la tarjeta 
-        const modalidad = job.getAttribute('datamodalidad')
+        const modalidad = job.getAttribute("data-modalidad");
         
         // si no hay filtro seleccionado muestro todas las tarjetas
         // si hay filtro seleccionado muestro solo las que coinciden
