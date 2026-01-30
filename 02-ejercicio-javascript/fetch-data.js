@@ -17,10 +17,12 @@ fetch("./data.json")
 
             article.innerHTML = `
             <div>
-            <h3>${job.title}</h3>
+            <h3>${job.titulo}</h3>
             <small>${job.empresa} - ${job.ubicacion}</small>
             <p>${job.descripcion}</p>
             </div>
             <button class="button-apply-job">Aplicar</button>`
+
+            container.appendChild(article)
     })
 })

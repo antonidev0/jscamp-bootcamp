@@ -8,16 +8,17 @@ const mensaje = document.querySelector('#filter-selected-value')
 
 // escucho el evento change sobre el select
 filter.addEventListener('change', function () {
-
+    
     // selecciono todas las tarjetas de trabajo
-    const jobs = document.querySelectorAll(".job-listing-card");
+    const jobs = document.querySelectorAll(".job-listing-card"); 
+    
 
     // obtengo el valor seleccionado
     const selectedValue = filter.value
 
     // si hay un valor seleccionado, muestro el mensaje
     if (selectedValue) {
-        mensaje.textContent = `Has seleciconado ${selectedValue}`
+        mensaje.textContent = `Has seleccionado ${selectedValue}`
     } else {
         // si no hay valor seleccionado, limpio el mensaje
         mensaje.textContent = ''
@@ -25,7 +26,7 @@ filter.addEventListener('change', function () {
 
     // recorro todas las tarjetas de trabajo
     jobs.forEach(job => { 
-
+        
         // obtengo la modalidad de la tarjeta 
         const modalidad = job.getAttribute("data-modalidad");
         
