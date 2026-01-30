@@ -9,6 +9,7 @@ jobListingSection.addEventListener('click', function
     
     // obtengo el elemento button que fue clickeado
     console.log(event)
+    
     const element = event.target
 
     // verifico que tenga la clase 
@@ -20,4 +21,5 @@ jobListingSection.addEventListener('click', function
         // desbilito el boton 
         element.disable = true
     }
-    })
+})
+    
