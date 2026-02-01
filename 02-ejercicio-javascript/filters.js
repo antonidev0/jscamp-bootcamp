@@ -24,8 +24,6 @@ searchInput.addEventListener("input", () => {
   // obtengo el texto ingresado, se pasa a minuscula y se eliminan espacios extra
   const searchTerm = removeAccents(searchInput.value.toLowerCase().trim());
 
-  console.log(searchTerm, "aaaaaaaaaa");
-
   // Se seleccionan todas las tarjetas de empleos
   const jobCards = container.querySelectorAll(".job-listing-card");
 
