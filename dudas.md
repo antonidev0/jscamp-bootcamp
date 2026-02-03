@@ -19,3 +19,8 @@ Si tienes alguna duda de como hacer esto me puedes hablar por Discord (mi usuari
 Hola un saludo, ¿Esta bien asi?
 Muchas gracias por la atencion, en cuanto tenga mas tiempo escribo por discord. 
 No se hacer el merge
+
+--------
+
+Está perfecto! No te preocupes con el merge, ya lo hago así te queda, si?
+Luego cuando puedas me hablas y lo vemos mejor! Que te va a servir para el resto de ejercicios :)
