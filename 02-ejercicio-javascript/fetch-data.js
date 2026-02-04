@@ -7,6 +7,8 @@ fetch("./data.json")
         return respones.json();
     })
     .then((jobs) => {
+        const jobsDocumentFragment = document.createDocumentFragment();
+        // okokok
         jobs.forEach(job => {
             const article = document.createElement('article')
             article.className = 'job-listing-card'
@@ -24,5 +26,8 @@ fetch("./data.json")
             <button class="button-apply-job">Aplicar</button>`
 
             container.appendChild(article)
+            jobsDocumentFragment.appendChild(article);
+        })
+        container.appendChild(jobsDocumentFragment);
+        // esta bien asi?
     })
-})
