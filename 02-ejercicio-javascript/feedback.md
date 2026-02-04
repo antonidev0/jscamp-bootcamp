@@ -6,3 +6,5 @@ Por otro lado, te creé un archivo `new-filters.js`, para que veas cómo se pued
 Cualquier cosa como siempre, puedes ponerlo en `dudas.md` o hablarme por Discord
 
 Un saludo!
+
+okokok, muchas gracias

@@ -75,3 +75,5 @@ searchInput.addEventListener("input", filterJobs);
 filterTech.addEventListener("change", filterJobs);
 filter.addEventListener("change", filterJobs);
 filterExp.addEventListener("change", filterJobs);
+
+// okokok, es muy interesante, la verdad e parecia algo repetitivo cuando lo hice 
