@@ -1,5 +1,17 @@
 # Aquí puedes dejar tus dudas
 
+hola, aun no empizo a hacer los ejercicios pero tengo esta pequeña duda
+
+          </button>
+          {/* hola un saludo, yo tengo una pequeña confusion aca.
+          cuando uso react state, el estado inicial siempre sera apagado cierto?
+          por ejemplo, en este caso es: cuando le de click,  le cambias el estado de no guardado a guardado? */}
+          <button onClick={() => setGuardado(!guardado)}>
+              
+              {guardado ? "❤️ Guardado" : "🤍 Guardar"}
+              
+              
+el estado dependiendo del uso, debe estar en false o 0? o tambien habran casos donde convenga que sea true?
 ## Primera parte
 
 <!-- Dudas de la primera parte del ejercicio -->
