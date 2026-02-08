@@ -1,52 +1,80 @@
-const Pagination = () => {
+const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  const isFirstPage = currentPage === 1;
+  const isLastPage = currentPage === totalPages;
+  
+  const handlePrevClick = (event) => {
+    event.preventDefault();
+    if (!isFirstPage) {
+      onPageChange(currentPage - 1);
+    }
+  };
+
+  const handleNextClick = (event) => {
+    event.preventDefault();
+    if (!isLastPage) {
+      onPageChange(currentPage + 1);
+    }
+  };
+
+  const handleChangePage = (event, page) => {
+    event.preventDefault();
+    if (page !== currentPage) {
+      onPageChange(page);
+    }
+  };
+
+
+
+
+
+
   return (
     <nav className="pagination">
-      <a href="#">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M15 6l-6 6l6 6" />
-        </svg>
-      </a>
-      <a data-page="1" href="#">
-        1
-      </a>
-      <a data-page="2" href="#">
-        2
-      </a>
-      <a data-page="3" href="#">
-        3
-      </a>
-      <a data-page="4" href="#">
-        4
-      </a>
-      <a data-page="5" href="#">
-        5
-      </a>
-      <a href="#">
-        <svg
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <path d="M9 6l6 6l-6 6" />
-        </svg>
-      </a>
+      {!isFirstPage && (
+        <a href="#" className="disabled" onClick={handlePrevClick}>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M15 6l-6 6l6 6" />
+          </svg>
+        </a>
+      )}
+
+      {pages.map((page) => (
+        <a href="#" className={page === currentPage ? "is-active" : ""}
+        onClick={(event) => handleChangePage(event, page)}>
+          {page}
+        </a>
+      ))}
+
+      {!isLastPage && (
+        <a href="#" onClick={handleNextClick}>
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 6l6 6l-6 6" />
+          </svg>
+        </a>
+      )}
     </nav>
   );
 };
