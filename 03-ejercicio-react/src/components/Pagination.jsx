@@ -1,3 +1,5 @@
+import styles from "./Pagination.module.css";
+
 const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
@@ -31,7 +33,7 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
 
 
   return (
-    <nav className="pagination">
+    <nav className={styles.pagination}>
       {!isFirstPage && (
         <a href="#" className="disabled" onClick={handlePrevClick}>
           <svg
