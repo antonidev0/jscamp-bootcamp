@@ -51,7 +51,9 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
       )}
 
       {pages.map((page) => (
-        <a href="#" className={page === currentPage ? "is-active" : ""}
+        <a href="#"
+        key={page}
+        className={page === currentPage ? "is-active" : ""}
         onClick={(event) => handleChangePage(event, page)}>
           {page}
         </a>

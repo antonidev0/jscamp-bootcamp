@@ -2,15 +2,20 @@ import jobsData from "../data.json";
 import { JobCard } from "./JobCard.jsx";
 
 export default function JobListings() {
-
-    console.log(jobsData,"aeeeeeeeeeeeee"); 
-    
+ 
+     if (jobsData.length === 0) {
+       return (
+         <div className="no-jobs">
+           <p>No hay trabajos disponibles en este momento.</p>
+         </div>
+       );
+     }
     return (
       <>
         <h2 style={{ textAlign: "center" }}>Resultados de búsqueda</h2>
         <div className="jobs-listings">
           {jobsData.map((job) => (
-            <JobCard job={job} />
+            <JobCard key={job.id} job={job} />
           ))}
         </div>
       </>
