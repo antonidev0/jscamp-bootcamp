@@ -11,16 +11,32 @@ const RESULTS_PER_PAGE = 5;
 
 function App() {
 
+  const [filters, setFilters] = useState({ 
+    technology: "",
+    location: "",
+    experience: "",
+  });
+
   const [textToFilter, setTextToFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
+
+ const jobsFiltersByFilters = jobsData.filter(job => {
+    return (
+      (filters.technology === "" || job.data.technology === filters.technology.toLowerCase()) &&
+      (filters.location === "" || job.data.modalidad === filters.location.toLowerCase()) &&
+      (filters.experience === "" || job.data.nivel === filters.experience.toLowerCase())
+    )
+  });
+
+
   const jobsWithTextFilter = textToFilter === ''
-    ? jobsData
-    : jobsData.filter((job) => {
+    ? jobsFiltersByFilters
+    : jobsFiltersByFilters.filter((job) => {
       return job.titulo.toLowerCase().includes(textToFilter.toLowerCase())
     });
   
-  const totalPages = Math.ceil(jobsData.length / RESULTS_PER_PAGE);
+  const totalPages = Math.ceil(jobsWithTextFilter.length / RESULTS_PER_PAGE);
 
   const pagedResults = jobsWithTextFilter.slice(
     (currentPage - 1) * RESULTS_PER_PAGE,
@@ -32,8 +48,12 @@ function App() {
   };
 
 
-  const handleSearch = () => { 
+  const handleSearch = (filters) => { 
+    setCurrentPage(1);
+    setFilters(filters);
+    console.log("Search filters updated:", filters);
   }
+
 
 
   const handleTextFilter = (newTextToFilter) => { 
