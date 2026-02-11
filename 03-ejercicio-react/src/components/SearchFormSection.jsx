@@ -1,31 +1,21 @@
-import { useId } from "react";
+import React from "react";
 
-const SearchFormSection = ({ onSearch, onTextFilter }) => {
-  const idText = useId();
-  const idTechnology = useId();
-  const idLocation = useId();
-  const idExperience = useId();
+const SearchFormSection = ({
+  filters,
+  text,
+  onFiltersChange,
+  onTextChange,
+}) => { 
+  
+  const handleTextChange = (e) => onTextChange(e.target.value);
+  
+  const handleTechnologyChange = (e) =>
+    onFiltersChange({ ...filters, technology: e.target.value });
+  const handleLocationChange = (e) =>
+    onFiltersChange({ ...filters, location: e.target.value });
+  const handleExperienceChange = (e) =>
+    onFiltersChange({ ...filters, experience: e.target.value });
 
-  // todoso los inputs / selects usan este mismo handler. Lee todo el formulario
-  // en cada cambio para construir un objeto completo de filtros y notificar
-  // al padre sin necesidad de un submit. 
-  const handleTextChange = (event) => {
-    const form = event.target.form || event.target.closest("form");
-    // medida de seguridad adicional para asegurar de que el evento pueda encontrar el formulario más cercano
-
-    const formData = new FormData(form);
-
-    const filters = {
-      technology: formData.get(idTechnology) || "",
-      location: formData.get(idLocation) || "",
-      experience: formData.get(idExperience) || "",
-    };
-
-    const text = formData.get(idText) || "";
-
-    onTextFilter(text);
-    onSearch(filters);
-  };
 
   return (
     <section className="jobs-search">
@@ -53,7 +43,7 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
           <input
             id="empleos-search-input"
             type="text"
-            name={idText}
+            value={text}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
           />
@@ -61,9 +51,9 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
 
         <div className="search-filters">
           <select
-            name={idTechnology}
             id="filter-technology"
-            onChange={handleTextChange}
+            value={filters.technology}
+            onChange={handleTechnologyChange}
           >
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
@@ -83,9 +73,9 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
           </select>
 
           <select
-            name={idLocation}
             id="filter-location"
-            onChange={handleTextChange}
+            value={filters.location}
+            onChange={handleLocationChange}
           >
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
@@ -96,9 +86,9 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
           </select>
 
           <select
-            name={idExperience}
             id="filter-experience-level"
-            onChange={handleTextChange}
+            value={filters.experience}
+            onChange={handleExperienceChange}
           >
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
@@ -106,7 +96,7 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
             <option value="senior">Senior</option>
             <option value="lead">Lead</option>
           </select>
-        </div> 
+        </div>
       </form>
 
       <span id="filter-selected-value"></span>

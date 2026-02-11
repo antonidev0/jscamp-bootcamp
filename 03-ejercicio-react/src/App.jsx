@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Header from "./components/Header.jsx";
 import SearchFormSection from "./components/SearchFormSection.jsx";
 import SearchResultsSection from "./components/SearchResultsSection.jsx";
@@ -10,68 +10,76 @@ import JobListings from "./components/JobListings.jsx";
 const RESULTS_PER_PAGE = 5;
 
 function App() {
-
-  const [filters, setFilters] = useState({ 
+  const [filters, setFilters] = useState({
     technology: "",
     location: "",
     experience: "",
   });
 
+
   const [textToFilter, setTextToFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
-
- const jobsFiltersByFilters = jobsData.filter(job => {
-    return (
-      (filters.technology === "" || job.data.technology === filters.technology.toLowerCase()) &&
-      (filters.location === "" || job.data.modalidad === filters.location.toLowerCase()) &&
-      (filters.experience === "" || job.data.nivel === filters.experience.toLowerCase())
-    )
-  });
-
-
-  const jobsWithTextFilter = textToFilter === ''
-    ? jobsFiltersByFilters
-    : jobsFiltersByFilters.filter((job) => {
-      return job.titulo.toLowerCase().includes(textToFilter.toLowerCase())
+  const jobsFilteredByFields = useMemo(() => {
+    return jobsData.filter((job) => {
+      return (
+        (filters.technology === "" ||
+          job.data.technology === filters.technology.toLowerCase()) &&
+        (filters.location === "" ||
+          job.data.modalidad === filters.location.toLowerCase()) &&
+        (filters.experience === "" ||
+          job.data.nivel === filters.experience.toLowerCase())
+      );
     });
-  
+  }, [filters]);
+
+  const jobsWithTextFilter = useMemo(() => {
+    if (textToFilter === "") return jobsFilteredByFields;
+    return jobsFilteredByFields.filter((job) =>
+      job.titulo.toLowerCase().includes(textToFilter.toLowerCase()),
+    );
+  }, [jobsFilteredByFields, textToFilter]);
+
   const totalPages = Math.ceil(jobsWithTextFilter.length / RESULTS_PER_PAGE);
 
   const pagedResults = jobsWithTextFilter.slice(
     (currentPage - 1) * RESULTS_PER_PAGE,
-    currentPage * RESULTS_PER_PAGE
-  )
-  const handlePageChange = (page) => {
-    console.log("Page changed to:", page);
+    currentPage * RESULTS_PER_PAGE,
+  );
+  const handlePageChange = (page) => { 
     setCurrentPage(page);
+  }; 
+
+  const handleFiltersChange = (newFilters) => {
+    setCurrentPage(1);
+    setFilters(newFilters); 
   };
 
-
-  const handleSearch = (filters) => { 
-    setCurrentPage(1);
-    setFilters(filters);
-    console.log("Search filters updated:", filters);
-  }
-
-
-
-  const handleTextFilter = (newTextToFilter) => { 
+  const handleTextFilter = (newTextToFilter) => {
     setTextToFilter(newTextToFilter);
     setCurrentPage(1);
-  } 
+  };
 
   return (
     <>
       <Header />
       <main>
-        <SearchFormSection onSearch={handleSearch} onTextFilter={handleTextFilter} />
+        <SearchFormSection
+          filters={filters}
+          text={textToFilter}
+          onFiltersChange={handleFiltersChange}
+          onTextChange={handleTextFilter}
+        />
 
         <section>
           <JobListings jobs={pagedResults} />
         </section>
       </main>
-      <Pagination currentPage={pagedResults} totalPages={totalPages} onPageChange={handlePageChange} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
       <Footer />
     </>
   );
