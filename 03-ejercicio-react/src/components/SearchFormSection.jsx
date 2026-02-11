@@ -1,30 +1,30 @@
 import { useId } from "react";
 
 const SearchFormSection = ({ onSearch, onTextFilter }) => {
-
   const idText = useId();
   const idTechnology = useId();
   const idLocation = useId();
   const idExperience = useId();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // todoso los inputs / selects usan este mismo handler. Lee todo el formulario
+  // en cada cambio para construir un objeto completo de filtros y notificar
+  // al padre sin necesidad de un submit. 
+  const handleTextChange = (event) => {
+    const form = event.target.form || event.target.closest("form");
+    // medida de seguridad adicional para asegurar de que el evento pueda encontrar el formulario más cercano
 
-    const formData = new FormData(event.target);
+    const formData = new FormData(form);
+
     const filters = {
-      search: formData.get(idText),
-      technology: formData.get(idTechnology),
-      location: formData.get(idLocation),
-      experience: formData.get(idExperience),
+      technology: formData.get(idTechnology) || "",
+      location: formData.get(idLocation) || "",
+      experience: formData.get(idExperience) || "",
     };
 
-    onSearch(filters);
-  };
+    const text = formData.get(idText) || "";
 
-  const handleTextChange = (event) => {
-    const text = event.target.value;
     onTextFilter(text);
-    console.log("Search text changed:", text);
+    onSearch(filters);
   };
 
   return (
@@ -32,7 +32,7 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form onSubmit={handleSubmit} id="empleos-search-form" role="search">
+      <form id="empleos-search-form" role="search">
         <div className="search-bar">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,11 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
         </div>
 
         <div className="search-filters">
-          <select name={idTechnology} id="filter-technology">
+          <select
+            name={idTechnology}
+            id="filter-technology"
+            onChange={handleTextChange}
+          >
             <option value="">Tecnología</option>
             <optgroup label="Tecnologías populares">
               <option value="javascript">JavaScript</option>
@@ -78,7 +82,11 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
             <option value="php">PHP</option>
           </select>
 
-          <select name={idLocation} id="filter-location">
+          <select
+            name={idLocation}
+            id="filter-location"
+            onChange={handleTextChange}
+          >
             <option value="">Ubicación</option>
             <option value="remoto">Remoto</option>
             <option value="cdmx">Ciudad de México</option>
@@ -87,15 +95,18 @@ const SearchFormSection = ({ onSearch, onTextFilter }) => {
             <option value="barcelona">Barcelona</option>
           </select>
 
-          <select name={idExperience} id="filter-experience-level">
+          <select
+            name={idExperience}
+            id="filter-experience-level"
+            onChange={handleTextChange}
+          >
             <option value="">Nivel de experiencia</option>
             <option value="junior">Junior</option>
             <option value="mid">Mid-level</option>
             <option value="senior">Senior</option>
             <option value="lead">Lead</option>
           </select>
-        </div>
-        <button type="submit">Buscar</button>
+        </div> 
       </form>
 
       <span id="filter-selected-value"></span>
