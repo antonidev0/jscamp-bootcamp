@@ -8,11 +8,13 @@ const SearchFormSection = ({
 }) => { 
   
   const handleTextChange = (e) => onTextChange(e.target.value);
-  
+
   const handleTechnologyChange = (e) =>
     onFiltersChange({ ...filters, technology: e.target.value });
+
   const handleLocationChange = (e) =>
     onFiltersChange({ ...filters, location: e.target.value });
+  
   const handleExperienceChange = (e) =>
     onFiltersChange({ ...filters, experience: e.target.value });
 

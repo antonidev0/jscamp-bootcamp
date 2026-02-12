@@ -10,11 +10,23 @@ import JobListings from "./components/JobListings.jsx";
 const RESULTS_PER_PAGE = 5;
 
 function App() {
+
+
+
+// defino el estado de los filtros, el texto a filtrar y la página actual. El estado de los filtros es un objeto con las propiedades technology, location y experience, que se inicializan como cadenas vacías. El estado del texto a filtrar se inicializa como una cadena vacía, y el estado de la página actual se inicializa en 1.
   const [filters, setFilters] = useState({
     technology: "",
     location: "",
     experience: "",
   });
+
+
+
+
+
+
+
+
 
 
   const [textToFilter, setTextToFilter] = useState("");
@@ -51,8 +63,11 @@ function App() {
   }; 
 
   const handleFiltersChange = (newFilters) => {
+
     setCurrentPage(1);
+    
     setFilters(newFilters); 
+
   };
 
   const handleTextFilter = (newTextToFilter) => {
