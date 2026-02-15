@@ -1,23 +1,20 @@
 import React from "react";
+import { useFilters } from "../context/FiltersContext.jsx";
 
-const SearchFormSection = ({
-  filters,
-  text,
-  onFiltersChange,
-  onTextChange,
-}) => { 
-  
-  const handleTextChange = (e) => onTextChange(e.target.value);
+const SearchFormSection = () => {
+  const { filters, textToFilter, handleFiltersChange, handleTextFilter } =
+    useFilters();
+
+  const handleTextChange = (e) => handleTextFilter(e.target.value);
 
   const handleTechnologyChange = (e) =>
-    onFiltersChange({ ...filters, technology: e.target.value });
+    handleFiltersChange({ ...filters, technology: e.target.value });
 
   const handleLocationChange = (e) =>
-    onFiltersChange({ ...filters, location: e.target.value });
-  
-  const handleExperienceChange = (e) =>
-    onFiltersChange({ ...filters, experience: e.target.value });
+    handleFiltersChange({ ...filters, location: e.target.value });
 
+  const handleExperienceChange = (e) =>
+    handleFiltersChange({ ...filters, experience: e.target.value });
 
   return (
     <section className="jobs-search">
@@ -45,7 +42,7 @@ const SearchFormSection = ({
           <input
             id="empleos-search-input"
             type="text"
-            value={text}
+            value={textToFilter}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
           />
