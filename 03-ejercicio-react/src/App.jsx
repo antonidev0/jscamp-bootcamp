@@ -1,54 +1,15 @@
-import Header from "./components/Header.jsx";
-import SearchFormSection from "./components/SearchFormSection.jsx";
+import Header from "../src/components/Header.jsx";
+import { HomePage } from "../src/pages/Home.jsx";
 import Footer from "./components/Footer.jsx";
-import Pagination from "./components/Pagination.jsx";
-import JobListings from "./components/JobListings.jsx";
-import { FilterProvider, useFilters } from "./context/FiltersContext.jsx";
-
-// Componente interno que consume el contexto
-function AppContent() {
-  const {
-    filters,
-    textToFilter,
-    currentPage,
-    totalPages,
-    pagedResults,
-    handleFiltersChange,
-    handleTextFilter,
-    handlePageChange,
-  } = useFilters();
-
-  return (
-    <>
-      <Header />
-      <main>
-        <SearchFormSection
-          filters={filters}
-          text={textToFilter}
-          onFiltersChange={handleFiltersChange}
-          onTextChange={handleTextFilter}
-        />
-
-        <section>
-          <JobListings jobs={pagedResults} />
-        </section>
-      </main>
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
-      <Footer />
-    </>
-  );
-}
 
 // Componente principal que provee el contexto
 function App() {
   return (
-    <FilterProvider>
-      <AppContent />
-    </FilterProvider>
+    <>
+      <Header />
+      <HomePage />
+      <Footer />
+    </>
   );
 }
 

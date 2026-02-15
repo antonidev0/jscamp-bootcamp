@@ -1,8 +1,10 @@
 export function HomePage() {
+
+  const imageUrl = "../src/assets/background.webp";
   return (
     <main>
       <section>
-        <img src="./background.webp" width="200" />
+        <img src={imageUrl} width="200" />
 
         <h1>Encuentra el trabajo de tus sueños</h1>
 
