@@ -1,13 +1,14 @@
 /* Pasa tu contenido de src/App.jsx aquí */
-import Header from "./components/Header.jsx";
-import SearchFormSection from "./components/SearchFormSection.jsx";
-import Footer from "./components/Footer.jsx";
-import Pagination from "./components/Pagination.jsx";
-import JobListings from "./components/JobListings.jsx";
-import { FilterProvider, useFilters } from "./context/FiltersContext.jsx";
+import { Header } from "../components/Header.jsx";
+import SearchFormSection from "../components/SearchFormSection.jsx";
+import { Footer } from "../components/Footer.jsx";
+import Pagination from "../components/Pagination.jsx";
+import JobListings from "../components/JobListings.jsx";
+import { FilterProvider, useFilters } from "../context/FiltersContext.jsx";
 
 // Componente interno que consume el contexto
-function AppContent() {
+
+function Search() {
   const {
     filters,
     textToFilter,
@@ -41,14 +42,13 @@ function AppContent() {
     </>
   );
 }
-
-// Componente principal que provee el contexto
-function App() {
+ 
+function SearchPage() {
   return (
     <FilterProvider>
-      <AppContent />
+      <Search />
     </FilterProvider>
   );
 }
 
-export default App;
+export { SearchPage };

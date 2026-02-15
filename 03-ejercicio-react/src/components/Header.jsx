@@ -21,11 +21,11 @@ const Header = () => {
         </a>
 
         <nav>
-          <a href="#">Empleos</a>
+          <a href="/search">Empleos</a>
         </nav>
       </header>
     </>
   );
 };
 
-export default Header;
+export { Header };
