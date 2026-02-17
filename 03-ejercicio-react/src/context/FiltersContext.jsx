@@ -22,10 +22,13 @@ export function FilterProvider({ children }) {
         return (
           (filters.technology === "" ||
             job.data.technology === filters.technology.toLowerCase()) &&
+          
           (filters.location === "" ||
             job.data.modalidad === filters.location.toLowerCase()) &&
+          
           (filters.experience === "" ||
             job.data.nivel === filters.experience.toLowerCase())
+          
         );
       });
     },
