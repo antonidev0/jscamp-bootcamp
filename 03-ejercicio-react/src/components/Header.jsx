@@ -1,8 +1,10 @@
+import { Link } from "./Link";
+
 const Header = () => {
   return (
     <>
       <header>
-        <a href="/" style={{ textDecoration: "none" }}>
+        <Link href="/" style={{ textDecoration: "none" }}>
           <h1 style={{ color: "white" }}>
             <svg
               fill="none"
@@ -18,10 +20,10 @@ const Header = () => {
             </svg>
             DevJobs
           </h1>
-        </a>
+        </Link>
 
         <nav>
-          <a href="/search">Empleos</a>
+          <Link href="/search">Empleos</Link>
         </nav>
       </header>
     </>
