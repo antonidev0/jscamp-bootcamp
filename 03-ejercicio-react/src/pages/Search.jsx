@@ -5,6 +5,7 @@ import { Footer } from "../components/Footer.jsx";
 import Pagination from "../components/Pagination.jsx";
 import JobListings from "../components/JobListings.jsx";
 import { FilterProvider, useFilters } from "../context/FiltersContext.jsx";
+import { useEffect } from "react";
 
 // Componente interno que consume el contexto
 
@@ -19,6 +20,9 @@ function Search() {
     handleTextFilter,
     handlePageChange,
   } = useFilters();
+
+ 
+
 
   return (
     <> 

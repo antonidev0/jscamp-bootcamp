@@ -20,10 +20,19 @@ function App() {
 
   useEffect(() => {
     
-    window.addEventListener("popstate", () => {
-      console.log("paaa"); 
+    window.addEventListener("popstate", () => { 
+
+      const handleLocationChange = () => {
+        setCurrentPath(window.location.pathname);
+      }
+
+      window.addEventListener("popstate", handleLocationChange);
+
+      return () => {
+        window.removeEventListener("popstate", handleLocationChange);
+      }
+
     });
-    
   }, []);
 
 
