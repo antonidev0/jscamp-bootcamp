@@ -5,25 +5,15 @@ import { Footer } from "./components/Footer.jsx";
 import { SearchPage } from "../src/pages/Search.jsx";
 import { NotFound } from "./pages/404.jsx";
 import { useRouter } from "./hooks/useRouter.jsx";
-
+import { Route } from "./components/Route.jsx";
 // Componente principal que provee el contexto
 
-function App() {
-
-  const { currentPath } = useRouter();
-  
-  let page = <NotFound />;
-
-  if (currentPath === "/") {
-    page = <HomePage />;
-  } else if (currentPath === "/search") { 
-    page = <SearchPage />;
-  }
-     
+function App() { 
   return (
     <>
       <Header />
-      {page}
+      <Route path="/" component={HomePage} />
+      <Route path="/search" component={SearchPage} />
       <Footer />
     </>
   );

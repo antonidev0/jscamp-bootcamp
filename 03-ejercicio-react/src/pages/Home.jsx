@@ -1,4 +1,21 @@
+import { useRouter } from "../hooks/useRouter"; 
+
 export function HomePage() {
+  const { navigateTo } = useRouter();
+
+  const hanldeSerch = (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const searchTerm = formData.get("search");
+ 
+    const url = searchTerm
+      ? `/search?query=${encodeURIComponent(searchTerm)}`
+      : "/search";
+    
+    navigateTo(url);
+
+  }
 
   const imageUrl = "../src/assets/background.webp";
   return (
@@ -12,7 +29,7 @@ export function HomePage() {
           Únete a la comunidad más grande de desarrolladores y encuentra tu próxima oportunidad.
         </p>
 
-        <form role="search">
+        <form onSubmit={hanldeSerch} role="search">
           <div>
             <svg
               width="24"
