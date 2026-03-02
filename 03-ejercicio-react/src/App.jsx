@@ -4,12 +4,14 @@ import { HomePage } from "../src/pages/Home.jsx";
 import { Footer } from "./components/Footer.jsx";
 import { SearchPage } from "../src/pages/Search.jsx";
 import { NotFound } from "./pages/404.jsx";
+import { useRouter } from "./hooks/useRouter.jsx";
 
 // Componente principal que provee el contexto
+
 function App() {
 
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
- 
+  const { currentPath } = useRouter();
+  
   let page = <NotFound />;
 
   if (currentPath === "/") {
@@ -17,25 +19,6 @@ function App() {
   } else if (currentPath === "/search") { 
     page = <SearchPage />;
   }
-
-  useEffect(() => {
-    
-    window.addEventListener("popstate", () => { 
-
-      const handleLocationChange = () => {
-        setCurrentPath(window.location.pathname);
-      }
-
-      window.addEventListener("popstate", handleLocationChange);
-
-      return () => {
-        window.removeEventListener("popstate", handleLocationChange);
-      }
-
-    });
-  }, []);
-
-
      
   return (
     <>
