@@ -1,20 +1,18 @@
 import React from "react";
-import { useFilters } from "../context/FiltersContext.jsx";
+import { useSearchForm } from "../hooks/useSearchForm.jsx";
+
 
 const SearchFormSection = () => {
-  const { filters, textToFilter, handleFiltersChange, handleTextFilter } =
-    useFilters();
 
-  const handleTextChange = (e) => handleTextFilter(e.target.value);
+  const {
+    filters,
+    textToFilter,
+    handleTextChange, // <--- ¡Esta es la que te falta!
+    handleTechnologyChange,
+    handleLocationChange,
+    handleExperienceChange,
+  } = useSearchForm();
 
-  const handleTechnologyChange = (e) =>
-    handleFiltersChange({ ...filters, technology: e.target.value });
-
-  const handleLocationChange = (e) =>
-    handleFiltersChange({ ...filters, location: e.target.value });
-
-  const handleExperienceChange = (e) =>
-    handleFiltersChange({ ...filters, experience: e.target.value });
 
   return (
     <section className="jobs-search">
