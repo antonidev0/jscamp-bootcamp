@@ -29,6 +29,7 @@ export function Contact() {
     isSubmitted,
     handleChange,
     handleSubmit,
+    handleBlur,
   } = useForm({
     initialValues: { name: "", email: "", message: "" },
     validate: validateContact,
@@ -46,6 +47,7 @@ export function Contact() {
             name="name"
             value={values.name}
             onChange={handleChange}
+            onBlur={handleBlur}
           />
         </div>
         {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
@@ -58,6 +60,7 @@ export function Contact() {
             type="email"
             value={values.email}
             onChange={handleChange}
+            onBlur={handleBlur}
           />
         </div>
         {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
@@ -69,6 +72,7 @@ export function Contact() {
             name="message"
             value={values.message}
             onChange={handleChange}
+            onBlur={handleBlur}
           />
         </div>
         {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
