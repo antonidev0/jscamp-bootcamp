@@ -14,9 +14,9 @@ function App() {
   return (
     <>
       <Header />
-      <Route path="/" component={HomePage} />
+      <Route path="/" component={HomePage} exact={false} />
       <Route path="/search" component={SearchPage} />
-      <Route path="/contact" component={Contact} />
+      <Route path="/contact" component={Contact}  />
       <Footer />
     </>
   );

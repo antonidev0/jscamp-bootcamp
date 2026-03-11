@@ -79,6 +79,9 @@ export function Contact() {
 
         <button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Enviando..." : "Enviar"}
+          {isSubmitted && (
+            <p style={{ color: "green" }}>¡Mensaje enviado correctamente!</p>
+          )}
         </button>
       </form>
     </div>

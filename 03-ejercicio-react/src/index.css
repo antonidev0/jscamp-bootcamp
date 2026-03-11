@@ -523,3 +523,10 @@ article {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+
+nav a.active {
+  color: var(--primary-hover);
+  font-weight: bold;
+  border-bottom: 1px solid;
+}
