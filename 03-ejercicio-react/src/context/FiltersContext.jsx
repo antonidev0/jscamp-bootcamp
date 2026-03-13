@@ -1,5 +1,5 @@
 // contexts/FilterContext.jsx
-import { createContext, useContext, useState, useMemo } from "react";
+import { createContext, useContext, useState, useMemo, useEffect } from "react";
 import jobsData from "../data.json";
 
 const FilterContext = createContext();
@@ -16,6 +16,38 @@ export function FilterProvider({ children }) {
 
   const [textToFilter, setTextToFilter] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [jobs, setJobs] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchJobs() {
+      try {
+        setLoading(true);
+
+        const params = new URLSearchParams()
+        if (textToFilter) params.append('text', textToFilter)
+        if (filters.technology) params.append('technology', filters.technology)
+        if (filters.location) params.append('type', filters.location)
+        if (filters.experience) params.append('level', filters.experience)
+          
+        const queryParams = params.toString()
+        
+        const response = await fetch(`https://jscamp-api.vercel.app/api/jobs?${queryParams}`);
+        const json = await response.json();
+        setJobs(json.data);
+        setTotal(json.total);
+      } catch (error) {
+        console.error("Error fetching jobs:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchJobs();
+  }, [filters, textToFilter, currentPage]);
+
+
 
   const jobsFilteredByFields = useMemo(() => {
       return jobsData.filter((job) => {
@@ -39,24 +71,10 @@ export function FilterProvider({ children }) {
   //   // Filtrado por campos (technology, location, experience)
 
     // Filtrado adicional por texto
-    const jobsWithTextFilter = useMemo((text) => {
-        if (textToFilter === "") return jobsFilteredByFields;
-
-      return jobsFilteredByFields.filter((job) =>
-        job.titulo.toLowerCase().includes(textToFilter.toLowerCase()),
-      );
-    }, [jobsFilteredByFields, textToFilter]);
-  
-
+   
     // Cálculos de paginación
-    const totalPages = Math.ceil(jobsWithTextFilter.length / RESULTS_PER_PAGE);
-
-    const pagedResults = useMemo(() => {
-      return jobsWithTextFilter.slice(
-        (currentPage - 1) * RESULTS_PER_PAGE,
-        currentPage * RESULTS_PER_PAGE,
-      );
-    }, [jobsWithTextFilter, currentPage]);
+    const totalPages = Math.ceil(jobs.length / RESULTS_PER_PAGE);
+ 
   
 
     // Funciones para actualizar el estado
@@ -76,13 +94,14 @@ export function FilterProvider({ children }) {
       setCurrentPage(page);
     };
 
-    const value = {
+  const value = {
+      total,
+      loading,
       filters,
       textToFilter,
       currentPage,
-      totalPages,
-      pagedResults,
-      jobsWithTextFilter,
+      totalPages, 
+      jobs,
       handleFiltersChange,
       handleTextFilter,
       handlePageChange,

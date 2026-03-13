@@ -7,7 +7,7 @@ const SearchFormSection = () => {
   const {
     filters,
     textToFilter,
-    handleTextChange, // <--- ¡Esta es la que te falta!
+    handleTextChange,  
     handleTechnologyChange,
     handleLocationChange,
     handleExperienceChange,

@@ -11,19 +11,19 @@ import { useEffect } from "react";
 
 function Search() {
   const {
+    total,
+    loading,
     filters,
     textToFilter,
     currentPage,
     totalPages,
-    pagedResults,
+    jobs,
     handleFiltersChange,
     handleTextFilter,
     handlePageChange,
   } = useFilters();
 
  
-
-
   return (
     <> 
       <main>
@@ -35,7 +35,9 @@ function Search() {
         />
 
         <section>
-          <JobListings jobs={pagedResults} />
+          {
+            loading ? <p>Cargando empleos...</p> : <JobListings jobs={jobs} />
+          }
         </section>
       </main>
       <Pagination
