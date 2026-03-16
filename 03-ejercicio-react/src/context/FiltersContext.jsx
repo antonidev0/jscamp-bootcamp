@@ -4,9 +4,31 @@ import jobsData from "../data.json";
 
 const FilterContext = createContext();
 
+function getErrorMessage(error) {
+  if (!navigator.onLine) {
+    return "No tienes conexión a internet. Verifica tu conexión e intenta de nuevo.";
+  }
+
+  const message = error.message;
+
+  if (message.includes("404")) {
+    return "No se encontró el recurso solicitado.";
+  }
+  if (message.includes("500")) {
+    return "Error en el servidor. Intenta más tarde.";
+  }
+  if (message.includes("403")) {
+    return "No tienes permisos para acceder a este recurso.";
+  }
+
+  return "Ocurrió un error inesperado. Intenta de nuevo.";
+}
+
+
 export function FilterProvider({ children }) {
   const RESULTS_PER_PAGE = 5;
 
+  const [error, setError] = useState(null);
   const [filters, setFilters] = useState(() => {
     try {
       const saved = localStorage.getItem("jobFilters");
@@ -31,11 +53,18 @@ export function FilterProvider({ children }) {
   const [jobs, setJobs] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [retryCount, setRetryCount] = useState(0);
 
+    const retry = () => {
+      setError(null); 
+      setRetryCount((prev) => prev + 1);
+  };
+  
   useEffect(() => {
     async function fetchJobs() {
       try {
         setLoading(true);
+        setError(null);
 
         const params = new URLSearchParams();
         if (textToFilter) params.append("text", textToFilter);
@@ -52,17 +81,25 @@ export function FilterProvider({ children }) {
         const response = await fetch(
           `https://jscamp-api.vercel.app/api/jobs?${queryParams}`,
         );
+
+        if (!response.ok) { 
+          throw new Error(`aaaaaaaaaaaaaaaaaa ${response.status}`);
+        }
+
         const json = await response.json();
         setJobs(json.data);
         setTotal(json.total);
       } catch (error) {
-        console.error("Error fetching jobs:", error);
+        console.error("Errorrrrrrrrrrrrrrr", error);
+        setError(getErrorMessage(error));
+        setJobs([]);
+        setTotal(0)
       } finally {
         setLoading(false);
       }
     }
     fetchJobs();
-  }, [filters, textToFilter, currentPage]);
+  }, [filters, textToFilter, currentPage, retryCount]);
 
   const jobsFilteredByFields = useMemo(
     () => {
@@ -121,6 +158,9 @@ export function FilterProvider({ children }) {
     localStorage.removeItem("jobFilters");
     localStorage.removeItem("jobTextFilter");
   };
+  
+
+
 
   const value = {
     total,
@@ -130,6 +170,8 @@ export function FilterProvider({ children }) {
     currentPage,
     totalPages,
     jobs,
+    error,
+    retry,
     clearAllFilters,
     handleFiltersChange,
     handleTextFilter,

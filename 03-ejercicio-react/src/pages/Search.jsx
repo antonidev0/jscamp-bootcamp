@@ -22,9 +22,20 @@ function Search() {
     handleFiltersChange,
     handleTextFilter,
     handlePageChange,
+    error,
+    retry,
   } = useFilters();
 
  
+  if (error) {
+    return (
+      <div className="error-container">
+        <h3>Algo salió mal</h3>
+        <p>{error}</p>
+        <button onClick={retry}>Reintentar</button>
+      </div>
+    );
+  }
   return (
     <> 
       <main>
@@ -41,6 +52,7 @@ function Search() {
               <Spinner/> 
               : <JobListings jobs={jobs} />
           }
+ 
         </section>
       </main>
       <Pagination

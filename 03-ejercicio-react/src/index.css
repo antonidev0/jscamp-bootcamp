@@ -544,3 +544,19 @@ nav a.active {
   padding: 40px;
   gap: 16px;
 }
+
+
+.error-container {
+  text-align: center;
+  padding: 40px;
+}
+
+.error-container h3 {
+  color: #dc2626;
+}
+
+.error-container button {
+  margin-top: 16px;
+  padding: 8px 24px;
+  cursor: pointer;
+}
