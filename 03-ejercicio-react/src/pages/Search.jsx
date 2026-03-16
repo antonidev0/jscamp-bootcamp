@@ -36,9 +36,14 @@ function Search() {
       </div>
     );
   }
+
+  const title = loading
+    ? `Cargando... - DevJobs`
+    : `Resultados : ${total}, Pagina ${currentPage} - <DevJobs></DevJobs>`
   return (
     <> 
       <main>
+        <title>{ title }</title>
         <SearchFormSection
           filters={filters}
           text={textToFilter}
