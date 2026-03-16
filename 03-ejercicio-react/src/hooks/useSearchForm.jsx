@@ -1,6 +1,5 @@
 import { useFilters } from "../context/FiltersContext.jsx";
-import { useState } from "react";
-let timeoutId = null; 
+import { useState, useRef } from "react"; 
 
 export const useSearchForm = () => {
   const {
@@ -12,13 +11,14 @@ export const useSearchForm = () => {
   } = useFilters();
 
   const [localText, setLocalText] = useState(textToFilter);
+  const timeoutId = useRef(null)
 
   const handleTextChange = (e) => { 
     const value = e.target.value;
     setLocalText(value);
 
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
+    clearTimeout(timeoutId.current);
+    timeoutId.current = setTimeout(() => {
       handleTextFilter(value);
     }, 500);
   }
@@ -34,20 +34,20 @@ export const useSearchForm = () => {
     
   
     const hasActiveFilters =
-      textToFilter !== "" ||
+      localText !== "" ||
       Object.values(filters).some((value) => value !== "");
  
     const clearFilters = () => {
-      handleTextFilter("");
-      handleFiltersChange({ technology: "", location: "", experience: "" });
+      setLocalText("");
+      clearAllFilters();
     };
 
 
   return {
     filters,
     textToFilter: localText,
-    hasActiveFilters,
-    clearFilters : clearAllFilters,
+    hasActiveFilters, 
+    clearFilters,
     handleTextChange,
     handleTechnologyChange,
     handleLocationChange,
