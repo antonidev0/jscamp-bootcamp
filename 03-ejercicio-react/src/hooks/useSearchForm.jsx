@@ -1,8 +1,13 @@
 import { useFilters } from "../context/FiltersContext.jsx";
 
 export const useSearchForm = () => {
-  const { filters, textToFilter, handleFiltersChange, handleTextFilter } =
-    useFilters();
+  const {
+    filters,
+    textToFilter,
+    handleFiltersChange,
+    handleTextFilter,
+    clearAllFilters,
+  } = useFilters();
 
   const handleTextChange = (e) => handleTextFilter(e.target.value);
 
@@ -30,7 +35,7 @@ export const useSearchForm = () => {
     filters,
     textToFilter,
     hasActiveFilters,
-    clearFilters,
+    clearFilters : clearAllFilters,
     handleTextChange,
     handleTechnologyChange,
     handleLocationChange,
