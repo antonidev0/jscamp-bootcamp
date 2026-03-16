@@ -6,6 +6,7 @@ import Pagination from "../components/Pagination.jsx";
 import JobListings from "../components/JobListings.jsx";
 import { FilterProvider, useFilters } from "../context/FiltersContext.jsx";
 import { useEffect } from "react";
+import { Spinner } from "../components/Spinner.jsx"
 
 // Componente interno que consume el contexto
 
@@ -36,7 +37,9 @@ function Search() {
 
         <section>
           {
-            loading ? <p>Cargando empleos...</p> : <JobListings jobs={jobs} />
+            loading ?
+              <Spinner/> 
+              : <JobListings jobs={jobs} />
           }
         </section>
       </main>

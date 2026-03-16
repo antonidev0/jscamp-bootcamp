@@ -536,3 +536,11 @@ nav a.active {
   display: flex; 
   padding: 0.6rem;
 }
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  gap: 16px;
+}
