@@ -7,7 +7,9 @@ const SearchFormSection = () => {
   const {
     filters,
     textToFilter,
-    handleTextChange,  
+    hasActiveFilters,
+    clearFilters,
+    handleTextChange,
     handleTechnologyChange,
     handleLocationChange,
     handleExperienceChange,
@@ -93,8 +95,18 @@ const SearchFormSection = () => {
             <option value="senior">Senior</option>
             <option value="lead">Lead</option>
           </select>
+
+      {hasActiveFilters && (
+        <button type="button" className="btn-clear" onClick={clearFilters}>
+          Limpiar filtros
+        </button>
+        )}
+
         </div>
+
+        
       </form>
+
 
       <span id="filter-selected-value"></span>
     </section>

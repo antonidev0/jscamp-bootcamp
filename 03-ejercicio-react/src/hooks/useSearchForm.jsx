@@ -15,10 +15,22 @@ export const useSearchForm = () => {
   const handleExperienceChange = (e) =>
         handleFiltersChange({ ...filters, experience: e.target.value });
     
-    
+  
+    const hasActiveFilters =
+      textToFilter !== "" ||
+      Object.values(filters).some((value) => value !== "");
+ 
+    const clearFilters = () => {
+      handleTextFilter("");
+      handleFiltersChange({ technology: "", location: "", experience: "" });
+    };
+
+
   return {
     filters,
     textToFilter,
+    hasActiveFilters,
+    clearFilters,
     handleTextChange,
     handleTechnologyChange,
     handleLocationChange,

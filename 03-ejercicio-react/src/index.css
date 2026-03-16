@@ -530,3 +530,9 @@ nav a.active {
   font-weight: bold;
   border-bottom: 1px solid;
 }
+
+.btn-clear{
+  background-color: var(--primary-hover);
+  display: flex; 
+  padding: 0.6rem;
+}
