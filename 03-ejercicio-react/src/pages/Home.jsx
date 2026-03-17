@@ -10,7 +10,7 @@ export function HomePage() {
     const searchTerm = formData.get("search");
  
     const url = searchTerm
-      ? `/search?query=${encodeURIComponent(searchTerm)}`
+      ? `/search?text=${encodeURIComponent(searchTerm)}`
       : "/search";
     
     navigateTo(url);

@@ -1,3 +1,4 @@
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -23,11 +24,11 @@
     &:active {
       transform: scale(0.9);
     }
-  }
-}
 
-.isActive {
-  background-color: var(--primary-light);
-  color: white;
-  pointer-events: none;
+    &.is-active {
+      background-color: var(--primary-light);
+      color: white;
+      pointer-events: none;
+    }
+  }
 }
