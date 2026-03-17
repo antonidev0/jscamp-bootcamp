@@ -29,13 +29,19 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
 
 
 
-
+  const buildPageUrl = (page) => { 
+    const url = new URL(window.location);
+    url.searchParams.set('page', page);
+    console.log(url);
+    
+    return `${url.pathname}?${url.searchParams.toString()}`
+  }
 
 
   return (
     <nav className={styles.pagination}>
       {!isFirstPage && (
-        <a href="#" className="disabled" onClick={handlePrevClick}>
+        <a href={buildPageUrl(currentPage - 1)} className="disabled" onClick={handlePrevClick}>
           <svg
             width="16"
             height="16"
@@ -53,7 +59,7 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
       )}
 
       {pages.map((page) => (
-        <a href="#"
+        <a href={buildPageUrl(page)}
         key={page}
         className={page === currentPage ? "is-active" : ""}
         onClick={(event) => handleChangePage(event, page)}>
@@ -62,7 +68,7 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
       ))}
 
       {!isLastPage && (
-        <a href="#" onClick={handleNextClick}>
+        <a href={buildPageUrl(currentPage + 1)} onClick={handleNextClick}>
           <svg
             width="16"
             height="16"
