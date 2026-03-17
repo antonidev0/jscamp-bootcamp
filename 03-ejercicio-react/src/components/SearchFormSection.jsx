@@ -2,7 +2,7 @@ import React from "react";
 import { useSearchForm } from "../hooks/useSearchForm.jsx";
 
 
-const SearchFormSection = () => {
+const SearchFormSection = (initialText) => {
 
   const {
     filters,
@@ -45,6 +45,7 @@ const SearchFormSection = () => {
             value={textToFilter}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
+            defaultValue={initialText}
           />
         </div>
 

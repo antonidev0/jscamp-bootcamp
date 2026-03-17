@@ -31,9 +31,7 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
 
   const buildPageUrl = (page) => { 
     const url = new URL(window.location);
-    url.searchParams.set('page', page);
-    console.log(url);
-    
+    url.searchParams.set('page', page);     
     return `${url.pathname}?${url.searchParams.toString()}`
   }
 

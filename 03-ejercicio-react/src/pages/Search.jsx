@@ -49,6 +49,7 @@ function Search() {
           text={textToFilter}
           onFiltersChange={handleFiltersChange}
           onTextChange={handleTextFilter}
+          initialText={textToFilter}
         />
 
         <section>

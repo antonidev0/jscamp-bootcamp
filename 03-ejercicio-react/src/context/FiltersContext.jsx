@@ -1,9 +1,9 @@
 // contexts/FilterContext.jsx
 import { createContext, useContext, useState, useMemo, useEffect } from "react";
 import jobsData from "../data.json";
+import { useRouter } from "../hooks/useRouter.jsx";
 
 const FilterContext = createContext();
-
 function getErrorMessage(error) {
   if (!navigator.onLine) {
     return "No tienes conexión a internet. Verifica tu conexión e intenta de nuevo.";
@@ -24,42 +24,41 @@ function getErrorMessage(error) {
   return "Ocurrió un error inesperado. Intenta de nuevo.";
 }
 
-
 export function FilterProvider({ children }) {
+  const { navigateTo } = useRouter();
   const RESULTS_PER_PAGE = 5;
 
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState(() => {
-    try {
-      const saved = localStorage.getItem("jobFilters");
-      return saved
-        ? JSON.parse(saved)
-        : { technology: "", location: "", experience: "" };
-    } catch {
-      return { technology: "", location: "", experience: "" };
-    }
+  const params = new URLSearchParams(window.location.search);
+    return {
+      technology: params.get('technology') || '',
+      location: params.get('type') || '',
+      experience: params.get('level') || ''
+  }
   });
 
   const [textToFilter, setTextToFilter] = useState(() => {
-    try {
-      return localStorage.getItem("jobTextFilter") || "";
-    } catch {
-      return "";
-    }
+     const params = new URLSearchParams(window.location.search);
+     return params.get("text") || "";
   });
 
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    const page = Number(params.get('page'));
+    return Number.isNaN(page) ? page : 1
+  });
 
   const [jobs, setJobs] = useState([]);
   const [total, setTotal] = useState(0);
   const [loading, setLoading] = useState(true);
   const [retryCount, setRetryCount] = useState(0);
 
-    const retry = () => {
-      setError(null); 
-      setRetryCount((prev) => prev + 1);
+  const retry = () => {
+    setError(null);
+    setRetryCount((prev) => prev + 1);
   };
-  
+
   useEffect(() => {
     async function fetchJobs() {
       try {
@@ -82,7 +81,7 @@ export function FilterProvider({ children }) {
           `https://jscamp-api.vercel.app/api/jobs?${queryParams}`,
         );
 
-        if (!response.ok) { 
+        if (!response.ok) {
           throw new Error(`aaaaaaaaaaaaaaaaaa ${response.status}`);
         }
 
@@ -93,13 +92,34 @@ export function FilterProvider({ children }) {
         console.error("Errorrrrrrrrrrrrrrr", error);
         setError(getErrorMessage(error));
         setJobs([]);
-        setTotal(0)
+        setTotal(0);
       } finally {
         setLoading(false);
       }
     }
     fetchJobs();
   }, [filters, textToFilter, currentPage, retryCount]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (textToFilter) params.append("text", textToFilter);
+
+    if (filters.technology) params.append("technology", filters.technology);
+
+    if (filters.location) params.append("location", filters.location);
+    
+    if (filters.experience) params.append("experience", filters.experience);
+
+    if (currentPage > 1) params.append("page", String(currentPage));
+
+    const paramsString = params.toString();
+    const basePath = window.location.pathname;
+
+    const newUrl = 
+    paramsString ? `${basePath}?${paramsString}` : basePath;
+
+    navigateTo(newUrl);
+  }, [filters, textToFilter, currentPage, navigateTo]);
 
   const jobsFilteredByFields = useMemo(
     () => {
@@ -158,9 +178,6 @@ export function FilterProvider({ children }) {
     localStorage.removeItem("jobFilters");
     localStorage.removeItem("jobTextFilter");
   };
-  
-
-
 
   const value = {
     total,
