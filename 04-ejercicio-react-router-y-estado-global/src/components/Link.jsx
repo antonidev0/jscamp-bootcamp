@@ -1,5 +1,4 @@
-import { useRouter } from "../hooks/useRouter.jsx";
-
+import { NavLink as NavLink } from "react-router";
 
 export function Link({
   href,
@@ -9,28 +8,15 @@ export function Link({
   exact = true,
   ...restOfProps
 }) {
-  const { currentPath, navigateTo } = useRouter();
-
-  const handleClick = (event) => {
-    event.preventDefault();
-    navigateTo(href);
-    };
-    
-    const isActive = exact
-      ? currentPath === href
-        : currentPath.startsWith(href);
-    
-      const combinedClassName = [className, isActive ? activeClassName : ""]
-        .filter(Boolean)
-        .join(" ");
-
+  
   return (
-      <a
+      <NavLink
           href={href}
           onClick={handleClick}
-          className={combinedClassName || undefined}
+      className={({ isActive }) =>
+          [className, isActive ? activeClassName : ""].filter(Boolean).join(" ")}
           {...restOfProps} >
       {children}
-    </a>
+    </NavLink>
   );
 }
