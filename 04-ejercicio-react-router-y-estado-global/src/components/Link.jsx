@@ -11,9 +11,11 @@ export function Link({
 
   return (
       <NavLink
-          href={href} 
+          to={href} 
           className={({ isActive }) =>
-          [className, isActive ? activeClassName : ""].filter(Boolean).join(" ")}
+            [className, isActive ? activeClassName : ""]
+              .filter(Boolean)
+              .join(" ")}
           {...restOfProps} >
       {children}
     </NavLink>
