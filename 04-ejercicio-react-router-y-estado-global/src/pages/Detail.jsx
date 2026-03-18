@@ -1,0 +1,103 @@
+import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router";
+import snarkdown from "snarkdown";
+import styles from "./Detail.module.css";
+
+const JobSection = ({ title, content }) => {
+  const html = snarkdown(content);
+
+  return (
+    <section className={styles.section}>
+      <h2 className={styles.sectionTitle}>{title}</h2>
+      <div
+        className={`${styles.sectionContent} prose`}
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    </section>
+  );
+};
+
+export function JobDetail() {
+  const { jobId } = useParams();
+  console.log(jobId);
+
+  const navigate = useNavigate();
+
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetch(`https://jscamp-api.vercel.app/api/jobs/${jobId}`)
+      .then((response) => {
+        if (!response.ok) throw new Error("Job not found");
+        return response.json();
+      })
+      .then((json) => {
+        setJob(json);
+      })
+      .catch((err) => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [jobId]);
+
+  if (loading) {
+    return (
+      <div className={styles.loading}>
+        <p>Cargando oferta...</p>
+        {/* aquí puedes pegar el HTML de skeleton que ya tienes preparado */}
+      </div>
+    );
+  }
+
+  if (error || !job) {
+    return (
+      <div className={styles.notFound}>
+        <h1>Oferta no encontrada</h1>
+        <p>Puede que esta oferta haya caducado o que la URL no sea correcta.</p>
+        <button className={styles.backButton} onClick={() => navigate("/jobs")}>
+          Volver a la lista de empleos
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.container}>
+      {/* Breadcrumb */}
+      <nav className={styles.breadcrumb}>
+        <a href="/jobs" className={styles.breadcrumbLink}>
+          Empleos
+        </a>
+        <span className={styles.breadcrumbSeparator}>/</span>
+        <span className={styles.breadcrumbTitle}>{job.titulo}</span>
+      </nav>
+
+      {/* Header principal */}
+      <header className={styles.header}>
+        <h1 className={styles.title}>{job.title}</h1>
+        <div className={styles.meta}>
+          <p className={styles.company}>{job.company}</p>
+          <p className={styles.location}>{job.location}</p>
+        </div>
+        <button className={styles.applyButton}>Aplicar a esta oferta</button>
+      </header>
+
+      {/* Aquí irán las secciones de contenido */}
+
+      <JobSection
+        title="Descripcion del puesto"
+        content={job.content.description}
+      />
+      <JobSection
+        title="Responsabilidades"
+        content={job.content.responsibilities}
+      />
+      <JobSection title="Requisitos" content={job.content.requirements} />
+      <JobSection title="Acerca de la empresa" content={job.content.about} />
+    </div>
+  );
+}

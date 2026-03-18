@@ -7,7 +7,7 @@ import { SearchPage } from "../src/pages/Search.jsx";
 import { NotFound } from "./pages/404.jsx";
 import { useRouter } from "./hooks/useRouter.jsx"; 
 import { Contact } from "./pages/Contact.jsx"; 
-import { JobDetail } from "./pages/Details.jsx";
+import { JobDetail } from "./pages/Detail.jsx";
 
 // Componente principal que provee el contexto
 
@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<HomePage/>} exact={false} />
           <Route path="/search" element={<SearchPage/>} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/jobs/:id" element={<JobDetail/>} />
+          <Route path="/jobs/:jobId" element={<JobDetail/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       <Footer />
