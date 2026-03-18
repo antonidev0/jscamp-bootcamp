@@ -8,12 +8,11 @@ export function Link({
   exact = true,
   ...restOfProps
 }) {
-  
+
   return (
       <NavLink
-          href={href}
-          onClick={handleClick}
-      className={({ isActive }) =>
+          href={href} 
+          className={({ isActive }) =>
           [className, isActive ? activeClassName : ""].filter(Boolean).join(" ")}
           {...restOfProps} >
       {children}
