@@ -24,7 +24,7 @@ export function JobDetail() {
   const navigate = useNavigate();
 
   const [job, setJob] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -55,10 +55,13 @@ export function JobDetail() {
 
   if (error || !job) {
     return (
-      <div className={styles.notFound}>
+      <div className={styles.error}>
         <h1>Oferta no encontrada</h1>
         <p>Puede que esta oferta haya caducado o que la URL no sea correcta.</p>
-        <button className={styles.backButton} onClick={() => navigate("/jobs")}>
+        <button
+          className={styles.errorButton}
+          onClick={() => navigate("/jobs")}
+        >
           Volver a la lista de empleos
         </button>
       </div>
@@ -69,35 +72,43 @@ export function JobDetail() {
     <div className={styles.container}>
       {/* Breadcrumb */}
       <nav className={styles.breadcrumb}>
-        <a href="/jobs" className={styles.breadcrumbLink}>
+        <a href="/jobs" className={styles.breadcrumbButton}>
           Empleos
         </a>
         <span className={styles.breadcrumbSeparator}>/</span>
-        <span className={styles.breadcrumbTitle}>{job.titulo}</span>
+        <span className={styles.breadcrumbCurrent}>{job.titulo}</span>
       </nav>
 
       {/* Header principal */}
       <header className={styles.header}>
-        <h1 className={styles.title}>{job.title}</h1>
-        <div className={styles.meta}>
-          <p className={styles.company}>{job.company}</p>
-          <p className={styles.location}>{job.location}</p>
+        <div className={styles.headerInfo}>
+          <h1 className={styles.title}>{job.titulo}</h1>
+          <div className={styles.meta}>
+            <p className={styles.company}>
+              {job.empresa} {job.ubicacion}
+            </p> 
+          </div>
         </div>
         <button className={styles.applyButton}>Aplicar a esta oferta</button>
       </header>
 
       {/* Aquí irán las secciones de contenido */}
 
-      <JobSection
-        title="Descripcion del puesto"
-        content={job.content.description}
-      />
-      <JobSection
-        title="Responsabilidades"
-        content={job.content.responsibilities}
-      />
-      <JobSection title="Requisitos" content={job.content.requirements} />
-      <JobSection title="Acerca de la empresa" content={job.content.about} />
+      <div className={styles.sections}>
+        <JobSection
+          title="Descripcion del puesto"
+          content={job.content.description}
+        />
+        <JobSection
+          title="Responsabilidades"
+          content={job.content.responsibilities}
+        />
+        <JobSection title="Requisitos" content={job.content.requirements} />
+        <JobSection title="Acerca de la empresa" content={job.content.about} />
+      </div>
+      <div className={styles.footer}>
+        <button className={styles.applyButton}>Aplicar ahora</button>
+      </div>
     </div>
   );
 }

@@ -1,6 +1,5 @@
 /* pages/JobDetail.module.css */
 .container {
-  padding-block: 2rem;
   max-width: 64rem;
   margin: 0 auto;
 }
@@ -35,18 +34,18 @@
 }
 
 .breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.875rem;
+  font-weight: 500;
   color: var(--text-muted);
   margin-bottom: 2rem;
+  padding-top: 2rem;
 }
 
 .breadcrumbButton {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  padding: 0;
-  font-size: inherit;
+  color: var(--text-muted);
   text-decoration: none;
 }
 
@@ -55,6 +54,7 @@
 }
 
 .breadcrumbSeparator {
+  color: var(--text-muted);
   margin: 0 0.5rem;
 }
 
@@ -66,6 +66,10 @@
   margin-bottom: 2rem;
 }
 
+.headerInfo {
+  text-align: start;
+}
+
 .title {
   font-size: 2.25rem;
   font-weight: bold;
@@ -75,24 +79,29 @@
 
 .meta {
   font-size: 1.25rem;
-  color: var(--text-secondary);
+  color: var(--text-muted);
+  margin-top: 0.25rem;
 }
 
 .applyButton {
-  width: 100%;
-  background: #09f;
-  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  padding: 0 1.5rem;
+  background-color: #1173d4;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
   border: none;
-  font-weight: 600;
-  padding: 0.75rem 2rem;
   border-radius: 0.5rem;
-  margin-bottom: 3rem;
-  transition: background 0.2s;
   cursor: pointer;
+  box-shadow: 0 10px 15px -3px rgba(17, 115, 212, 0.3);
+  transition: background-color 0.2s;
 }
 
 .applyButton:hover {
-  background: #0088e6;
+  background-color: rgba(17, 115, 212, 0.9);
 }
 
 .applyButton:disabled {
@@ -105,14 +114,17 @@
   background: #666;
 }
 
-@media (min-width: 640px) {
-  .applyButton {
-    width: auto;
-  }
+/* fin del header */
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .section {
-  margin-bottom: 3rem;
+  margin-bottom: 0;
+  margin-bottom: 1.5rem;
 }
 
 .sectionTitle {
@@ -123,5 +135,95 @@
 }
 
 .sectionContent {
+  font-size: 1rem;
+  line-height: 1.75;
   color: var(--text-secondary);
+}
+
+.sectionContent ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionContent li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.sectionContent li::before {
+  content: "✓";
+  color: #1173d4;
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2.5rem;
+  
+}
+
+
+
+@media (max-width: 639px) {
+  
+  .container {
+    padding: 0 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  
+  .header {
+    display: flex; 
+    flex-direction: column;
+    padding-bottom: 2rem;
+  }
+  .meta {
+    font-size: 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .applyButton {
+    width: 100%;
+  }
+
+  .footer {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+
+  .title {
+    font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem; 
+  }
+
+
+  .applyButton {
+    width: auto;
+  }
 }
