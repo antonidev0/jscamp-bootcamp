@@ -1,0 +1,40 @@
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.cardLink:hover {
+  transform: translateY(-4px);
+}
+
+.cardLink:hover .card {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+}
+
+.actions{
+display: flex;
+flex-direction: column;
+gap: 0.5rem;
+text-align: center;
+}
+
+.details{
+    color: #09f;
+    background: none;
+    cursor: pointer;
+    font-size: 1rem;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline;
+    }
+}
