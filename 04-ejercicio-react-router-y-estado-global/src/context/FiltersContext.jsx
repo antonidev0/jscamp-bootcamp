@@ -1,6 +1,7 @@
 // contexts/FilterContext.jsx
 import { createContext, useContext, useState, useMemo, useEffect } from "react";
 import jobsData from "../data.json";
+import { useSearchParams } from "react-router";
 import { useRouter } from "../hooks/useRouter.jsx";
 
 const FilterContext = createContext();
@@ -28,25 +29,27 @@ export function FilterProvider({ children }) {
   const { navigateTo } = useRouter();
   const RESULTS_PER_PAGE = 5;
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [error, setError] = useState(null);
   const [filters, setFilters] = useState(() => {
-  const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(window.location.search);
+
     return {
-      technology: params.get('technology') || '',
-      location: params.get('type') || '',
-      experience: params.get('level') || ''
-  }
+      technology: searchParams.get("technology") || "",
+      location: searchParams.get("type") || "",
+      experience: searchParams.get("level") || "",
+    };
   });
 
-  const [textToFilter, setTextToFilter] = useState(() => {
-     const params = new URLSearchParams(window.location.search);
-     return params.get("text") || "";
-  });
+  const [textToFilter, setTextToFilter] = useState(
+    () => searchParams.get("text") || "",
+  );
 
   const [currentPage, setCurrentPage] = useState(() => {
     const params = new URLSearchParams(window.location.search);
-    const page = Number(params.get('page'));
-    return Number.isNaN(page) ? page : 1
+    const page = Number(searchParams.get("page"));
+    return Number.isNaN(page) ? page : 1;
   });
 
   const [jobs, setJobs] = useState([]);
@@ -101,24 +104,21 @@ export function FilterProvider({ children }) {
   }, [filters, textToFilter, currentPage, retryCount]);
 
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (textToFilter) params.append("text", textToFilter);
+    setSearchParams((params) => {
+      if (textToFilter) params.set("text", textToFilter);
 
-    if (filters.technology) params.append("technology", filters.technology);
+      if (filters.technology) params.set("technology", filters.technology);
 
-    if (filters.location) params.append("location", filters.location);
-    
-    if (filters.experience) params.append("experience", filters.experience);
+      if (filters.location) params.set("location", filters.location);
 
-    if (currentPage > 1) params.append("page", String(currentPage));
+      if (filters.experience) params.set("experience", filters.experience);
 
-    const paramsString = params.toString();
-    const basePath = window.location.pathname;
+      if (currentPage > 1) params.set("page", String(currentPage));
 
-    const newUrl = 
-    paramsString ? `${basePath}?${paramsString}` : basePath;
+      return params
+  
 
-    navigateTo(newUrl);
+    });
   }, [filters, textToFilter, currentPage, navigateTo]);
 
   const jobsFilteredByFields = useMemo(
