@@ -105,19 +105,21 @@ export function FilterProvider({ children }) {
 
   useEffect(() => {
     setSearchParams((params) => {
-      if (textToFilter) params.set("text", textToFilter);
+      textToFilter ? params.set("text", textToFilter) : params.delete("text");
+      filters.technology
+        ? params.set("technology", filters.technology)
+        : params.delete("technology");
+      filters.location
+        ? params.set("location", filters.location)
+        : params.delete("location");
+      filters.experience
+        ? params.set("experience", filters.experience)
+        : params.delete("experience");
+      currentPage > 1
+        ? params.set("page", String(currentPage))
+        : params.delete("page");
 
-      if (filters.technology) params.set("technology", filters.technology);
-
-      if (filters.location) params.set("location", filters.location);
-
-      if (filters.experience) params.set("experience", filters.experience);
-
-      if (currentPage > 1) params.set("page", String(currentPage));
-
-      return params
-  
-
+      return params;
     });
   }, [filters, textToFilter, currentPage, navigateTo]);
 
