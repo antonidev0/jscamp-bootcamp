@@ -13,6 +13,7 @@ const SearchFormSection = (initialText) => {
     handleTechnologyChange,
     handleLocationChange,
     handleExperienceChange,
+    handleSubmit,
   } = useSearchForm();
 
 
@@ -21,7 +22,7 @@ const SearchFormSection = (initialText) => {
       <h1>Encuentra tu próximo trabajo</h1>
       <p>Explora miles de oportunidades en el sector tecnológico.</p>
 
-      <form id="empleos-search-form" role="search">
+      <form id="empleos-search-form" role="search" onSubmit={handleSubmit}>
         <div className="search-bar">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +46,6 @@ const SearchFormSection = (initialText) => {
             value={textToFilter}
             placeholder="Buscar trabajos, empresas o habilidades"
             onChange={handleTextChange}
-            defaultValue={initialText}
           />
         </div>
 
@@ -97,17 +97,13 @@ const SearchFormSection = (initialText) => {
             <option value="lead">Lead</option>
           </select>
 
-      {hasActiveFilters && (
-        <button type="button" className="btn-clear" onClick={clearFilters}>
-          Limpiar filtros
-        </button>
-        )}
-
+          {hasActiveFilters && (
+            <button type="button" className="btn-clear" onClick={clearFilters}>
+              Limpiar filtros
+            </button>
+          )}
         </div>
-
-        
       </form>
-
 
       <span id="filter-selected-value"></span>
     </section>
