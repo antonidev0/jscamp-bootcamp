@@ -49,7 +49,7 @@ export function FilterProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const page = Number(searchParams.get("page"));
-    return Number.isNaN(page) ? page : 1;
+    return page > 0 ? page : 1;
   });
 
   const [jobs, setJobs] = useState([]);
