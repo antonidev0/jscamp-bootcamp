@@ -103,19 +103,18 @@ export function FilterProvider({ children }) {
     fetchJobs();
   }, [filters, textToFilter, currentPage, retryCount]);
 
-  useEffect(() => {
-    const params = new URLSearchParams();
-      if (textToFilter) params.set("text", textToFilter);
-      if (filters.technology) params.set("technology", filters.technology);
-      if (filters.location) params.set("location", filters.location);
-      if (filters.experience) params.set("experience", filters.experience);
-      if (currentPage > 1) params.set("page", String(currentPage));
+ useEffect(() => {
+   const params = new URLSearchParams();
 
-      setSearchParams(params, { replace: true });
-    
-  }, [filters, textToFilter, currentPage]);
+   if (textToFilter) params.set("text", textToFilter);
+   if (filters.technology) params.set("technology", filters.technology);
+   if (filters.location) params.set("location", filters.location);
+   if (filters.experience) params.set("experience", filters.experience);
+   if (currentPage > 1) params.set("page", String(currentPage));
 
-  
+   setSearchParams(params, { replace: true });
+ }, [filters, textToFilter, currentPage]);
+
   const jobsFilteredByFields = useMemo(
     () => {
       return jobsData.filter((job) => {

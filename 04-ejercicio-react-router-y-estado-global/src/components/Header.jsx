@@ -1,6 +1,6 @@
 import { Link } from "./Link";
 
-const Header = () => {
+export default function Header(){
   return (
     <>
       <header>
@@ -31,4 +31,3 @@ const Header = () => {
   );
 };
 
-export { Header };

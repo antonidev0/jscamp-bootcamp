@@ -21,7 +21,7 @@ function validateContact(values) {
   return errors;
 }
 
-export function Contact() {
+export default function Contact() {
   const {
     values,
     errors,

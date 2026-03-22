@@ -17,7 +17,7 @@ const JobSection = ({ title, content }) => {
   );
 };
 
-export function JobDetail() {
+export default function JobDetail() {
   const { jobId } = useParams();
   console.log(jobId);
 

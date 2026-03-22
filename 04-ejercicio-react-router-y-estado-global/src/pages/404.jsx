@@ -1,5 +1,5 @@
 /* Crea aquí tu archivo 404 */
-function NotFound() {
+export default function NotFound() {
   return (
     <div style={{display : "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100vh"}}>
       <h1>404 - Página no encontrada</h1>
@@ -7,5 +7,4 @@ function NotFound() {
     </div>
   );
 }
-
-export { NotFound };
+ 

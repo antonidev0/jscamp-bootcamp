@@ -1,7 +1,7 @@
 /* Pasa tu contenido de src/App.jsx aquí */
-import { Header } from "../components/Header.jsx";
+import Header from "../components/Header.jsx";
 import SearchFormSection from "../components/SearchFormSection.jsx";
-import { Footer } from "../components/Footer.jsx";
+import Footer from "../components/Footer.jsx";
 import Pagination from "../components/Pagination.jsx";
 import JobListings from "../components/JobListings.jsx";
 import { FilterProvider, useFilters } from "../context/FiltersContext.jsx";
@@ -70,12 +70,11 @@ function Search() {
   );
 }
  
-function SearchPage() {
+export default function SearchPage() {
   return (
     <FilterProvider>
       <Search />
     </FilterProvider>
   );
 }
-
-export { SearchPage };
+ 

@@ -1,13 +1,14 @@
 import { Routes, Route } from "react-router";
-import { useEffect, useState } from "react";
-import { Header } from "../src/components/Header.jsx";
-import { HomePage } from "../src/pages/Home.jsx";
-import { Footer } from "./components/Footer.jsx";
-import { SearchPage } from "../src/pages/Search.jsx";
-import { NotFound } from "./pages/404.jsx";
-import { useRouter } from "./hooks/useRouter.jsx"; 
-import { Contact } from "./pages/Contact.jsx"; 
-import { JobDetail } from "./pages/Detail.jsx";
+import { lazy, Suspense, useEffect, useState } from "react";   
+import { useRouter } from "./hooks/useRouter.jsx";  
+
+const HomePage = lazy(() => import("../src/pages/Home.jsx"));
+const Header = lazy(() => import("../src/components/Header.jsx"));
+const Footer = lazy(() => import("./components/Footer.jsx"));
+const SearchPage = lazy(() => import("../src/pages/Search.jsx"));
+const NotFound = lazy(() => import("./pages/404.jsx"));
+const Contact = lazy(() => import("./pages/Contact.jsx"));
+const JobDetail = lazy(() => import("./pages/Detail.jsx"));
 
 // Componente principal que provee el contexto
 
