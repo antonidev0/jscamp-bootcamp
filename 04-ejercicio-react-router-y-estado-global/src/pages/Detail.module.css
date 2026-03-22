@@ -176,7 +176,11 @@
 @media (max-width: 639px) {
   
   .container {
-    padding: 0 1rem;
+    padding: 0 1rem; 
+  }
+  .header{ 
+    display: flex;
+    flex-direction: column;  
   }
 
   .title {
