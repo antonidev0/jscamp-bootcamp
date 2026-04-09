@@ -1,6 +1,6 @@
 import { Link } from "./Link";
 
-export default function Header(){
+export default function Header({ isLoggedIn, onLogin, onLogout }) {
   return (
     <>
       <header>
@@ -26,6 +26,12 @@ export default function Header(){
           <Link href="/search">Empleos</Link>
           <Link href="/contact">Contacto</Link>
         </nav>
+
+        {isLoggedIn
+          ? <button onClick={onLogout}>Cerrar sesión</button>
+          : <button onClick={onLogin}>Iniciar sesión</button>
+        }
+
       </header>
     </>
   );

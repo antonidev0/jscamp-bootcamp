@@ -37,8 +37,8 @@ export function FilterProvider({ children }) {
 
     return {
       technology: searchParams.get("technology") || "",
-      location: searchParams.get("type") || "",
-      experience: searchParams.get("level") || "",
+      location: searchParams.get("location") || "",
+      experience: searchParams.get("experience") || "",
     };
   });
 

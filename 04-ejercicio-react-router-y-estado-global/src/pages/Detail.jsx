@@ -17,7 +17,7 @@ const JobSection = ({ title, content }) => {
   );
 };
 
-export default function JobDetail() {
+export default function JobDetail({ isLoggedIn }) {
   const { jobId } = useParams();
   console.log(jobId);
 
@@ -72,7 +72,7 @@ export default function JobDetail() {
     <div className={styles.container}>
       {/* Breadcrumb */}
       <nav className={styles.breadcrumb}>
-        <a href="/jobs" className={styles.breadcrumbButton}>
+        <a href="/search" className={styles.breadcrumbButton}>
           Empleos
         </a>
         <span className={styles.breadcrumbSeparator}>/</span>
@@ -86,10 +86,12 @@ export default function JobDetail() {
           <div className={styles.meta}>
             <p className={styles.company}>
               {job.empresa} {job.ubicacion}
-            </p> 
+            </p>
           </div>
         </div>
-        <button className={styles.applyButton}>Aplicar a esta oferta</button>
+        <button className={styles.applyButton}>
+          {isLoggedIn ? "Aplicar a esta oferta" : "Inicia sesión para aplicar"}
+        </button>
       </header>
 
       {/* Aquí irán las secciones de contenido */}
@@ -107,7 +109,9 @@ export default function JobDetail() {
         <JobSection title="Acerca de la empresa" content={job.content.about} />
       </div>
       <div className={styles.footer}>
-        <button className={styles.applyButton}>Aplicar ahora</button>
+        <button disabled={!isLoggedIn} className={styles.applyButton}>
+          {isLoggedIn ? "Aplicar ahora" : "Inicia sesión para aplicar"}
+        </button>
       </div>
     </div>
   );
