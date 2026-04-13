@@ -14,16 +14,6 @@ const JobDetail = lazy(() => import("./pages/Detail.jsx"));
 
 function App() { 
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const handleLogin = () => {
-    setIsLoggedIn(true);
-  }
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-  }
-
   return (
     <>
       <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
