@@ -1,6 +1,10 @@
-import { Link } from "./Link";
+import { Link } from "./Link"; 
+import { useAuth } from "../context/AuthContext.jsx"; 
 
-export default function Header({ isLoggedIn, onLogin, onLogout }) {
+export default function Header() {
+  
+  const { isLoggedIn, login, logout } = useAuth();
+
   return (
     <>
       <header>
@@ -28,8 +32,8 @@ export default function Header({ isLoggedIn, onLogin, onLogout }) {
         </nav>
 
         {isLoggedIn
-          ? <button onClick={onLogout}>Cerrar sesión</button>
-          : <button onClick={onLogin}>Iniciar sesión</button>
+          ? <button onClick={logout}>Cerrar sesión</button>
+          : <button onClick={login}>Iniciar sesión</button>
         }
 
       </header>

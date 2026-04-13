@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 // Crear el contexto de autenticación
 export const AuthContext = createContext();
@@ -22,10 +22,19 @@ export const AuthProvider = ({ children }) => {
         logout
     };
 
-    
-    return (
-        <AuthContext value={{ isLoggedIn, login, logout }}>
+
+    return <AuthContext value={{ isLoggedIn, login, logout }}>
             {children}
-        </AuthContext>
-    );
+            </AuthContext> 
 }
+
+export function useAuth() {     
+
+    const context = useContext(AuthContext); 
+    if (!context) {
+        throw new Error("useAuth debe ser usado dentro de un AuthProvider");
+    }
+    
+    return context;
+}
+ 

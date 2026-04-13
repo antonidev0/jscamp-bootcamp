@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"; 
+import { useAuth } from "../context/AuthContext.jsx";
 import { useParams, useNavigate } from "react-router";
-import snarkdown from "snarkdown";
+import snarkdown from "snarkdown";  
 import styles from "./Detail.module.css";
 
 const JobSection = ({ title, content }) => {
@@ -17,7 +18,8 @@ const JobSection = ({ title, content }) => {
   );
 };
 
-export default function JobDetail({ isLoggedIn }) {
+export default function JobDetail() {
+  const { isLoggedIn, login, logout } = useAuth();
   const { jobId } = useParams();
   console.log(jobId);
 

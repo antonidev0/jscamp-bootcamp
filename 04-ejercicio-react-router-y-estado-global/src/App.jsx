@@ -16,12 +16,12 @@ function App() {
 
   return (
     <>
-      <Header isLoggedIn={isLoggedIn} onLogin={handleLogin} onLogout={handleLogout} />
+      <Header/>
         <Routes>
           <Route path="/" element={<HomePage/>} exact={false} />
           <Route path="/search" element={<SearchPage/>} />
           <Route path="/contact" element={<Contact/>} />
-          <Route path="/jobs/:jobId" element={<JobDetail isLoggedIn={isLoggedIn} />} />
+          <Route path="/jobs/:jobId" element={<JobDetail/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       <Footer />
