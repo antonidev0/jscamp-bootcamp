@@ -1,30 +1,30 @@
-import { useId } from "react";
-import { useNavigate } from "react-router";
-import styles from "./Auth.module.css";
-import { useAuthStore } from "../store/authStore";
+import { useId } from 'react'
+import { useNavigate } from 'react-router'
+import styles from './Auth.module.css'
+import { useAuthStore } from '../store/authStore'
 
 export default function Register() {
-  const nameId = useId();
-  const emailId = useId();
-  const passwordId = useId();
+  const nameId = useId()
+  const emailId = useId()
+  const passwordId = useId()
 
-  const { login } = useAuthStore();
-  const navigate = useNavigate();
+  const { login } = useAuthStore()
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    const formData = new FormData(e.target);
-    const name = formData.get(nameId);
-    const email = formData.get(emailId);
-    const password = formData.get(passwordId);
+    const formData = new FormData(e.target)
+    const name = formData.get(nameId)
+    const email = formData.get(emailId)
+    const password = formData.get(passwordId)
 
     // Mock register - en una app real, harías una petición a la API
     if (name && email && password) {
-      login();
-      navigate("/search");
+      login()
+      navigate('/search')
     }
-  };
+  }
 
   return (
     <div className={styles.container}>
@@ -47,7 +47,7 @@ export default function Register() {
               placeholder="Juan Pérez"
               required
             />
-          </div>
+          </div>  
           <div className={styles.formGroup}>
             <label htmlFor={emailId} className={styles.label}>
               Email
@@ -82,12 +82,12 @@ export default function Register() {
         </form>
 
         <p className={styles.footer}>
-          ¿Ya tienes cuenta?{" "}
+          ¿Ya tienes cuenta?{' '}
           <a href="/login" className={styles.link}>
             Inicia sesión aquí
           </a>
         </p>
       </div>
     </div>
-  );
+  )
 }
