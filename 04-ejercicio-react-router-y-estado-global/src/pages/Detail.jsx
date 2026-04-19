@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react"; 
-import { useAuth } from "../context/AuthContext.jsx";
+import { useState, useEffect } from "react";  
+import { useAuthStore } from "../store/authStore.js"; 
+import { Link } from "../components/Link";
 import { useParams, useNavigate } from "react-router";
 import snarkdown from "snarkdown";  
 import styles from "./Detail.module.css";
 
 const JobSection = ({ title, content }) => {
   const html = snarkdown(content);
-
+  
   return (
     <section className={styles.section}>
       <h2 className={styles.sectionTitle}>{title}</h2>
@@ -18,10 +19,53 @@ const JobSection = ({ title, content }) => {
   );
 };
 
-export default function JobDetail() {
-  const { isLoggedIn, login, logout } = useAuth();
-  const { jobId } = useParams();
-  console.log(jobId);
+function DetailPageBreadcrumb ({ job }) {
+  return ( 
+     <div className={styles.conainer}> 
+      <nav className={styles.breadcrumb}>
+        <Link href="/search" className={styles.breadcrumbButton}>
+          Empleos
+        </Link>
+        <span className={styles.breadcrumbSeparator}>/</span>
+        <span className={styles.breadcrumbCurrent}>{job.titulo}</span>
+    </nav>
+  </div>
+  )
+}
+
+function DetailPageHeader({ job }) {
+ 
+  return (
+    <>
+      <header className={styles.header}>
+        <div className={styles.headerInfo}>
+          <h1 className={styles.title}>{job.titulo}</h1>
+          <div className={styles.meta}>
+            <p className={styles.company}>
+              {job.empresa} {job.ubicacion}
+            </p>
+          </div>
+        </div>
+      <DetailApplyButton />
+      </header>
+
+    </>
+  );
+}
+
+function DetailApplyButton() {
+  const { isLoggedIn } = useAuthStore();
+
+  return (
+    <button disabled={!isLoggedIn} className={styles.applyButton}>
+      {isLoggedIn ? "Aplicar ahora" : "Inicia sesión para aplicar"}
+    </button>
+  );
+}
+
+
+export default function JobDetail() { 
+  const { jobId } = useParams(); 
 
   const navigate = useNavigate();
 
@@ -72,49 +116,23 @@ export default function JobDetail() {
 
   return (
     <div className={styles.container}>
-      {/* Breadcrumb */}
-      <nav className={styles.breadcrumb}>
-        <a href="/search" className={styles.breadcrumbButton}>
-          Empleos
-        </a>
-        <span className={styles.breadcrumbSeparator}>/</span>
-        <span className={styles.breadcrumbCurrent}>{job.titulo}</span>
-      </nav>
 
-      {/* Header principal */}
-      <header className={styles.header}>
-        <div className={styles.headerInfo}>
-          <h1 className={styles.title}>{job.titulo}</h1>
-          <div className={styles.meta}>
-            <p className={styles.company}>
-              {job.empresa} {job.ubicacion}
-            </p>
-          </div>
-        </div>
-        <button className={styles.applyButton}>
-          {isLoggedIn ? "Aplicar a esta oferta" : "Inicia sesión para aplicar"}
-        </button>
-      </header>
+      <DetailPageBreadcrumb job={job} />
+      <DetailPageHeader job={job} />
 
       {/* Aquí irán las secciones de contenido */}
 
       <div className={styles.sections}>
-        <JobSection
-          title="Descripcion del puesto"
-          content={job.content.description}
-        />
-        <JobSection
-          title="Responsabilidades"
-          content={job.content.responsibilities}
-        />
+        <JobSection title="Descripcion del puesto" content={job.content.description}/>
+        <JobSection title="Responsabilidades" content={job.content.responsibilities}/>
         <JobSection title="Requisitos" content={job.content.requirements} />
         <JobSection title="Acerca de la empresa" content={job.content.about} />
       </div>
+      
       <div className={styles.footer}>
-        <button disabled={!isLoggedIn} className={styles.applyButton}>
-          {isLoggedIn ? "Aplicar ahora" : "Inicia sesión para aplicar"}
-        </button>
+        <DetailApplyButton />        
       </div>
     </div>
   );
 }
+

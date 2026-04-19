@@ -1,9 +1,9 @@
-import { Link } from "./Link"; 
-import { useAuth } from "../context/AuthContext.jsx"; 
+import { Link } from "./Link";  
+import { useAuthStore } from "../store/authStore.js";
 
 export default function Header() {
   
-  const { isLoggedIn, login, logout } = useAuth();
+  const { isLoggedIn, login, logout } = useAuthStore();
 
   return (
     <>
