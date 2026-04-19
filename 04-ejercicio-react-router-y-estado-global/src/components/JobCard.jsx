@@ -1,9 +1,20 @@
 import { Link } from "../components/Link.jsx";
 import { useState } from "react";
 import styles from "./JobCard.module.css"
+import { useFavoritesStore } from "../store/favoritesStore.js";
+
+function JobCardFavoriteButton({ job }) { 
+  const { isFavorite, toggleFavorite } = useFavoritesStore();
+
+  return (
+    <button onClick={() => toggleFavorite(job.id)}>
+      {isFavorite(job.id) ? "❤️" : "🤍"}
+    </button>
+  );
+}
 
 export function JobCard({ job }) {
-  const [isApplied, setIsApplied] = useState(false);
+  const [isApplied, setIsApplied] = useState(false); 
 
   const handleApplyClick = () => {
     setIsApplied(true);
@@ -20,7 +31,9 @@ export function JobCard({ job }) {
     >
       <div>
         <h3>
-          <Link href={`/jobs/${job.id}`} className={styles.cardLink}>{job.titulo}</Link>
+          <Link href={`/jobs/${job.id}`} className={styles.cardLink}>
+            {job.titulo}
+          </Link>
         </h3>
         <small>
           {job.empresa} | {job.ubicacion}
@@ -29,11 +42,14 @@ export function JobCard({ job }) {
       </div>
 
       <div className={styles.actions}>
-        <Link href={`/jobs/${job.id}`} className={styles.details}>Ver Detalles</Link>
-        
-      <button onClick={handleApplyClick} className={buttonClasses}>
-        {buttonText}
-      </button>
+        <Link href={`/jobs/${job.id}`} className={styles.details}>
+          Ver Detalles
+        </Link>
+
+        <button onClick={handleApplyClick} className={buttonClasses}>
+          {buttonText}
+        </button>
+        <JobCardFavoriteButton job={job} />
       </div>
     </article>
   );

@@ -99,6 +99,7 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
+  flex-wrap: wrap;
 
   h2 {
     font-size: 1.25rem;
@@ -116,6 +117,7 @@ nav {
   a {
     text-decoration: none;
     color: var(--text-secondary);
+    background-color: transparent !important;
     transition: color 0.2s;
     font-weight: 500;
 

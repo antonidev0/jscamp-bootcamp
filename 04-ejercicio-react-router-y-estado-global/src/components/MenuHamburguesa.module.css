@@ -1,0 +1,56 @@
+.toggle {
+  display: none; 
+  border: none;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  background-color: transparent;
+}
+
+.transparence{
+    background-color: transparent;
+}
+
+.menu {
+  display: flex;
+  align-items: center; 
+  gap: 1.5rem;
+}
+
+.menu nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.menu button {
+  white-space: nowrap;
+}
+
+@media (max-width: 639px) {
+  .toggle {
+    display: block;
+  }
+
+  .menu {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    width: 100%;
+  }
+
+  .menu.open {
+    display: flex;
+  }
+
+  .menu nav {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menu button {
+    width: 100%;
+  }
+}

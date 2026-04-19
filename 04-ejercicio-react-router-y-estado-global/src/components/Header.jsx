@@ -1,9 +1,14 @@
 import { Link } from "./Link";  
 import { useAuthStore } from "../store/authStore.js";
+import { MenuHamburguesa } from "./MenuHamburguesa.jsx";
+import styles from "./MenuHamburguesa.module.css";
+import { useFavoritesStore } from "../store/favoritesStore.js";
 
 export default function Header() {
   
   const { isLoggedIn, login, logout } = useAuthStore();
+  const { countFavorites } = useFavoritesStore();
+  const numFavorites = countFavorites();
 
   return (
     <>
@@ -26,16 +31,30 @@ export default function Header() {
           </h1>
         </Link>
 
-        <nav>
-          <Link href="/search">Empleos</Link>
-          <Link href="/contact">Contacto</Link>
-        </nav>
+        <MenuHamburguesa>
+          <nav>
+            <Link href="/search">Empleos</Link>
 
-        {isLoggedIn
-          ? <button onClick={logout}>Cerrar sesión</button>
-          : <button onClick={login}>Iniciar sesión</button>
-        }
+            {isLoggedIn && (
+              <Link className={({ isActive }) => isActive ? "nav-link-active" : ""}
+              to="profile">
+                Favoritos (🧡{numFavorites})
+              </Link>
+            )}
 
+            <Link href="/contact">Contacto</Link>
+          </nav>
+
+          {isLoggedIn ? (
+            <button className={styles.transparence} onClick={logout}>
+              Cerrar sesión
+            </button>
+          ) : (
+            <button className={styles.transparence} onClick={login}>
+              Iniciar sesión
+            </button>
+          )}
+        </MenuHamburguesa>
       </header>
     </>
   );
