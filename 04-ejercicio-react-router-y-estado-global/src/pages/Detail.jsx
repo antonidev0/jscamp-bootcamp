@@ -4,6 +4,7 @@ import { Link } from "../components/Link";
 import { useParams, useNavigate } from "react-router";
 import snarkdown from "snarkdown";  
 import styles from "./Detail.module.css";
+import { useFavoritesStore } from "../store/favoritesStore.js";
 
 const JobSection = ({ title, content }) => {
   const html = snarkdown(content);
@@ -46,9 +47,9 @@ function DetailPageHeader({ job }) {
             </p>
           </div>
         </div>
-      <DetailApplyButton />
+        <DetailApplyButton />
+        <DetailFavoriteButton jobId={job.id} />
       </header>
-
     </>
   );
 }
@@ -61,6 +62,18 @@ function DetailApplyButton() {
       {isLoggedIn ? "Aplicar ahora" : "Inicia sesión para aplicar"}
     </button>
   );
+}
+
+function DetailFavoriteButton({ jobId }) { 
+  const { isFavorite, toggleFavorite } = useFavoritesStore();
+  const { isLoggedIn } = useAuthStore();
+
+  return (
+    <button disabled={!isLoggedIn} onClick={() => toggleFavorite(jobId)} className={styles.favoriteButton}>
+      {isFavorite(jobId) ? "❤️" : "🤍"}
+    </button>
+  );
+
 }
 
 
@@ -116,21 +129,26 @@ export default function JobDetail() {
 
   return (
     <div className={styles.container}>
-
       <DetailPageBreadcrumb job={job} />
       <DetailPageHeader job={job} />
 
       {/* Aquí irán las secciones de contenido */}
 
       <div className={styles.sections}>
-        <JobSection title="Descripcion del puesto" content={job.content.description}/>
-        <JobSection title="Responsabilidades" content={job.content.responsibilities}/>
+        <JobSection
+          title="Descripcion del puesto"
+          content={job.content.description}
+        />
+        <JobSection
+          title="Responsabilidades"
+          content={job.content.responsibilities}
+        />
         <JobSection title="Requisitos" content={job.content.requirements} />
         <JobSection title="Acerca de la empresa" content={job.content.about} />
       </div>
-      
+
       <div className={styles.footer}>
-        <DetailApplyButton />        
+        <DetailApplyButton />
       </div>
     </div>
   );

@@ -2,26 +2,45 @@ import { Link } from "../components/Link.jsx";
 import { useState } from "react";
 import styles from "./JobCard.module.css"
 import { useFavoritesStore } from "../store/favoritesStore.js";
+import { useAuthStore } from "../store/authStore.js";
 
 function JobCardFavoriteButton({ job }) { 
   const { isFavorite, toggleFavorite } = useFavoritesStore();
+  const { isLoggedIn } = useAuthStore();
+  
+  // const isFavorite = useStore((state) => state.isFavorite);
+  // const toggleFavorite = useStore((state) => state.toggleFavorite);
 
   return (
-    <button onClick={() => toggleFavorite(job.id)}>
+    <button disabled={!isLoggedIn} onClick={() => toggleFavorite(job.id)}>
       {isFavorite(job.id) ? "❤️" : "🤍"}
     </button>
   );
 }
 
-export function JobCard({ job }) {
-  const [isApplied, setIsApplied] = useState(false); 
+function JobCardApplyButton({ jobId }) {
+  const [isApplied, setIsApplied] = useState(false);
+  const { isLoggedIn } = useAuthStore();
 
-  const handleApplyClick = () => {
-    setIsApplied(true);
-  };
+   const handleApplyClick = () => {
+     setIsApplied(true);
+   };
 
-  const buttonClasses = isApplied ? "button-apply-job is-applied" : "button-apply-job";
-  const buttonText = isApplied ? "Aplicado" : "Aplicar";
+   const buttonClasses = isApplied
+     ? "button-apply-job is-applied"
+     : "button-apply-job";
+   const buttonText = isApplied ? "Aplicado" : "Aplicar";
+
+  return (
+          <button disabled={!isLoggedIn} onClick={handleApplyClick} className={buttonClasses}>
+          {buttonText}
+        </button>
+  )
+}
+
+export function JobCard({ job }) { 
+
+ 
   return (
     <article
       className="job-listing-card"
@@ -46,9 +65,8 @@ export function JobCard({ job }) {
           Ver Detalles
         </Link>
 
-        <button onClick={handleApplyClick} className={buttonClasses}>
-          {buttonText}
-        </button>
+        <JobCardApplyButton jobId={job.id} />
+
         <JobCardFavoriteButton job={job} />
       </div>
     </article>
