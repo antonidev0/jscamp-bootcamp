@@ -27,67 +27,73 @@ export default function Register() {
   }
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <h1 className={styles.title}>Crear Cuenta</h1>
-        <p className={styles.subtitle}>
-          Regístrate para aplicar a ofertas de trabajo
-        </p>
+    <>
+      <div className={styles.Allcontainer}>
+        <div className={styles.headerAuth}>
+          <h1 className={styles.title}>Crear cuenta</h1>
+          <p className={styles.subtitle}>
+            Regístrate para aplicar a ofertas de trabajo
+          </p>
+        </div>
+        <div className={styles.container}>
+          <div className={styles.card}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.formGroup}>
+                <label htmlFor="name" className={styles.label}>
+                  Nombre completo
+                </label>
+                <input
+                  id={nameId}
+                  name={nameId}
+                  type="name"
+                  className={styles.input}
+                  placeholder="Juan Pérez"
+                  required
+                />
+              </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name" className={styles.label}>
-              Nombre completo
-            </label>
-            <input
-              id={nameId}
-              name={nameId}
-              type="text"
-              className={styles.input}
-              placeholder="Juan Pérez"
-              required
-            />
-          </div>  
-          <div className={styles.formGroup}>
-            <label htmlFor={emailId} className={styles.label}>
-              Email
-            </label>
-            <input
-              id={emailId}
-              name={emailId}
-              type="email"
-              className={styles.input}
-              placeholder="tu@email.com"
-              required
-            />
+              <div className={styles.formGroup}>
+                <label htmlFor="email" className={styles.label}>
+                  Correo electronico
+                </label>
+                <input
+                  id={emailId}
+                  type="email"
+                  name={emailId}
+                  className={styles.input}
+                  placeholder="tu@email.com"
+                  required
+                />
+              </div>
+
+              <div className={styles.formGroup}>
+                <label htmlFor="password" className={styles.label}>
+                  Crea una clave
+                </label>
+                <input
+                  id={passwordId}
+                  name={passwordId}
+                  type="password"
+                  className={styles.input}
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+
+              <button type="submit" className={styles.submitButton}>
+                Iniciar Sesión
+              </button>
+            </form>
+
+            <p className={styles.footer}>
+              ¿No tienes cuenta?{" "}
+              <a href="/login" className={styles.link}>
+                Regístrate aquí
+              </a>
+            </p>
           </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="password" className={styles.label}>
-              Contraseña
-            </label>
-            <input
-              id={passwordId}
-              name={passwordId}
-              type="password"
-              className={styles.input}
-              placeholder="••••••••"
-              required
-            />
-          </div>
-
-          <button type="submit" className={styles.submitButton}>
-            Crear Cuenta
-          </button>
-        </form>
-
-        <p className={styles.footer}>
-          ¿Ya tienes cuenta?{' '}
-          <a href="/login" className={styles.link}>
-            Inicia sesión aquí
-          </a>
-        </p>
+        </div>
       </div>
-    </div>
-  )
+    </>
+  );
 }

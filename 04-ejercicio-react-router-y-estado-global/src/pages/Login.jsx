@@ -23,52 +23,54 @@ export default function Login() {
     }
   };
 
-    return (
-        <>
-            <div>
+  return (
+    <>
+      <div className={styles.Allcontainer}>
+      <div className={styles.headerAuth}>
         <h1 className={styles.title}>Iniciar Sesión</h1>
         <p className={styles.subtitle}>
           Accede a tu cuenta para aplicar a ofertas
         </p>
+      </div>
+      <div className={styles.container}>
+        <div className={styles.card}>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <input
+                id={emailId}
+                type="email"
+                name={emailId}
+                className={styles.input}
+                placeholder="tu@email.com"
+                required
+              />
             </div>
-        <div className={styles.container}>
-          <div className={styles.card}>
-            <form onSubmit={handleSubmit} className={styles.form}>
-              <div className={styles.formGroup}>
-                <input
-                  id={emailId}
-                  type="email"
-                  name={emailId}
-                  className={styles.input}
-                  placeholder="tu@email.com"
-                  required
-                />
-              </div>
 
-              <div className={styles.formGroup}>
-                <input
-                  id={passwordId}
-                  name={passwordId}
-                  type="password"
-                  className={styles.input}
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
+            <div className={styles.formGroup}>
+              <input
+                id={passwordId}
+                name={passwordId}
+                type="password"
+                className={styles.input}
+                placeholder="••••••••"
+                required
+              />
+            </div>
 
-              <button type="submit" className={styles.submitButton}>
-                Iniciar Sesión
-              </button>
-            </form>
+            <button type="submit" className={styles.submitButton}>
+              Iniciar Sesión
+            </button>
+          </form>
 
-            <p className={styles.footer}>
-              ¿No tienes cuenta?{" "}
-              <a href="/register" className={styles.link}>
-                Regístrate aquí
-              </a>
-            </p>
-          </div>
+          <p className={styles.footer}>
+            ¿No tienes cuenta?{" "}
+            <a href="/register" className={styles.link}>
+              Regístrate aquí
+            </a>
+          </p>
         </div>
-      </>
-    );
+      </div>
+      </div>
+    </>
+  );
 }

@@ -1,16 +1,25 @@
 
-.container {
-  min-height: calc(100vh - 200px);
+.Allcontainer{ 
+   min-height: calc(100vh - 200px);
   display: flex;
   align-items: center;
   justify-content: center;
+   flex-direction: column;
   padding: 2rem 1rem;
+  gap: 0rem;
+}
+
+ 
+.headerAuth{
+display: flex;
+align-items: center;
+flex-direction: column;
 }
 
 .card {
   background: #1e293b;
   border-radius: 0.5rem;
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
   max-width: 450px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -26,8 +35,7 @@
 
 .subtitle {
   color: var(--text-muted);
-  text-align: center;
-  margin-bottom: 2rem;
+  text-align: center; 
 }
 
 .form {
@@ -42,7 +50,7 @@
   gap: 0.5rem;
   padding: 0;
 
-  
+
 }
 
 .input {
