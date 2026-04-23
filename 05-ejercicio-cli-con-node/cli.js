@@ -4,13 +4,17 @@ import { readdir, stat } from "node:fs/promises";
 
 // join: une partes de una ruta de forma segura (ej: "./src" + "index.js" = "./src/index.js")
 import { join } from "node:path";
-
-import path from "path" 
-let folder = ''
-// Aquí irá el código
-// Recuperar la carpeta a lisar
+  
 
 const dir = process.argv[2] ?? ".";
+
+const args = process.argv.slice(2);
+const flags = args.filter((arg) => arg.startsWith("--"));
+const nonFlags = args.filter((arg) => !arg.startsWith("--"));
+
+const showOnlyFiles = flags.includes("--files");
+const showOnlyFolders = flags.includes("--folders");
+const sortAsc = flags.includes("--asc");
 
 function formatSize(bytes) {
   if (bytes === 0) return "0 B";
@@ -26,44 +30,59 @@ function formatSize(bytes) {
 // };
 
 // nombres sin info
-const files = await readdir(dir);
-console.log(files);
+const files = await readdir(dir); 
 
 // recuperar la info de cada file
-// const entries = await Promise.all(
-//     files.map(async (name) => {
-//         const fullPath = join(dir, name)
-//         const info = await stat(fullPath)
+const entries = await Promise.all(
+    files.map(async (name) => {
+        const fullPath = join(dir, name)
+        const info = await stat(fullPath)
 
-//         return {
-//             name,
-//             isDir: info.isDirectory(),
-//             size: formaBytes(info.size)
-//         }
-//     })
+        return {
+          name, 
+          isDir: info.isDirectory(),
+          size: formatSize(info.size),
+          modified: info.mtime,
+        };
+    })
 
-// )
+)
 
-// for (const entry of entries) {
-//     const icon = entry.isDir ? "📁" : "📄";
-//     const size = entry.isDir ? '-' : `${entry.size}`
-//     const fileModified = stats.mtime.toLocaleString();
+// Filtrar
+let filtered = entries;
+if (showOnlyFiles && !showOnlyFolders) {
+  filtered = entries.filter((e) => !e.isDir);
+} else if (showOnlyFolders && !showOnlyFiles) {
+  filtered = entries.filter((e) => e.isDir);
+}
 
-//     console.log(`${icon}     ${entry.name}  ${size} --- ${fileModified}`);
+// Ordenar
+if (sortAsc) {
+  filtered.sort((a, b) => a.name.localeCompare(b.name));
+}
 
-// }
 
-const filePromises = files.map(async (file) => {
-  const filePath = path.join(folder, file);
-  const stats = await stat(filePath);
 
-  const isDirectory = stats.isDirectory();
-  const fileType = isDirectory ? "📁" : "📄";
-  const fileSize = stats.size.toString();
-  const fileModified = stats.mtime.toLocaleString();
+for (const entry of entries) {
+    const icon = entry.isDir ? "📁" : "📄";
+    const size = entry.isDir ? '-' : `${entry.size}`
+    const fileModified = info.mtime.toLocaleString();
 
-  return `${fileType} ${file.padEnd(20)} ${formatSize(fileSize).padStart(10)} ${fileModified}`;
-});
+    console.log(`${icon}     ${entry.name}  ${size} --- ${fileModified}`);
 
-const filesInfo = await Promise.all(filePromises);
-filesInfo.forEach((line) => console.log(line));
+}
+
+// const filePromises = files.map(async (file) => {
+//   const filePath = path.join(folder, file);
+//   const stats = await stat(filePath);
+
+//   const isDirectory = stats.isDirectory();
+//   const fileType = isDirectory ? "📁" : "📄";
+//   const fileSize = stats.size.toString();
+//   const fileModified = stats.mtime.toLocaleString();
+
+//   return `${fileType} ${file.padEnd(20)} ${formatSize(fileSize).padStart(10)} ${fileModified}`;
+// });
+
+// const filesInfo = await Promise.all(filePromises);
+// filesInfo.forEach((line) => console.log(line));
