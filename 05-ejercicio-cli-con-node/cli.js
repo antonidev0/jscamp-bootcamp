@@ -21,6 +21,17 @@ const onlyFolders = flags.includes("--folders");
 const ordenAsc = flags.includes("--asc");
 const ordenDesc = flags.includes("--desc");
 
+const folderAbsolute = path.resolve(folder);
+
+if (!process.permission?.has("fs.read", folderAbsolute)) {
+  console.error(`❌ Error: No tenemos permiso para leer ${folderAbsolute}`);
+  console.error(
+    `   Ejecuta de nuevo con:\n   node --permission --allow-fs-read=${folderAbsolute} cli.js ${folder}`
+  );
+  process.exit(1);
+}
+
+
 let files;
 try {
   files = await readdir(folder); 
