@@ -4,9 +4,22 @@ import { readdir } from "node:fs/promises"; // Para leer el contenido de un dire
 
 import path from "node:path";  // Para manipular rutas de archivos de forma segura
 
+// Separame los argumentos de los flags
+const args = process.argv.slice(2);
+
+// dame los flags
+const flags = args.filter((arg) => arg.startsWith("--"));
+
+// dame los argumentos
+const positional = args.filter((arg) => !arg.startsWith("--")); 
 
 // El argumento 2 es nuestra carpeta, si no existe usamos '.'
-const folder = process.argv[2] ?? ".";
+const folder = positional[0] ?? ".";
+
+const onlyFiles = flags.includes("--files");
+const onlyFolders = flags.includes("--folders");
+const ordenAsc = flags.includes("--asc");
+const ordenDesc = flags.includes("--desc");
 
 let files;
 try {
@@ -36,9 +49,27 @@ const filePromises = files.map(async (file) => {
   // dame la ultima fecha de modificacion del archivo
   const fileModified = stats.mtime.toLocaleString();
 
-  
-  return `${fileType} ${file.padEnd(20)} ${fileSize.padStart(10)}KB ${fileModified.padEnd(10)}`;
+  return {
+    name: file,
+    isDirectory,
+    line: `${fileType} ${file.padEnd(20)} ${fileSize.padStart(10)}KB ${fileModified.padEnd(10)}`,
+  }
 });
 
-const filesInfo = await Promise.all(filePromises);
-filesInfo.forEach((line) => console.log(line));
+let filesInfo = await Promise.all(filePromises);
+
+if (onlyFiles && !onlyFolders) {
+  filesInfo = filesInfo.filter((info) => !info.isDirectory); 
+} else if (onlyFolders && !onlyFiles) {
+  filesInfo = filesInfo.filter((info) => info.isDirectory);
+}
+
+if (ordenAsc) {
+  filesInfo.sort((a, b) => a.name.localeCompare(b.name));
+  
+} else if (ordenDesc) {
+  filesInfo.sort((a, b) => b.name.localeCompare(a.name));
+   
+}
+
+filesInfo.forEach((info) => console.log(info.line));
