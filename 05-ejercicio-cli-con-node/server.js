@@ -10,13 +10,11 @@ const server = createServer((req, res) => {
 
       if (url === "/") {
         res.end("<h1>Bienvenido a la Home</h1>");
-      } else if (url === "/usuarios") {
+      }
+      else if (url === "/usuarios") {
         res.end("<h1>Lista de usuarios</h1>");
-      } else {
-        res.end("<h1>404 Not Found</h1>");
-    } 
-
-    if (url === "/json") {        
+      }
+      else if (url === "/json") {        
         res.setHeader("Content-Type", "application/json; charset=utf-8");
         const user = { name: 'midudev', role: 'admin' }
         res.end(JSON.stringify(user));
