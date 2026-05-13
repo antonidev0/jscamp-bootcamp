@@ -17,11 +17,17 @@ export function HomePage() {
 
   }
 
-  const imageUrl = "../src/assets/background.webp";
+  /* Los assets deben ir en la carpeta `public`. Lo que podes hacer es en crear una carpeta (dentro de public) así: public/images/, y ahí dentro colocar tu `background.webp`. */
+  // const imageUrl = "../src/assets/background.webp";
+
+  // Lo bueno de ponerlo en public es que podes llamar los assets directamente de esta manera de aquí abajo, sin tener que ir para atrás entre los directorios y entrar a la carpeta /public/....
+  const imageUrl = "/images/background.webp";
+
   return (
     <main>
       <section>
-        <img src={imageUrl} width="200" />
+        {/* Siempre que ponemos width hay que poner height. Puse un valor de referencia, la idea es ver realmente cual es el aspect ratio correcto */}
+        <img src={imageUrl} width="200" height="200" alt="Imagen de fondo ilustrativa" />
 
         <h1>Encuentra el trabajo de tus sueños</h1>
 
