@@ -12,6 +12,11 @@ hola, aun no empizo a hacer los ejercicios pero tengo esta pequeña duda
               
               
 el estado dependiendo del uso, debe estar en false o 0? o tambien habran casos donde convenga que sea true?
+
+**Respuesta:**
+Sí, depende del caso. En este ejemplo, el estado inicial es `false` porque la idea es que el botón empiece como "Guardar" (no guardado). Pero en otros casos, como un checkbox que por defecto está marcado, el estado inicial sería `true`.
+
+
 ## Primera parte
 
 <!-- Dudas de la primera parte del ejercicio -->
