@@ -11,10 +11,11 @@ const args = process.argv.slice(2);
 const flags = args.filter((arg) => arg.startsWith("--"));
 
 // dame los argumentos
-const positional = args.filter((arg) => !arg.startsWith("--")); 
+// Podemos usar un `find` para que retorne el primer argumento que no sea un flag
+const positional = args.find((arg) => !arg.startsWith("--")); 
 
 // El argumento 2 es nuestra carpeta, si no existe usamos '.'
-const folder = positional[0] ?? ".";
+const folder = positional ?? ".";
 
 const onlyFiles = flags.includes("--files");
 const onlyFolders = flags.includes("--folders");
@@ -68,6 +69,21 @@ const filePromises = files.map(async (file) => {
 });
 
 let filesInfo = await Promise.all(filePromises);
+
+/* 
+
+// Otra manera de hacerlo
+const isOnlyFiles = onlyFiles && !onlyFolders;
+const isOnlyFolders = onlyFolders && !onlyFiles;
+
+filesInfo = isOnlyFiles ? filesInfo.filter((info) => !info.isDirectory) : filesInfo;
+filesInfo = isOnlyFolders ? filesInfo.filter((info) => info.isDirectory) : filesInfo;
+
+filesInfo = ordenAsc ? filesInfo.sort((a, b) => a.name.localeCompare(b.name)) : filesInfo;
+filesInfo = ordenDesc ? filesInfo.sort((a, b) => b.name.localeCompare(a.name)) : filesInfo;
+
+*/
+
 
 if (onlyFiles && !onlyFolders) {
   filesInfo = filesInfo.filter((info) => !info.isDirectory); 
