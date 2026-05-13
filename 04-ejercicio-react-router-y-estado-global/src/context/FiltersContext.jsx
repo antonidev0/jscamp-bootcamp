@@ -47,9 +47,11 @@ export function FilterProvider({ children }) {
   );
 
   const [currentPage, setCurrentPage] = useState(() => {
-    const params = new URLSearchParams(window.location.search);
+    // Ya no utilizamos esto
+    // const params = new URLSearchParams(window.location.search);
     const page = Number(searchParams.get("page"));
-    return page > 0 ? page : 1;
+    if (isNaN(page) || page < 1) return 1;
+    return page;
   });
 
   const [jobs, setJobs] = useState([]);
