@@ -17,6 +17,7 @@ export default function HomePage() {
 
   }
 
+  /* Lo comentado en el ejercicio 3 */
   const imageUrl = "../src/assets/background.webp";
   return (
     <main>
