@@ -5,21 +5,28 @@ process.loadEnvFile();
 const DESIRED_PORT = process.env.PORT ?? 3000;
 
 const server = createServer((req, res) => {
-  res.setHeader("Content-Type", "text/html; charset=utf-8");
       const { url } = req;
 
-      if (url === "/") {
+  function sendJson(res, statusCode, data) {
+    res.statusCode = statusCode
+    res.setHeader('Content-Type', 'application/json; charset=utf-8')
+    res.end(JSON.stringify(data))
+  }
+
+    if (url === "/") {
+        res.setHeader("Content-Type", "text/html; charset=utf-8");
         res.end("<h1>Bienvenido a la Home</h1>");
       }
       else if (url === "/usuarios") {
         res.end("<h1>Lista de usuarios</h1>");
       }
       else if (url === "/json") {        
-        res.setHeader("Content-Type", "application/json; charset=utf-8");
-        const user = { name: 'midudev', role: 'admin' }
-        res.end(JSON.stringify(user));
-    } else {
-           res.end("<h1>404 Not Found</h1>");
+      return sendJson(res, 200, [
+        { id: 1, name: 'Alicia' },
+        { id: 2, nae: 'Bob'},
+         ])
+      } else { 
+      return sendJson(res, 404, { error: 'Not Found'})
     }
 });
 
