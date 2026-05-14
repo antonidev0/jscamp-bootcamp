@@ -11,10 +11,10 @@ const args = process.argv.slice(2);
 const flags = args.filter((arg) => arg.startsWith("--"));
 
 // dame los argumentos
-const positional = args.filter((arg) => !arg.startsWith("--")); 
+const positional = args.find((arg) => !arg.startsWith("--")); 
 
 // El argumento 2 es nuestra carpeta, si no existe usamos '.'
-const folder = positional[0] ?? ".";
+const folder = positional ?? ".";
 
 const onlyFiles = flags.includes("--files");
 const onlyFolders = flags.includes("--folders");
@@ -26,7 +26,7 @@ const folderAbsolute = path.resolve(folder);
 if (!process.permission?.has("fs.read", folderAbsolute)) {
   console.error(`❌ Error: No tenemos permiso para leer ${folderAbsolute}`);
   console.error(
-    `   Ejecuta de nuevo con:\n   node --permission --allow-fs-read=${folderAbsolute} cli.js ${folder}`
+    `Ejecuta de nuevo con:\n   node --permission --allow-fs-read=${folderAbsolute} cli.js ${folder}`
   );
   process.exit(1);
 }
@@ -69,18 +69,22 @@ const filePromises = files.map(async (file) => {
 
 let filesInfo = await Promise.all(filePromises);
 
-if (onlyFiles && !onlyFolders) {
-  filesInfo = filesInfo.filter((info) => !info.isDirectory); 
-} else if (onlyFolders && !onlyFiles) {
-  filesInfo = filesInfo.filter((info) => info.isDirectory);
-}
+const isOnlyFiles = onlyFiles && !onlyFolders;
+const isOnlyFolders = onlyFolders && !onlyFiles;
 
-if (ordenAsc) {
-  filesInfo.sort((a, b) => a.name.localeCompare(b.name));
+filesInfo = isOnlyFiles
+  ? filesInfo.filter((info) => !info.isDirectory)
+  : filesInfo;
+filesInfo = isOnlyFolders
+  ? filesInfo.filter((info) => info.isDirectory)
+  : filesInfo;
+
+filesInfo = ordenAsc
+  ? filesInfo.sort((a, b) => a.name.localeCompare(b.name))
+  : filesInfo;
+filesInfo = ordenDesc
+  ? filesInfo.sort((a, b) => b.name.localeCompare(a.name))
+  : filesInfo;
   
-} else if (ordenDesc) {
-  filesInfo.sort((a, b) => b.name.localeCompare(a.name));
-   
-}
 
 filesInfo.forEach((info) => console.log(info.line));
