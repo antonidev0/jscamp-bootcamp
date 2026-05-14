@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router";
-import { lazy, Suspense, useEffect, useState } from "react";   
-import { useRouter } from "./hooks/useRouter.jsx";  
+import { lazy } from "react";   
 import { ProtectedRoute } from "./components/ProtectedRoute.jsx";
 
 const HomePage = lazy(() => import("../src/pages/Home.jsx"));

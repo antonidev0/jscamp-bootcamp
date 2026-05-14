@@ -17,11 +17,11 @@ export default function HomePage() {
 
   }
 
-  const imageUrl = "../src/assets/background.webp";
+  const imageUrl = "/images/background.webp";
   return (
     <main>
       <section>
-        <img src={imageUrl} width="200" />
+        <img src={imageUrl} width="200" height="200" alt="Imagen de fondo ilustrativa" />
 
         <h1>Encuentra el trabajo de tus sueños</h1>
 

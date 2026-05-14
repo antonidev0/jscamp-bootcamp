@@ -8,7 +8,7 @@ function getErrorMessage(error) {
   if (!navigator.onLine) {
     return "No tienes conexión a internet. Verifica tu conexión e intenta de nuevo.";
   }
-
+  console.log({ error });
   const message = error.message;
 
   if (message.includes("404")) {
@@ -46,7 +46,9 @@ export function FilterProvider({ children }) {
   const [currentPage, setCurrentPage] = useState(() => {
     const params = new URLSearchParams(window.location.search);
     const page = Number(params.get('page'));
-    return Number.isNaN(page) ? page : 1
+    
+    if (page < 1) return 1; 
+    return Number.isNaN(page) ? 1 : page;
   });
 
   const [jobs, setJobs] = useState([]);
