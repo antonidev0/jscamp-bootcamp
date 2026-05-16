@@ -5,12 +5,16 @@ process.loadEnvFile(); //lee las variables de entorno
 const DESIRED_PORT = process.env.PORT ?? 3000; //usa el puerto de mi variable de entorno, si no (esta o no existe) usa el puerto 3000
 
 const server = createServer((req, res) => { 
-  const { url } = req; //dentro del req, toma el objeto url y guardalo
+  const { method, url } = req; //dentro del req, toma el objeto url y el metodo y guardalo
 
   function sendJson(res, statusCode, data) {
     res.statusCode = statusCode // oye, el estado de la respuesta, es el estado que te envie
     res.setHeader('Content-Type', 'application/json; charset=utf-8') //aqui te voy a enviar un json
     res.end(JSON.stringify(data)) // la respuesta final sera un json con los datos
+  }
+
+  if (method !== "GET") {
+  return sendJson(res, 405 {error: 'Not Allowed'})
   }
 
     if (url === "/") {
@@ -21,8 +25,10 @@ const server = createServer((req, res) => {
     else if (url === "/usuarios") {
       // si es /usuarios muestrame 
         res.end("<h1>Lista de usuarios</h1>");
-      }
-    else if (url === "/json") {   
+    }
+    else if ( url === "/health") {
+      return sendJson(res, 200, { status: 'ok', uptime: process.uptime()})
+    } else if (url === "/json") {   
       // si la url es /json retorname este objeto
       return sendJson(res, 200, [
         { id: 1, name: 'Alicia' },
