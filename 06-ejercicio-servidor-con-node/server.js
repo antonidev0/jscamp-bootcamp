@@ -7,25 +7,32 @@ process.loadEnvFile();
 
 const DESIRED_PORT = process.env.PORT ?? 3000;
 
-const server = createServer(async (req, res) => { 
+const server = createServer(async (req, res) => {
   const { method, url } = req; //dentro del req, toma el objeto url y el metodo y guardalo
+ 
+  // traeme los datos de data en texto y damelos como un array de obejetos
+  const users = JSON.parse(await readFile("./data.json", "utf-8"));
 
   // tomamos la url para separarla de los parametros
   const parsedUrl = new URL(url, `http://localhost:${DESIRED_PORT}`);
+
+  // tomamos los query de la url
   const pathname = parsedUrl.pathname;
 
   function sendJson(res, statusCode, data) {
     res.statusCode = statusCode; // oye, el estado de la respuesta, es el estado que te envie
     res.setHeader("Content-Type", "application/json; charset=utf-8"); //aqui te voy a enviar un json
     res.end(JSON.stringify(data)); // la respuesta final sera un json con los datos
-  } 
+  }
 
   if (method === "GET") {
-    if (parsedUrl.pathname === "/users") { 
-      
+    if (parsedUrl.pathname === "/users") {
+
       // buscamos el parametro name dentro de la url
       const nameFilter = parsedUrl.searchParams.get("name");
-       
+      console.log(nameFilter);
+      
+
       // los nombres filtrado van a ser igual a los usuairos
       let filteredUsers = users;
 
@@ -38,10 +45,8 @@ const server = createServer(async (req, res) => {
       }
 
       // y luego me envias los usuraios que filtraste
-       return sendJson(res, 200, filteredUsers)
-
-      // si la url es /json retorname este objeto
-      return sendJson(res, 200, users);
+      return sendJson(res, 200, filteredUsers);
+ 
     } else if (parsedUrl.pathname === "/health") {
       return sendJson(res, 200, { status: "ok", uptime: process.uptime() });
     }
@@ -52,7 +57,9 @@ const server = createServer(async (req, res) => {
       const body = await json(req);
 
       if (!body || !body.name || !body.age) {
-        return sendJson(res, 400, { error: "Todos los campos son obligatorios" });
+        return sendJson(res, 400, {
+          error: "Todos los campos son obligatorios",
+        });
       }
 
       const newUsers = [
