@@ -15,11 +15,6 @@ const server = createServer(async (req, res) => {
     res.end(JSON.stringify(data)) // la respuesta final sera un json con los datos
   }
 
-  const users = [
-    { id: 1, name: "Alicia" },
-    { id: 2, name: "Bob" },
-  ];
-
   if (method === "GET") { 
     if (url === "/users") {   
       // si la url es /json retorname este objeto
@@ -62,6 +57,11 @@ const server = createServer(async (req, res) => {
       return sendJson(res, 404, { error: 'Not Found'})
     }
 });
+
+  const users = [
+    { id: 1, name: "Alicia" },
+    { id: 2, name: "Bob" },
+  ];
 
 server.listen(DESIRED_PORT, () => {
   // reserva y escucha el puerto DESIRED_PORT que ya habia hecho
