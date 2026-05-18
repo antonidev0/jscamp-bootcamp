@@ -7,11 +7,13 @@ process.loadEnvFile();
 
 const DESIRED_PORT = process.env.PORT ?? 3000;
 
+// traeme los datos de data en texto y damelos como un array de obejetos
+  // (lo dejo aca para que cargue una vez y guarde los cambios del post en cada sesion)
+  const users = JSON.parse(await readFile("./data.json", "utf-8"));
+
+
 const server = createServer(async (req, res) => {
   const { method, url } = req; //dentro del req, toma el objeto url y el metodo y guardalo
- 
-  // traeme los datos de data en texto y damelos como un array de obejetos
-  const users = JSON.parse(await readFile("./data.json", "utf-8"));
 
   // tomamos la url para separarla de los parametros
   const parsedUrl = new URL(url, `http://localhost:${DESIRED_PORT}`);
@@ -55,6 +57,8 @@ const server = createServer(async (req, res) => {
   if (method === "POST") {
     if (parsedUrl.pathname === "/users") {
       const body = await json(req);
+      console.log(body, "Aaaaaaaaaa");
+      
 
       if (!body || !body.name || !body.age) {
         return sendJson(res, 400, {
@@ -62,15 +66,15 @@ const server = createServer(async (req, res) => {
         });
       }
 
-      const newUsers = [
-        {
-          id: randomUUID(),
-          name: body.name,
-          age: body.age,
-        },
-      ];
+      const newUser =
+      {
+        id: randomUUID(),
+        name: body.name,
+        age: body.age,
+      };
+      
 
-      users.push(newUsers);
+      users.push(newUser);
 
       return sendJson(res, 201, { message: "usuario creado" });
     }
