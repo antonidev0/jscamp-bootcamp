@@ -1,10 +1,12 @@
 import { createServer } from "node:http"; // dame la funcion para crear un servidor
+import { json } from "node:stream/consumers";
+import { randomUUID } from "node:crypto";
 
 process.loadEnvFile(); //lee las variables de entorno
 
 const DESIRED_PORT = process.env.PORT ?? 3000; //usa el puerto de mi variable de entorno, si no (esta o no existe) usa el puerto 3000
 
-const server = createServer((req, res) => { 
+const server = createServer(async (req, res) => { 
   const { method, url } = req; //dentro del req, toma el objeto url y el metodo y guardalo
 
   function sendJson(res, statusCode, data) {
@@ -13,8 +15,37 @@ const server = createServer((req, res) => {
     res.end(JSON.stringify(data)) // la respuesta final sera un json con los datos
   }
 
-  if (method !== "GET") {
-  return sendJson(res, 405 {error: 'Not Allowed'})
+  const users = [
+    { id: 1, name: "Alicia" },
+    { id: 2, name: "Bob" },
+  ];
+
+  if (method === "GET") { 
+    if (url === "/users") {   
+      // si la url es /json retorname este objeto
+      return sendJson(res, 200, users)
+    } else if ( url === "/health") {
+      return sendJson(res, 200, { status: 'ok', uptime: process.uptime()})
+    }
+  }
+  
+  if (method === "POST") {
+    if (url === "/users") { 
+      const body = await json(req) 
+
+      if (!body || !body.name) {
+        return sendJson(res, 400, { error : "cuerpo requerido"})
+      }
+      
+      const newUsers = [{
+        id: randomUUID(),
+        name: body.name
+      }] 
+
+      users.push(newUsers)
+
+       return sendJson(res, 201, { message: "usuario creado"});
+     }
   }
 
     if (url === "/") {
@@ -26,15 +57,7 @@ const server = createServer((req, res) => {
       // si es /usuarios muestrame 
         res.end("<h1>Lista de usuarios</h1>");
     }
-    else if ( url === "/health") {
-      return sendJson(res, 200, { status: 'ok', uptime: process.uptime()})
-    } else if (url === "/json") {   
-      // si la url es /json retorname este objeto
-      return sendJson(res, 200, [
-        { id: 1, name: 'Alicia' },
-        { id: 2, nae: 'Bob'},
-         ])
-    } else { 
+     else { 
       // si no es ninguna de las anterioeres envia este error
       return sendJson(res, 404, { error: 'Not Found'})
     }
