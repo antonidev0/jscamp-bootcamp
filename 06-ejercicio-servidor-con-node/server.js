@@ -29,16 +29,19 @@ const server = createServer(async (req, res) => {
 
   if (method === "GET") {
     if (parsedUrl.pathname === "/users") {
-
       // buscamos el parametro name dentro de la url
+
+      // Si continene name (ejem> /users?name)
       const nameFilter = parsedUrl.searchParams.get("name");
-      console.log(nameFilter);
-      
+      // si contiene limit (ejem> /users?limit) (cantidad maxima de usuarios a devolver)
+      const limit = parsedUrl.searchParams.get("limit");
+      // si contiene ofset (ejm /users?offset o /users?limit&offset) (cantidad de usuarios a saltar desde el inicio)
+      const offset = parsedUrl.searchParams.get("offset");
 
       // los nombres filtrado van a ser igual a los usuairos
       let filteredUsers = users;
 
-      // si en los parametros existe "name"
+      // si en la url existe "name"
       if (nameFilter) {
         // filtramos usuarios cuyo nombre contenga el texto (sin distinguir mayusculas)
         filteredUsers = users.filter((user) =>
@@ -46,9 +49,19 @@ const server = createServer(async (req, res) => {
         );
       }
 
+      // si en la url existe limit y offset
+      if (limit && offset) {
+        // el numero limite de la cantidad de usuarios a devolver es
+        const numLimit = Number(limit);
+        // cantidad de usuarios a saltar desde el inicio es
+        const numOffset = Number(offset);
+        
+        // dame el nummero limite de los usuarios con la cantidad a saltarse, y separamelo de los usuarios filtrados
+        filteredUsers = filteredUsers.slice(numOffset, numOffset + numLimit);
+      }
+
       // y luego me envias los usuraios que filtraste
       return sendJson(res, 200, filteredUsers);
- 
     } else if (parsedUrl.pathname === "/health") {
       return sendJson(res, 200, { status: "ok", uptime: process.uptime() });
     }
