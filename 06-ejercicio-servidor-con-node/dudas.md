@@ -7,3 +7,7 @@ tambien trate de dejar mas comentarios en el codigo, segun como iba avanzando ej
         // el numero limite de la cantidad de usuarios a devolver es
         const numLimit = Number(limit);
  asi con el codigo para explicar mejor y a tambien para eplicarme a mi mismo si no entendia claramente una parte
+
+ **Respuesta:**
+ Muy buena observación! Por como lo hemos montado, no podemos cambiar el ejercicio actual para separar los datos en otro archivo, pero en lo siguientes módulos, lo voy a tener muy en cuenta y lo haremos así :) Gracias!
+ Y excelente la idea de comentar! Ayuda mucho
