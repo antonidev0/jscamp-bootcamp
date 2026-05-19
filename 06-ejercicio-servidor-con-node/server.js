@@ -37,6 +37,10 @@ const server = createServer(async (req, res) => {
       const limit = parsedUrl.searchParams.get("limit");
       // si contiene ofset (ejm /users?offset o /users?limit&offset) (cantidad de usuarios a saltar desde el inicio)
       const offset = parsedUrl.searchParams.get("offset");
+      // // si contiene minAge (ejm /users?minAge=25&maxAge=30)
+      const minAge = parsedUrl.searchParams.get("minAge");
+      // si contiene maxAge (ejem  /users?minAge=25&maxAge=30)
+      const maxAge = parsedUrl.searchParams.get("maxAge");
 
       // los nombres filtrado van a ser igual a los usuairos
       let filteredUsers = users;
@@ -45,7 +49,25 @@ const server = createServer(async (req, res) => {
       if (nameFilter) {
         // filtramos usuarios cuyo nombre contenga el texto (sin distinguir mayusculas)
         filteredUsers = users.filter((user) =>
+          // dame el nombre del filtro de la url en minuscula y si
+          //  en el nombre de los usuarios incluye alguna letra de lo que busque , damelo
           user.name.toLowerCase().includes(nameFilter.toLowerCase()),
+        );
+      }
+
+      // si en la url existe minAge
+      if (minAge) {
+        // si la edad del usuario es mayor o igual al minimo dejalo en la list
+        filteredUsers = filteredUsers.filter(
+          (user) => user.age >= Number(minAge),
+        );
+      }
+
+      // i en la url existe maxAge
+      if (maxAge) {
+        // si la edad del usuario es menor o igual al maximo dejalo en la lista
+        filteredUsers = filteredUsers.filter(
+          (user) => user.age <= Number(maxAge),
         );
       }
 
@@ -55,7 +77,7 @@ const server = createServer(async (req, res) => {
         const numLimit = Number(limit);
         // cantidad de usuarios a saltar desde el inicio es
         const numOffset = Number(offset);
-        
+
         // dame el nummero limite de los usuarios con la cantidad a saltarse, y separamelo de los usuarios filtrados
         filteredUsers = filteredUsers.slice(numOffset, numOffset + numLimit);
       }
