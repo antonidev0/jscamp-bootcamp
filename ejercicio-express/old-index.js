@@ -8,6 +8,12 @@ console.log(PORT_SERVER);
 
 const app = express();
 
+app.use((req, res, next) => {
+    const timeString = new Date().toLocaleDateString()
+        console.log(`[${timeString}] ${req.method} ${req.url}`);
+        next()
+    })
+
 app.get("/", (request, response) => {
   return response.send("<h1>Hola mundo desde Express</h1>.");
 });
@@ -53,29 +59,15 @@ app.get("/jobs", (req, res) => {
 
 app.get("/jobs/:id", (req, res) => {
   const { id } = req.params;
-  const job = jobs.find((job) => job.id === id);
 
-  if (!job) return res.status(404).json({ message: "Empleo no encontrado" });
-  return res.json(job);
+  return res.json({
+    job: { id, title: `Job with is ${id}` },
+  });
 });
 
 // NO ES idenpotente
 app.post("/jobs/:id", (req, res) => {
-  // Crear un job
-   const { titulo, empresa, ubicacion,data } = req.body;
-
-   const newJob = {
-     id: crypto.randomUUID(),
-     titulo,
-     empresa,
-     ubicacion,
-     data,
-   };
-
-   jobs.push(newJob);
-
-   // Respondemos con 201 Created
-   return res.status(201).json(newJob);
+    // Crear un job
 });
 
 app.put("/jobs/:id", (req, res) => {
@@ -86,9 +78,11 @@ app.patch("/jobs/:id", (req, res) => {
   // actualizar un job
 });
 
-app.delete("/jobs/:id", (req, res) => {
-  // Eliminar un job
-});
+app.delete('/jobs/:id', (req, res) => {
+    // Eliminar un job
+})
+
+
 
 app.listen(PORT_SERVER, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT_SERVER}`);
