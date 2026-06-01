@@ -1,6 +1,6 @@
 import express from "express";
 import jobs from './jobs.json' with { type: 'json' }
-
+import { DEAFAULTS } from "./config.js";
 
 process.loadEnvFile();
 const PORT_SERVER = process.env.PORT ?? 1234
@@ -21,7 +21,7 @@ app.get("/health", (request, response) => {
 
 app.get('/get-jobs', (req, res) => {
 
-  const { text, title, level, limit, technology, offset } = req.query
+  const { text, title, level, limit = DEAFAULTS.LIMIT_PAGINATION, technology, offset=DEAFAULTS.LIMIT_OFFSET } = req.query
   
   let filteredJobs = jobs
 
@@ -33,7 +33,12 @@ app.get('/get-jobs', (req, res) => {
     );
   }
   
-  return res.json(filteredJobs)
+  const limiNumber = Number(limit);
+  const offsetNumber = Number(offset);
+
+   const paginatedJobs = filteredJobs.slice(offsetNumber, offsetNumber + limiNumber);
+
+  return res.json(paginatedJobs)
 })
  
 app.get('/get-single-job/:id', (req, res) => {
