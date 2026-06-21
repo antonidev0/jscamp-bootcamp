@@ -81,7 +81,7 @@ export function FilterProvider({ children }) {
         const queryParams = params.toString();
 
         const response = await fetch(
-          `https://jscamp-api.vercel.app/api/jobs?${queryParams}`,
+          `http://localhost:9000/jobs?${queryParams}`,
         );
 
         if (!response.ok) {

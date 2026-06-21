@@ -1,12 +1,33 @@
 import express from "express";
 import jobs from "./jobs.json" with { type: "json" };
 import { DEAFAULTS } from "./config.js";
+import cors from 'cors'
 
 process.loadEnvFile();
 const PORT_SERVER = process.env.PORT ?? 1234;
 console.log(PORT_SERVER);
 
 const app = express();
+
+const ACCEPT_ORIGINS = [ 
+  'http://localhost:5173',
+  "http://localhost:9000"
+]
+  
+app.use(cors({
+  
+  // si la direccion eta invitada
+  origin: (origin, callback) => {
+    if (ACCEPT_ORIGINS.includes(origin)) {
+      return callback(null, true)
+      // no hay error, que pase
+    }
+    // Si no dame este error
+    console.log(`Origen: ${origin}`);
+    
+    return callback(new Error('Origen no permitido'))
+  }
+}));
 
 app.use(express.json())
 
@@ -23,9 +44,10 @@ app.get("/health", (request, response) => {
 });
 
 app.get("/jobs", (req, res) => {
+
   const {
     text,
-    title,
+    titulo,
     level,
     limit = DEAFAULTS.LIMIT_PAGINATION,
     technology,
@@ -51,7 +73,7 @@ app.get("/jobs", (req, res) => {
     offsetNumber + limiNumber,
   );
 
-  return res.json(paginatedJobs);
+  return res.json({ data: paginatedJobs, total: filteredJobs.length, limit: limiNumber, offset: offsetNumber });
 });
 
 app.get("/jobs/:id", (req, res) => {
