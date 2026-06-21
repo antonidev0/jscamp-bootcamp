@@ -8,6 +8,9 @@ console.log(PORT_SERVER);
 
 const app = express();
 
+app.use(express.json())
+
+
 app.get("/", (request, response) => {
   return response.send("<h1>Hola mundo desde Express</h1>.");
 });
@@ -60,9 +63,9 @@ app.get("/jobs/:id", (req, res) => {
 });
 
 // NO ES idenpotente
-app.post("/jobs/:id", (req, res) => {
-  // Crear un job
-   const { titulo, empresa, ubicacion,data } = req.body;
+app.post("/jobs", (req, res) => {
+  // Crear un job 
+   const { titulo, empresa, ubicacion, data } = req.body;
 
    const newJob = {
      id: crypto.randomUUID(),
@@ -74,7 +77,7 @@ app.post("/jobs/:id", (req, res) => {
 
    jobs.push(newJob);
 
-   // Respondemos con 201 Created
+   // Respondemos con 201 Created 
    return res.status(201).json(newJob);
 });
 
