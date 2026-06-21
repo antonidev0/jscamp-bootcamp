@@ -13,7 +13,33 @@ const ACCEPT_ORIGINS = [
   'http://localhost:5173',
   "http://localhost:9000"
 ]
-  
+ 
+app.use((req, res, next) => {
+  if (!ACCEPT_ORIGINS.includes(req.headers.origin)) {
+    console.log("direccion no invitada detectada:");
+    console.log({
+      // de donde viene
+      origen: req.headers.origin,
+
+      // su direccion IP
+      ip: req.ip,
+
+      // que metodo quiso hacer
+      metodo: req.method,
+
+      // a donde queria ir
+      ruta: req.originalUrl,
+
+      // que navegador usa
+      navegador: req.headers["user-agent"], 
+
+      
+      fecha: new Date(),
+    });
+  }
+  next();
+});
+
 app.use(cors({
   
   // si la direccion eta invitada
