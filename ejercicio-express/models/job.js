@@ -1,0 +1,1 @@
+import jobs from '../data/jobs.json' with { type: 'json' }
