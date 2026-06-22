@@ -1,3 +1,5 @@
+import { JobModel } from "../models/job";
+
 export class JobsControllers {
   static async getAll(req, res) {
     const {
@@ -9,29 +11,13 @@ export class JobsControllers {
       offset = DEAFAULTS.LIMIT_OFFSET,
     } = req.query;
 
-    let filteredJobs = jobs;
-
-    if (text) {
-      const searchTerm = text.toLowerCase();
-      filteredJobs = filteredJobs.filter(
-        (job) =>
-          job.titulo.toLocaleLowerCase().includes(searchTerm) ||
-          job.descripcion.toLocaleLowerCase().includes(searchTerm),
-      );
-    }
-
-    const limiNumber = Number(limit);
-    const offsetNumber = Number(offset);
-
-    const paginatedJobs = filteredJobs.slice(
-      offsetNumber,
-      offsetNumber + limiNumber,
-    );
-
+      const paginatedJobs = await JobModel.getAll({ text, titulo, level, limit, technology, offset })
+      
+    
     return res.json({
       data: paginatedJobs,
       total: filteredJobs.length,
-      limit: limiNumber,
+      limit: limitNumber,
       offset: offsetNumber,
     });
   }
@@ -46,17 +32,9 @@ export class JobsControllers {
 
   static async create(req, res) {
     const { titulo, empresa, ubicacion, data } = req.body;
-
-    const newJob = {
-      id: crypto.randomUUID(),
-      titulo,
-      empresa,
-      ubicacion,
-      data,
-    };
-
-    jobs.push(newJob);
-
+ 
+      const newJob = await JobModel.create({ titulo, empresa, ubicacion, data })
+      
     return res.status(201).json(newJob);
   }
 
