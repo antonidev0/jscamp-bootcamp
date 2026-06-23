@@ -11,8 +11,7 @@ const app = express()
 
 app.use(corsMiddleware());
 app.use(express.json());
-app.use("/jobs", jobsRouter);
-app.use("/health", jobsRouter);
+app.use("/jobs", jobsRouter); 
 
 
 console.log(PORT_SERVER);
