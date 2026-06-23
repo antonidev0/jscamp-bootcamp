@@ -11,9 +11,15 @@ export class JobsControllers {
       offset = DEAFAULTS.LIMIT_OFFSET,
     } = req.query;
 
-      const paginatedJobs = await JobModel.getAll({ text, titulo, level, limit, technology, offset })
-      
-    
+    const paginatedJobs = await JobModel.getAll({
+      text,
+      titulo,
+      level,
+      limit,
+      technology,
+      offset,
+    });
+
     return res.json({
       data: paginatedJobs,
       total: filteredJobs.length,
@@ -24,7 +30,7 @@ export class JobsControllers {
 
   static async getId(req, res) {
     const { id } = req.params;
-    const job = jobs.find((job) => job.id === id);
+    const job = await JobModel.getId(Id);
 
     if (!job) return res.status(404).json({ message: "Empleo no encontrado" });
     return res.json(job);
@@ -32,9 +38,9 @@ export class JobsControllers {
 
   static async create(req, res) {
     const { titulo, empresa, ubicacion, data } = req.body;
- 
-      const newJob = await JobModel.create({ titulo, empresa, ubicacion, data })
-      
+
+    const newJob = await JobModel.create({ titulo, empresa, ubicacion, data });
+
     return res.status(201).json(newJob);
   }
 
@@ -44,9 +50,6 @@ export class JobsControllers {
     // saco el id de la URL
     const { id } = req.params;
 
-    // busco la posicion del trabajo en el array
-    const index = jobs.findIndex((job) => job.id === id);
-
     if (index === -1) {
       // si busco el inidice (el trabajo) y no exite
       return res.status(404).json({ message: "Trabajo no encontrado" });
@@ -55,11 +58,13 @@ export class JobsControllers {
     // saco los campos del body
     const { titulo, empresa, ubicacion, data } = req.body;
 
-    // armo el objeto nuevo (mantengo el mismo id)
-    const updatedJob = { id, titulo, empresa, ubicacion, data };
-
-    // reemplazo el viejo por el nuevo
-    jobs[index] = updatedJob;
+    const updatedJob = await JobModel.update({
+      id,
+      titulo,
+      empresa,
+      ubicacion,
+      data,
+    });
 
     return res.status(200).json(updatedJob);
   }
@@ -69,34 +74,26 @@ export class JobsControllers {
 
     const { id } = req.params;
 
-    // busco la posicion del trabajo en el array
-    const index = jobs.findIndex((job) => job.id === id);
+    // campos que llegaron al body
+    const campos = req.body;
 
-    if (index === -1) {
+    const updatedJob = await JobModel.partialUpdate({ id, campos });
+
+    if (!updatedJob) {
       // si no existe
       return res.status(404).json({ message: "Trabajo no encontrado" });
     }
 
-    // jobs[index] accede a los inidices de los trabajos
-    // ...jobs[index] copia la lista vieja
-    // , ...req.body y actualiza por esta que te envio, deja el id como esta
-    jobs[index] = { ...jobs[index], ...req.body, id };
-
-    return res.status(200).json(jobs[index]);
+    return res.status(200).json(updatedJob);
   }
-    
+
   static async delete(req, res) {
-      
     const { id } = req.params;
-    const index = jobs.findIndex((job) => job.id === id);
-    if (index === -1) {
-      return res.status(404).json({ message: "Trabajo no encontrado" });
-    }
 
-    // borro 1 elemento en esa posicion
-    jobs.splice(index, 1);
+    const index = await JobModel.delete(id);
+
+    if (index === -1) return res.status(404).json({ message: "Trabajo no encontrado" });
+
     return res.status(200).json({ message: "Job deleted" });
-      
   }
-    
 }
