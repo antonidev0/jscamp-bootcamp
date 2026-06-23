@@ -11,7 +11,7 @@ const app = express();
 
 const ACCEPT_ORIGINS = [ 
   'http://localhost:5173',
-  "http://localhost:9000"
+  "http://localhost:9000",
 ]
  
 app.use((req, res, next) => {
@@ -44,7 +44,7 @@ app.use(cors({
   
   // si la direccion eta invitada
   origin: (origin, callback) => {
-    if (ACCEPT_ORIGINS.includes(origin)) {
+    if (!origin || ACCEPT_ORIGINS.includes(origin)) {
       return callback(null, true)
       // no hay error, que pase
     }
