@@ -1,4 +1,5 @@
 import { JobModel } from "../models/job.js";
+import { DEAFAULTS } from "../config.js";
 
 export class JobsControllers {
   static async getAll(req, res) {
@@ -30,7 +31,7 @@ export class JobsControllers {
 
   static async getId(req, res) {
     const { id } = req.params;
-    const job = await JobModel.getId(Id);
+    const job = await JobModel.getId(id);
 
     if (!job) return res.status(404).json({ message: "Empleo no encontrado" });
     return res.json(job);

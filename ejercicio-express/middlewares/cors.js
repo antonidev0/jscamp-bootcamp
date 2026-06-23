@@ -29,7 +29,7 @@ export const corsMiddleware = ({ accptedOrigins = ACCEPT_ORIGINS } = {}) => {
     return cors({
     // si la direccion eta invitada
     origin: (origin, callback) => {
-      if ( ACCEPT_ORIGINS.includes(origin)) {
+      if (!origin || ACCEPT_ORIGINS.includes(origin)) {
         return callback(null, true);
         // no hay error, que pase
       }

@@ -42,7 +42,7 @@ export class JobModel {
     return newJob;
   }
 
-  static async getId({ Id }) {
+  static async getId({ id }) {
     const job = jobs.find((job) => job.id === id);
     return job;
   }
@@ -64,7 +64,7 @@ export class JobModel {
     return updatedJob;
   }
 
-  static async partialUpadate({ Id, campos }) {
+  static async partialUpdate({ id, campos }) {
     // busco la posicion del trabajo en el array
     const index = jobs.findIndex((job) => job.id === id);
 
@@ -76,23 +76,22 @@ export class JobModel {
     // ...jobs[index] copia la lista vieja
     // , ...req.body y actualiza por esta que te envio, deja el id como esta
 
-    jobs[index] = { ...jobs[index], ...req.body, id };
+    jobs[index] = { ...jobs[index], ...campos, id };
 
     return jobs[index];
   }
 
-  static async delete({ Id }) {
+  static async delete({ id }) {
     const index = jobs.findIndex((job) => job.id === id);
- 
-      if (index === -1) {
-          return null;
-      }
 
-      const [deletedJob] = jobs.splice(index, 1);
- 
+    if (index === -1) {
+      return null;
+    }
+
+    const [deletedJob] = jobs.splice(index, 1);
+
     //   regreso el trabajo eliminado,
     //   como un existia, pero ya lo elimine
-      return deletedJob;
-    }
-    
+    return deletedJob;
+  }
 }
