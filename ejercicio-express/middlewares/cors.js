@@ -7,7 +7,6 @@ export const logMiddleware = (req, res, next) => {
   console.log("origin recibido:", req.headers.origin); 
 
   if (!origin && !ACCEPT_ORIGINS.includes(origin)) {
-
     console.log({
       // de donde viene
       origin: req.headers.origin,
@@ -25,13 +24,6 @@ export const logMiddleware = (req, res, next) => {
 
   next();
 }
-// app.use((req, res, next) => {
-//   if (!ACCEPT_ORIGINS.includes(req.headers.origin)) {
-//  
-//     });
-//   }
-//   
-// });
 
 export const corsMiddleware = ({ accptedOrigins = ACCEPT_ORIGINS } = {}) => {
     return cors({
