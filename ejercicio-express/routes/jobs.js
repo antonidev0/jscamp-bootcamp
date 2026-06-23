@@ -9,3 +9,5 @@ jobsRouter.post("/", JobsControllers.create);
 jobsRouter.put("/:id", JobsControllers.update);
 jobsRouter.patch("/:id", JobsControllers.partialUpdate);
 jobsRouter.delete("/:id", JobsControllers.delete);
+
+export { jobsRouter };

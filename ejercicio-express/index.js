@@ -17,9 +17,9 @@ const ACCEPT_ORIGINS = [
 app.use((req, res, next) => {
   if (!ACCEPT_ORIGINS.includes(req.headers.origin)) {
     console.log("direccion no invitada detectada:");
-    console.log({
+    console.log({ 
       // de donde viene
-      origen: req.headers.origin,
+      origin: req.headers.origin,
 
       // su direccion IP
       ip: req.ip,
@@ -37,11 +37,10 @@ app.use((req, res, next) => {
       fecha: new Date(),
     });
   }
-  next();
+  next(); 
 });
 
 app.use(cors({
-  
   // si la direccion eta invitada
   origin: (origin, callback) => {
     if (!origin || ACCEPT_ORIGINS.includes(origin)) {
