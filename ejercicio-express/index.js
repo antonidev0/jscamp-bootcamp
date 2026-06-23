@@ -43,7 +43,7 @@ app.use((req, res, next) => {
 app.use(cors({
   // si la direccion eta invitada
   origin: (origin, callback) => {
-    if (!origin || ACCEPT_ORIGINS.includes(origin)) {
+    if (ACCEPT_ORIGINS.includes(origin)) {
       return callback(null, true)
       // no hay error, que pase
     }

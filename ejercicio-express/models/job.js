@@ -1,4 +1,4 @@
-import jobs from "../data/jobs.json" with { type: "json" };
+import jobs from "../jobs.json" with { type: "json" };
 
 export class JobModel {
   static async getAll({
@@ -37,7 +37,7 @@ export class JobModel {
       ubicacion,
       data,
     };
-    job.push(newJob);
+    jobs.push(newJob);
 
     return newJob;
   }

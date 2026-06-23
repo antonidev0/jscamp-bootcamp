@@ -1,18 +1,18 @@
 import express from "express";
 import { DEAFAULTS } from "./config.js";
-import { corsMiddleware } from "./middlewares/cors.js";
+import { logMiddleware, corsMiddleware } from "./middlewares/cors.js";
 import { jobsRouter } from "./routes/jobs.js"
 
 import jobs from "./jobs.json" with { type: "json" };
-
+ 
 process.loadEnvFile();
 const PORT_SERVER = process.env.PORT ?? 1234;
 const app = express()
 
+app.use(logMiddleware);
 app.use(corsMiddleware());
 app.use(express.json());
 app.use("/jobs", jobsRouter); 
-
 
 console.log(PORT_SERVER);
 
