@@ -21,17 +21,12 @@ export class JobsControllers {
       offset,
     });
 
-    return res.json({
-      data: paginatedJobs,
-      total: filteredJobs.length,
-      limit: limitNumber,
-      offset: offsetNumber,
-    });
+    return res.json(paginatedJobs);
   }
 
   static async getId(req, res) {
     const { id } = req.params;
-    const job = await JobModel.getId(id);
+    const job = await JobModel.getId({ id });
 
     if (!job) return res.status(404).json({ message: "Empleo no encontrado" });
     return res.json(job);
@@ -90,9 +85,10 @@ export class JobsControllers {
   static async delete(req, res) {
     const { id } = req.params;
 
-    const index = await JobModel.delete(id);
+    const index = await JobModel.delete({ id });
 
-    if (index === -1) return res.status(404).json({ message: "Trabajo no encontrado" });
+    if (index === -1)
+      return res.status(404).json({ message: "Trabajo no encontrado" });
 
     return res.status(200).json({ message: "Job deleted" });
   }

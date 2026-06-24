@@ -20,6 +20,7 @@ export class JobModel {
       );
     }
 
+    const total = filteredJobs.length;
     const limitNumber = Number(limit);
     const offsetNumber = Number(offset);
 
@@ -27,6 +28,13 @@ export class JobModel {
       offsetNumber,
       offsetNumber + limitNumber,
     );
+
+      return {
+        data: paginatedJobs,
+        total,
+        limit: limitNumber,
+        offset: offsetNumber,
+      };
   }
 
   static async create({ titulo, empresa, ubicacion, data }) {
@@ -43,6 +51,7 @@ export class JobModel {
   }
 
   static async getId({ id }) {
+    console.log("GET ve jobs.length =", jobs.length);   
     const job = jobs.find((job) => job.id === id);
     return job;
   }
@@ -82,6 +91,7 @@ export class JobModel {
   }
 
   static async delete({ id }) {
+    console.log("Delete ve jobs.length =", jobs.length);  
     const index = jobs.findIndex((job) => job.id === id);
 
     if (index === -1) {
