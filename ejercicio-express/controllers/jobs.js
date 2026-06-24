@@ -51,11 +51,6 @@ export class JobsControllers {
     // saco el id de la URL
     const { id } = req.params;
 
-    if (index === -1) {
-      // si busco el inidice (el trabajo) y no exite
-      return res.status(404).json({ message: "Trabajo no encontrado" });
-    }
-
     // saco los campos del body
     const { titulo, empresa, ubicacion, data } = req.body;
 
@@ -66,6 +61,10 @@ export class JobsControllers {
       ubicacion,
       data,
     });
+
+    if (!updatedJob) {
+      return res.status(404).json({ message: "Trabajo no encontrado" });
+    }
 
     return res.status(200).json(updatedJob);
   }
