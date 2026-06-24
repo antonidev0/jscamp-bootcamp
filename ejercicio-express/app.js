@@ -5,8 +5,15 @@ import { jobsRouter } from "./routes/jobs.js";
 
 import jobs from "./jobs.json" with { type: "json" };
 
-process.loadEnvFile();
+const isProduction = process.env.NODE_ENV === "production";
+
+if (!isProduction) {
+  process.loadEnvFile();
+}
+
+
 const PORT_SERVER = process.env.PORT ?? 1234;
+
 const app = express();
  
 app.use(corsMiddleware());
@@ -15,7 +22,7 @@ app.use("/jobs", jobsRouter);
 
 console.log(PORT_SERVER);
 
-if (process.env.PORT !== "production") {
+if (!isProduction) {
   app.listen(PORT_SERVER, () => {
     console.log(`Servidor escuchando en http://localhost:${PORT_SERVER}`);
   });
