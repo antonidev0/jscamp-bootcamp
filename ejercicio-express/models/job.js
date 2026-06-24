@@ -50,8 +50,7 @@ export class JobModel {
     return newJob;
   }
 
-  static async getId({ id }) {
-    console.log("GET ve jobs.length =", jobs.length);   
+  static async getId({ id }) { 
     const job = jobs.find((job) => job.id === id);
     return job;
   }
@@ -90,8 +89,7 @@ export class JobModel {
     return jobs[index];
   }
 
-  static async delete({ id }) {
-    console.log("Delete ve jobs.length =", jobs.length);  
+  static async delete({ id }) { 
     const index = jobs.findIndex((job) => job.id === id);
 
     if (index === -1) {
