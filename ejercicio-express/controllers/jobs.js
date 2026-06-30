@@ -3,7 +3,8 @@ import { DEAFAULTS } from "../config.js";
 
 export class JobsControllers {
   static async getAll(req, res) {
-    const {
+    try {
+  const {
       text,
       titulo,
       level,
@@ -22,6 +23,11 @@ export class JobsControllers {
     });
 
     return res.json(paginatedJobs);
+    } catch(error) {
+       // si el model lanzo el error de validacion -> 400 (Bad Request)
+    return res.status(400).json({ message: error.message });
+  }
+}
   }
 
   static async getId(req, res) {

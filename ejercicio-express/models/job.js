@@ -24,6 +24,14 @@ export class JobModel {
     const limitNumber = Number(limit);
     const offsetNumber = Number(offset);
 
+     // valido que limit y offset sean numeros validos y no negativos
+    const isInvalidNumber = (number) => number < 0 || Number.isNaN(number);
+
+      if (isInvalidNumber(limitNumber) || isInvalidNumber(offsetNumber)) {
+        // lanzo un error (el model no me dice de el status HTTP, eso es del controller)
+        throw new Error("limit y offset deben ser numeros positivos");
+      }
+
     const paginatedJobs = filteredJobs.slice(
       offsetNumber,
       offsetNumber + limitNumber,
