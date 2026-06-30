@@ -28,7 +28,7 @@ export class JobsControllers {
     return res.status(400).json({ message: error.message });
   }
 }
-  }
+  
 
   static async getId(req, res) {
     const { id } = req.params;
