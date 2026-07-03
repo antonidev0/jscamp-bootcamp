@@ -15,8 +15,8 @@ export class JobModel {
       const searchTerm = text.toLowerCase();
       filteredJobs = filteredJobs.filter(
         (job) =>
-          job.titulo.toLocaleLowerCase().includes(searchTerm) ||
-          job.descripcion.toLocaleLowerCase().includes(searchTerm),
+          (job.titulo ?? "").toLocaleLowerCase().includes(searchTerm) ||
+          (job.descripcion ?? "").toLocaleLowerCase().includes(searchTerm),
       );
     }
 
