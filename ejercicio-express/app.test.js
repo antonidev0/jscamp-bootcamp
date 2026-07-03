@@ -28,7 +28,7 @@ describe("GET /jobs", () => {
     const response = await fetch(`${BASE_URL}/jobs`);
     assert.strictEqual(response.status, 200);
 
-    const json = await response.json(); 
+    const json = await response.json();
     assert.ok(Array.isArray(json.data), "La respuesta debe ser un array");
   });
 });
@@ -51,7 +51,7 @@ describe("POST /jobs", () => {
     assert.strictEqual(response.status, 201);
 
     const json = await response.json();
-      
+
     // el job creado debe tener un id y conservar el titulo que mandamos
     assert.ok(json.id, "el trabajo creado debe tener un id");
     assert.strictEqual(json.titulo, nuevoJob.titulo);
@@ -171,5 +171,97 @@ describe("DELETE /jobs/:id", () => {
     });
 
     assert.strictEqual(response.status, 404);
+  });
+});
+
+describe("GET /jobs con filtro de texto", () => {
+  test("todos los resultados deben coincidir con el texto buscado", async () => {
+    const searchTerm = "react";
+    const response = await fetch(`${BASE_URL}/jobs?text=${searchTerm}`);
+
+    assert.strictEqual(response.status, 200);
+
+    const json = await response.json();
+
+    // cada job devuelto debe contener el término en titulo o descripcion
+    // (no asumo cuántos hay, solo que TODOS cumplen el filtro)
+    const todosCoinciden = json.data.every((job) => {
+      const titulo = (job.titulo ?? "").toLowerCase();
+      const descripcion = (job.descripcion ?? "").toLowerCase();
+      return titulo.includes(searchTerm) || descripcion.includes(searchTerm);
+    });
+
+    assert.ok(
+      todosCoinciden,
+      "todos los resultados deben contener el texto buscado",
+    );
+  });
+
+  test("un texto imposible debe devolver un array vacío", async () => {
+    const response = await fetch(`${BASE_URL}/jobs?text=xyzabc123noexiste`);
+
+    assert.strictEqual(response.status, 200);
+
+    const json = await response.json();
+    assert.strictEqual(json.data.length, 0, "no debe haber resultados");
+    assert.strictEqual(json.total, 0, "el total debe ser 0");
+  });
+
+  test("sin filtro de texto debe devolver resultados", async () => {
+    const response = await fetch(`${BASE_URL}/jobs`);
+
+    assert.strictEqual(response.status, 200);
+
+    const json = await response.json();
+    assert.ok(json.data.length > 0, "debe haber al menos un trabajo");
+  });
+});
+
+describe("GET /jobs con paginación", () => {
+  test("limit debe restringir la cantidad de resultados", async () => {
+    const limit = 2;
+    const response = await fetch(`${BASE_URL}/jobs?limit=${limit}`);
+
+    assert.strictEqual(response.status, 200);
+
+    const json = await response.json();
+
+    // no debe devolver MÁS de 'limit' resultados
+    assert.ok(
+      json.data.length <= limit,
+      `no debe devolver más de ${limit} resultados`,
+    );
+    assert.strictEqual(json.limit, limit, "el limit devuelto debe coincidir");
+  });
+
+  test("offset debe saltar resultados", async () => {
+    // pido la primera página y la segunda con el mismo limit
+    const primera = await (
+      await fetch(`${BASE_URL}/jobs?limit=1&offset=0`)
+    ).json();
+    const segunda = await (
+      await fetch(`${BASE_URL}/jobs?limit=1&offset=1`)
+    ).json();
+
+    // si hay al menos 2 jobs, el primero de cada página debe ser distinto
+    if (primera.total >= 2) {
+      assert.notStrictEqual(
+        primera.data[0].id,
+        segunda.data[0].id,
+        "offset debe devolver un trabajo diferente",
+      );
+    }
+  });
+
+  test("el total no cambia con la paginación", async () => {
+    // total refleja TODOS los que cumplen el filtro, no solo la página
+    const sinPaginar = await (await fetch(`${BASE_URL}/jobs`)).json();
+    const paginado = await (await fetch(`${BASE_URL}/jobs?limit=1`)).json();
+
+    assert.strictEqual(
+      sinPaginar.total,
+      paginado.total,
+      "el total debe ser el mismo aunque cambie el limit",
+    );
   });
 });
