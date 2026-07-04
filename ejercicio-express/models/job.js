@@ -15,6 +15,7 @@ export class JobModel {
       const searchTerm = text.toLowerCase();
       filteredJobs = filteredJobs.filter(
         (job) =>
+          // si esta vacion agrega un string vacio, asi no sera undefined
           (job.titulo ?? "").toLocaleLowerCase().includes(searchTerm) ||
           (job.descripcion ?? "").toLocaleLowerCase().includes(searchTerm),
       );

@@ -1,23 +1,44 @@
 import { test, describe, before, after } from "node:test";
-import assert, { rejects } from "node:assert";
-import app from "./app.js";
-import { resolve } from "node:dns";
+// test define una prueba
+// describe agruupa pruebas relacionadas
+// before se corre una vez antes de los test
+// afte despues de los test
 
-let server;
+import assert, { rejects } from "node:assert";
+// assert es el modulo para las comprobaciones 
+
+import app from "./app.js";
+// importo mi aplicacion
+
+// aca guardare el servidor 
+let server; 
+
+// creo una constante con el puerto que usare
 const PORT = 3456;
+
+// la direccion armada con ese puerto
 const BASE_URL = `http://localhost:${PORT}`;
 
+// me corres esto anes de iniciar los test
 before(async () => {
   return new Promise((resolve, reject) => {
+    // entonces hago una prome donde si el puerto y el
+    //  servidor arranco salio bien, y si me da un error
     server = app.listen(PORT, () => resolve());
     server.on("error", reject);
   });
 });
 
 after(async () => {
+  // envuelve en una promesa
   await new Promise((resolve, reject) => {
+
+    // cierra el servidor, esperado un posible erro
     server.close((err) => {
-      if (err) return reject(err);
+      // si hubo un error al cerrar, avisa a la promesa que fallo
+      if (err) return reject(err); 
+      
+      // si no todo bien
       resolve();
     });
   });
