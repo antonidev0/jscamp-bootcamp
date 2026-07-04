@@ -44,6 +44,8 @@ after(async () => {
   });
 });
 
+// describe agrupa los test relacionados con un titulo comun,
+// // tendre que agrupar los ("GET /jobs") aca en lugar de hacerlos separados como antes
 describe("GET /jobs", () => {
   test("debe responder con 200 y un array de trabajos", async () => {
     const response = await fetch(`${BASE_URL}/jobs`);
