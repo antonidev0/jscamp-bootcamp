@@ -45,13 +45,20 @@ after(async () => {
 });
 
 // describe agrupa los test relacionados con un titulo comun,
-// // tendre que agrupar los ("GET /jobs") aca en lugar de hacerlos separados como antes
 describe("GET /jobs", () => {
+  // definimos una preuba individula
   test("debe responder con 200 y un array de trabajos", async () => {
+    // hago la peticion al endpoint y espero (await) la respuesta
     const response = await fetch(`${BASE_URL}/jobs`);
+
+    // compruebo que el status sea EXACTAMENTE 200 (OK)
+    // si no es 200, el test falla aqui y no sigue
     assert.strictEqual(response.status, 200);
 
+    // espera por la respuesta del objeto, y conviertela en json
     const json = await response.json();
+
+    // si la respuseta es un array ok, si no dame este un mensaje de error
     assert.ok(Array.isArray(json.data), "La respuesta debe ser un array");
   });
 });
