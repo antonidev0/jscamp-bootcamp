@@ -242,7 +242,6 @@ describe("DELETE /jobs/:id", () => {
   });
 });
 
-
 // para los GET realacionados con /job y susu filtros
 describe("GET /jobs con filtro de texto", () => {
   //  test para cuando buscamos algo los resultados que coinciden
@@ -250,6 +249,8 @@ describe("GET /jobs con filtro de texto", () => {
 
     // el termino que vamos a buscar
     const searchTerm = "react";
+
+    // hago el get pasando como filtro el queryparams
     const response = await fetch(`${BASE_URL}/jobs?text=${searchTerm}`);
 
     assert.strictEqual(response.status, 200);
@@ -257,42 +258,64 @@ describe("GET /jobs con filtro de texto", () => {
     const json = await response.json();
 
     // cada job devuelto debe contener el término en titulo o descripcion
+
     // (no asumo cuántos hay, solo que TODOS cumplen el filtro)
+
+    // si todos coinciden dame true (gracias a .every( ))
+
     const todosCoinciden = json.data.every((job) => {
+
       const titulo = (job.titulo ?? "").toLowerCase();
       const descripcion = (job.descripcion ?? "").toLowerCase();
       return titulo.includes(searchTerm) || descripcion.includes(searchTerm);
     });
 
+    // verifico que la condicion se cumpla
     assert.ok(
       todosCoinciden,
       "todos los resultados deben contener el texto buscado",
     );
   });
 
+  // test para devolver un array vacio
   test("un texto imposible debe devolver un array vacío", async () => {
     const response = await fetch(`${BASE_URL}/jobs?text=xyzabc123noexiste`);
 
     assert.strictEqual(response.status, 200);
 
     const json = await response.json();
+
+    // el array de datos debe estar vacio (length 0)
     assert.strictEqual(json.data.length, 0, "no debe haber resultados");
+
+    // y el total tambien debe ser 0 (ningun job cumple el filtro)
     assert.strictEqual(json.total, 0, "el total debe ser 0");
   });
 
   test("sin filtro de texto debe devolver resultados", async () => {
+
+    // GET normal, sin ningun queryparams
     const response = await fetch(`${BASE_URL}/jobs`);
 
     assert.strictEqual(response.status, 200);
 
     const json = await response.json();
+
+    // la lista no esta vacia
     assert.ok(json.data.length > 0, "debe haber al menos un trabajo");
   });
 });
 
+// Get para la pagincaion en /job
 describe("GET /jobs con paginación", () => {
+
+  // registrin la cantidad de resultados
   test("limit debe restringir la cantidad de resultados", async () => {
+
+    // hacemos un limite
     const limit = 2;
+
+    // hacemos un get con el limite como queryparams
     const response = await fetch(`${BASE_URL}/jobs?limit=${limit}`);
 
     assert.strictEqual(response.status, 200);
