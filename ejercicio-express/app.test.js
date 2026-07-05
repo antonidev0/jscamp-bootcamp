@@ -5,13 +5,13 @@ import { test, describe, before, after } from "node:test";
 // afte despues de los test
 
 import assert, { rejects } from "node:assert";
-// assert es el modulo para las comprobaciones 
+// assert es el modulo para las comprobaciones
 
 import app from "./app.js";
 // importo mi aplicacion
 
-// aca guardare el servidor 
-let server; 
+// aca guardare el servidor
+let server;
 
 // creo una constante con el puerto que usare
 const PORT = 3456;
@@ -36,8 +36,8 @@ after(async () => {
     // cierra el servidor, esperado un posible erro
     server.close((err) => {
       // si hubo un error al cerrar, avisa a la promesa que fallo
-      if (err) return reject(err); 
-      
+      if (err) return reject(err);
+
       // si no todo bien
       resolve();
     });
@@ -63,8 +63,11 @@ describe("GET /jobs", () => {
   });
 });
 
+// agrupamos los test realcionados con el POST a job
 describe("POST /jobs", () => {
+  // definimos una prueba
   test("debe crear un trabajo y responder 201", async () => {
+    //  creamos el objeto que enviaremos como post
     const nuevoJob = {
       titulo: "Test Dev",
       empresa: "TestCorp",
@@ -72,25 +75,35 @@ describe("POST /jobs", () => {
       data: "Node.js",
     };
 
+    // enviamos el objeto con un fetch
     const response = await fetch(`${BASE_URL}/jobs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(nuevoJob),
     });
 
+    // verificamos que el status sea 201
     assert.strictEqual(response.status, 201);
 
+    // tomamos la respuesta y la transformaaos en json
     const json = await response.json();
 
     // el job creado debe tener un id y conservar el titulo que mandamos
     assert.ok(json.id, "el trabajo creado debe tener un id");
+
+    // comparamos el titulo dej trabajo creado con el trabajo nuevo
     assert.strictEqual(json.titulo, nuevoJob.titulo);
   });
 });
 
+// agrupamos los test realcionados con el PUT a job
 describe("PUT /jobs/:id", () => {
+
+  // Primer Test, reemplazar un job que si existe
   test("debe reemplazar un trabajo existente y responder 200", async () => {
+
     // primero creo un job para tener un id real
+    // asi el test no depende de los id fijos que no podrian existi
     const creado = await fetch(`${BASE_URL}/jobs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -101,6 +114,8 @@ describe("PUT /jobs/:id", () => {
         data: "Z",
       }),
     });
+
+    // extraigo el id del job recien creado
     const { id } = await creado.json();
 
     // ahora lo reemplazo completo
@@ -115,14 +130,22 @@ describe("PUT /jobs/:id", () => {
       }),
     });
 
+    // verifico que el estado se 200
     assert.strictEqual(response.status, 200);
 
+    // convierto la respuesta a un objeto JSON
     const json = await response.json();
+
+    // verifico que el titulo se haya reemplazado por el nuevo valor
     assert.strictEqual(json.titulo, "Reemplazado");
+    // verifico  que el id no cambie
     assert.strictEqual(json.id, id); // el id no debe cambiar
   });
 
+  // segundo Test si el trabajo no existe
   test("debe responder 404 si el trabajo no existe", async () => {
+
+    // hago el envio del PUT directamente
     const response = await fetch(`${BASE_URL}/jobs/id-que-no-existe`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
@@ -134,11 +157,15 @@ describe("PUT /jobs/:id", () => {
       }),
     });
 
+// verifico que el error sea 404
     assert.strictEqual(response.status, 404);
   });
 });
 
+// agrupamos los test realcionados con el PATCH a job
 describe("PATCH /jobs/:id", () => {
+
+  // primer test para actualizar un solo campo
   test("debe actualizar solo un campo y conservar el resto", async () => {
     // creo un job con varios campos
     const creado = await fetch(`${BASE_URL}/jobs`, {
@@ -151,6 +178,8 @@ describe("PATCH /jobs/:id", () => {
         data: "Vue",
       }),
     });
+
+    // extraigo el id como en los anteriores
     const { id } = await creado.json();
 
     // solo cambio el titulo
@@ -160,15 +189,23 @@ describe("PATCH /jobs/:id", () => {
       body: JSON.stringify({ titulo: "Titulo nuevo" }),
     });
 
+    // verifico que la respuesta sea 200
     assert.strictEqual(response.status, 200);
 
+    // convierto la respuesta en json
     const json = await response.json();
-    assert.strictEqual(json.titulo, "Titulo nuevo"); // cambió
-    assert.strictEqual(json.empresa, "EmpresaOriginal"); // se conservó
+
+    // verififco el titulo
+    assert.strictEqual(json.titulo, "Titulo nuevo"); 
+
+    // y la empresa
+    assert.strictEqual(json.empresa, "EmpresaOriginal"); 
   });
 });
 
+// agrupamos los test realcionados con el DELETE a job
 describe("DELETE /jobs/:id", () => {
+  // primer test para eliminar trabajo existente
   test("debe eliminar un trabajo existente y responder 200", async () => {
     // creo un job para borrarlo
     const creado = await fetch(`${BASE_URL}/jobs`, {
@@ -195,6 +232,7 @@ describe("DELETE /jobs/:id", () => {
     assert.strictEqual(getResponse.status, 404);
   });
 
+  // test para borrar un trabajo inexistente
   test("debe responder 404 al borrar un id inexistente", async () => {
     const response = await fetch(`${BASE_URL}/jobs/id-que-no-existe`, {
       method: "DELETE",
@@ -204,8 +242,13 @@ describe("DELETE /jobs/:id", () => {
   });
 });
 
+
+// para los GET realacionados con /job y susu filtros
 describe("GET /jobs con filtro de texto", () => {
+  //  test para cuando buscamos algo los resultados que coinciden
   test("todos los resultados deben coincidir con el texto buscado", async () => {
+
+    // el termino que vamos a buscar
     const searchTerm = "react";
     const response = await fetch(`${BASE_URL}/jobs?text=${searchTerm}`);
 
