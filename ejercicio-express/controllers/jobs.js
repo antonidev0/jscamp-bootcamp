@@ -29,7 +29,6 @@ export class JobsControllers {
   }
 }
   
-
   static async getId(req, res) {
     const { id } = req.params;
     const job = await JobModel.getId({ id });
