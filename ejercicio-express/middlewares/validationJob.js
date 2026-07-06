@@ -1,4 +1,4 @@
-import { validateJob, validatePartialJob } from "../schemas/jobs"; 
+import { validateJob, validatePartialJob } from "../schemas/jobs.js"; 
 
 // middleware para validar un job COMPLETO (POST y PUT)
 export const validateJobMiddleware = (req, res, next) => {
@@ -25,6 +25,9 @@ export const validatePartialJobMiddleware = (req, res, next) => {
   if (!result.success) {
     return res.status(400).json({
       message: "Datos invalidos",
+
+      // .format para format organiza los errores de forma anidada
+      // puedieda usar .flutten() pero no se cual seria mas adecuado
       errors: result.error.format(),
     });
   }

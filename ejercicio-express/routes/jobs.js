@@ -12,6 +12,6 @@ jobsRouter.post("/", validateJobMiddleware, JobsControllers.create);
 jobsRouter.put("/:id", validateJobMiddleware, JobsControllers.update);
 jobsRouter.patch("/:id", JobsControllers.partialUpdate);
 
-jobsRouter.delete("/:id", validatePartialJobMiddleware, JobsControllers.delete);
+jobsRouter.delete("/:id", JobsControllers.delete);
 
 export { jobsRouter };

@@ -72,7 +72,7 @@ describe("POST /jobs", () => {
       titulo: "Test Dev",
       empresa: "TestCorp",
       ubicacion: "Remoto",
-      data: "Node.js",
+      data: { technology: ["node"] },
     };
 
     // enviamos el objeto con un fetch
@@ -111,7 +111,7 @@ describe("PUT /jobs/:id", () => {
         titulo: "Original",
         empresa: "X",
         ubicacion: "Y",
-        data: "Z",
+        data: { technology: ["node"] },
       }),
     });
 
@@ -126,7 +126,7 @@ describe("PUT /jobs/:id", () => {
         titulo: "Reemplazado",
         empresa: "NuevaEmpresa",
         ubicacion: "Presencial",
-        data: "React",
+        data: { technology: ["node"] },
       }),
     });
 
@@ -153,7 +153,7 @@ describe("PUT /jobs/:id", () => {
         titulo: "x",
         empresa: "x",
         ubicacion: "x",
-        data: "x",
+        data: { technology: ["node"] },
       }),
     });
 
@@ -175,7 +175,7 @@ describe("PATCH /jobs/:id", () => {
         titulo: "Sin tocar",
         empresa: "EmpresaOriginal",
         ubicacion: "Remoto",
-        data: "Vue",
+        data: { technology: ["node"] },
       }),
     });
 
@@ -213,17 +213,19 @@ describe("DELETE /jobs/:id", () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         titulo: "Para borrar",
-        empresa: "X",
-        ubicacion: "Y",
-        data: "Z",
+        empresa: "Xxx",
+        ubicacion: "Yyy",
+        data: { technology: ["node"] },
       }),
-    });
+    });   
+
     const { id } = await creado.json();
 
     // lo borro
     const response = await fetch(`${BASE_URL}/jobs/${id}`, {
       method: "DELETE",
     });
+    console.log(" EEEEEEEEEEEEEEe", response.status);   
 
     assert.strictEqual(response.status, 200);
 
