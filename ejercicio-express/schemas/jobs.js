@@ -20,9 +20,14 @@ export const jobSchema = z.object({
 });
 
 export const validateJob = (input) => {
+
+    // safeparse me comprueuba si el input cumple con el esquema
   return jobSchema.safeParse(input);
 };
 
 export const validatePartialJob = (input) => {
+
+    // .partial() toma el esquema original y crea una version
+    //  nueva donde ninguno de los campos es obligatorio
   return jobSchema.partial().safeParse(input);
 };
