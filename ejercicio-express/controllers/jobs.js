@@ -67,7 +67,7 @@ export class JobsControllers {
       return res.status(404).json({ message: "Trabajo no encontrado" });
     }
 
-    return res.status(200).json(updatedJob);
+    return res.status(204).send();
   }
 
   static async partialUpdate(req, res) {
@@ -85,17 +85,19 @@ export class JobsControllers {
       return res.status(404).json({ message: "Trabajo no encontrado" });
     }
 
-    return res.status(200).json(updatedJob);
+    return res.status(204).send();
   }
 
   static async delete(req, res) {
     const { id } = req.params;
 
-    const index = await JobModel.delete({ id });
+    const deleteJob = await JobModel.delete({ id });
 
-    if (index === -1)
+    if (!deleteJob)
       return res.status(404).json({ message: "Trabajo no encontrado" });
 
-    return res.status(200).json({ message: "Job deleted" });
+    // cambio las respuestas a 204 y los.json a .send 
+    // ya que 204 no tiene body
+    return res.status(204).send();
   }
 }
