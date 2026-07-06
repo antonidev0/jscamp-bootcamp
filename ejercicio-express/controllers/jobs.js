@@ -1,6 +1,5 @@
 import { JobModel } from "../models/job.js";
 import { DEAFAULTS } from "../config.js";
-import { validateJob } from "../schemas/jobs.js";
 
 export class JobsControllers {
   static async getAll(req, res) {
@@ -41,15 +40,6 @@ export class JobsControllers {
 
   static async create(req, res) {
     const { titulo, empresa, ubicacion, data } = req.body;
-
-    const result = validateJob(req.body);
-
-     if (!result.success) {
-       return res.status(400).json({
-         message: "Datos inválidos",
-         errors: result.error.format(),
-       });
-     }
 
     const newJob = await JobModel.create({ titulo, empresa, ubicacion, data });
 

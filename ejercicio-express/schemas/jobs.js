@@ -1,21 +1,29 @@
 import { z } from "zod";
 
 export const jobSchema = z.object({
-  title: z
+  // titulo
+  titulo: z
     .string()
     .min(3, { message: "El título debe tener al menos 3 caracteres" })
     .max(100, { message: "El título no puede exceder los 100 caracteres" }),
+  
+  // empresa
+  empresa: z.string(),
+  // ubicacion
+  ubicacion: z.string(),
 
-  company: z.string(),
-  location: z.string(),
+  // opcionales
+  descripcion: z.string().optional(),
+  content: z.any().optional(),
 
-  // opcional: no obligamos a que venga siempre
-  description: z.string().optional(),
-
+  // data con sus subcampos
   data: z.object({
+    // array de strings (requerido)
     technology: z.array(z.string()),
-    modality: z.string(),
-    level: z.string(),
+    // opcional
+    modalidad: z.string().optional(),
+    // opcional
+    nivel: z.string().optional(),
   }),
 });
 
