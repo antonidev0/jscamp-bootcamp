@@ -33,7 +33,7 @@ export class JobsControllers {
     const { id } = req.params;
     const job = await JobModel.getId({ id });
 
-    if (!job) return res.status(404).json({ message: "Empleo no encontrado" });
+    if (!job) return res.status(404).json({ error: "Empleo no encontrado" });
     return res.json(job);
   }
 

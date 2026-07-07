@@ -367,4 +367,14 @@ describe("GET /jobs/:id", () => {
     const json = await response.json();
     assert.strictEqual(json.id, id);
   });
+
+  test("debe responder 404 y un campo error si el id no existe", async () => {
+    const response = await fetch(`${BASE_URL}/jobs/id-que-no-existe`);
+
+    assert.strictEqual(response.status, 404);
+
+    const json = await response.json();
+    assert.ok(json.error, "la respuesta debe contener un campo error");
+  });
 });
+
