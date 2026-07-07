@@ -32,7 +32,6 @@ before(async () => {
 after(async () => {
   // envuelve en una promesa
   await new Promise((resolve, reject) => {
-
     // cierra el servidor, esperado un posible erro
     server.close((err) => {
       // si hubo un error al cerrar, avisa a la promesa que fallo
@@ -98,10 +97,8 @@ describe("POST /jobs", () => {
 
 // agrupamos los test realcionados con el PUT a job
 describe("PUT /jobs/:id", () => {
-
   // Primer Test, reemplazar un job que si existe
-  test("debe reemplazar un trabajo existente y responder 200", async () => {
-
+  test("debe reemplazar un trabajo existente y responder 204", async () => {
     // primero creo un job para tener un id real
     // asi el test no depende de los id fijos que no podrian existi
     const creado = await fetch(`${BASE_URL}/jobs`, {
@@ -130,11 +127,12 @@ describe("PUT /jobs/:id", () => {
       }),
     });
 
-    // verifico que el estado se 200
-    assert.strictEqual(response.status, 200);
+    // verifico que el estado se 204
+    assert.strictEqual(response.status, 204);
 
-    // convierto la respuesta a un objeto JSON
-    const json = await response.json();
+    // el 204 no trae body, así que verifico el cambio con un GET
+    const getResponse = await fetch(`${BASE_URL}/jobs/${id}`);
+    const json = await getResponse.json();
 
     // verifico que el titulo se haya reemplazado por el nuevo valor
     assert.strictEqual(json.titulo, "Reemplazado");
@@ -144,27 +142,25 @@ describe("PUT /jobs/:id", () => {
 
   // segundo Test si el trabajo no existe
   test("debe responder 404 si el trabajo no existe", async () => {
-
     // hago el envio del PUT directamente
     const response = await fetch(`${BASE_URL}/jobs/id-que-no-existe`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        titulo: "x",
-        empresa: "x",
-        ubicacion: "x",
+        titulo: "xxx",
+        empresa: "xxx",
+        ubicacion: "xxx",
         data: { technology: ["node"] },
       }),
     });
 
-// verifico que el error sea 404
+    // verifico que el error sea 404
     assert.strictEqual(response.status, 404);
   });
 });
 
 // agrupamos los test realcionados con el PATCH a job
 describe("PATCH /jobs/:id", () => {
-
   // primer test para actualizar un solo campo
   test("debe actualizar solo un campo y conservar el resto", async () => {
     // creo un job con varios campos
@@ -189,24 +185,25 @@ describe("PATCH /jobs/:id", () => {
       body: JSON.stringify({ titulo: "Titulo nuevo" }),
     });
 
-    // verifico que la respuesta sea 200
-    assert.strictEqual(response.status, 200);
+    // verifico que la respuesta sea 204
+    assert.strictEqual(response.status, 204);
 
-    // convierto la respuesta en json
-    const json = await response.json();
+    // el 204 no trae body, asi que verifico el cambio con un GET
+    const getResponse = await fetch(`${BASE_URL}/jobs/${id}`);
+    const json = await getResponse.json();
 
     // verififco el titulo
-    assert.strictEqual(json.titulo, "Titulo nuevo"); 
+    assert.strictEqual(json.titulo, "Titulo nuevo");
 
     // y la empresa
-    assert.strictEqual(json.empresa, "EmpresaOriginal"); 
+    assert.strictEqual(json.empresa, "EmpresaOriginal");
   });
 });
 
 // agrupamos los test realcionados con el DELETE a job
 describe("DELETE /jobs/:id", () => {
   // primer test para eliminar trabajo existente
-  test("debe eliminar un trabajo existente y responder 200", async () => {
+  test("debe eliminar un trabajo existente y responder 204", async () => {
     // creo un job para borrarlo
     const creado = await fetch(`${BASE_URL}/jobs`, {
       method: "POST",
@@ -217,7 +214,7 @@ describe("DELETE /jobs/:id", () => {
         ubicacion: "Yyy",
         data: { technology: ["node"] },
       }),
-    });   
+    });
 
     const { id } = await creado.json();
 
@@ -225,9 +222,9 @@ describe("DELETE /jobs/:id", () => {
     const response = await fetch(`${BASE_URL}/jobs/${id}`, {
       method: "DELETE",
     });
-    console.log(" EEEEEEEEEEEEEEe", response.status);   
+    console.log(" EEEEEEEEEEEEEEe", response.status);
 
-    assert.strictEqual(response.status, 200);
+    assert.strictEqual(response.status, 204);
 
     // verifico que ya no exista: un GET debe dar 404
     const getResponse = await fetch(`${BASE_URL}/jobs/${id}`);
@@ -248,7 +245,6 @@ describe("DELETE /jobs/:id", () => {
 describe("GET /jobs con filtro de texto", () => {
   //  test para cuando buscamos algo los resultados que coinciden
   test("todos los resultados deben coincidir con el texto buscado", async () => {
-
     // el termino que vamos a buscar
     const searchTerm = "react";
 
@@ -266,7 +262,6 @@ describe("GET /jobs con filtro de texto", () => {
     // si todos coinciden dame true (gracias a .every( ))
 
     const todosCoinciden = json.data.every((job) => {
-
       const titulo = (job.titulo ?? "").toLowerCase();
       const descripcion = (job.descripcion ?? "").toLowerCase();
       return titulo.includes(searchTerm) || descripcion.includes(searchTerm);
@@ -295,7 +290,6 @@ describe("GET /jobs con filtro de texto", () => {
   });
 
   test("sin filtro de texto debe devolver resultados", async () => {
-
     // GET normal, sin ningun queryparams
     const response = await fetch(`${BASE_URL}/jobs`);
 
@@ -310,10 +304,8 @@ describe("GET /jobs con filtro de texto", () => {
 
 // Get para la pagincaion en /job
 describe("GET /jobs con paginación", () => {
-
   // registrin la cantidad de resultados
   test("limit debe restringir la cantidad de resultados", async () => {
-
     // hacemos un limite
     const limit = 2;
 
