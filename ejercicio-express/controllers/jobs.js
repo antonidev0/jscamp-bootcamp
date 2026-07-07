@@ -5,18 +5,18 @@ export class JobsControllers {
   static async getAll(req, res) {
     try {
   const {
-      text,
-      titulo,
-      level,
-      limit = DEAFAULTS.LIMIT_PAGINATION,
-      technology,
-      offset = DEAFAULTS.LIMIT_OFFSET,
-    } = req.query;
+    text,
+    location,
+    experience,
+    limit = DEAFAULTS.LIMIT_PAGINATION,
+    technology,
+    offset = DEAFAULTS.LIMIT_OFFSET,
+  } = req.query;
 
     const paginatedJobs = await JobModel.getAll({
       text,
-      titulo,
-      level,
+      location,
+      experience,
       limit,
       technology,
       offset,
