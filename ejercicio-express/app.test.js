@@ -246,10 +246,10 @@ describe("GET /jobs con filtro de texto", () => {
   //  test para cuando buscamos algo los resultados que coinciden
   test("todos los resultados deben coincidir con el texto buscado", async () => {
     // el termino que vamos a buscar
-    const searchTerm = "react";
+    const tech = "javascript";
 
     // hago el get pasando como filtro el queryparams
-    const response = await fetch(`${BASE_URL}/jobs?text=${searchTerm}`);
+    const response = await fetch(`${BASE_URL}/jobs?technology=${tech}`);
 
     assert.strictEqual(response.status, 200);
 
@@ -262,9 +262,8 @@ describe("GET /jobs con filtro de texto", () => {
     // si todos coinciden dame true (gracias a .every( ))
 
     const todosCoinciden = json.data.every((job) => {
-      const titulo = (job.titulo ?? "").toLowerCase();
-      const descripcion = (job.descripcion ?? "").toLowerCase();
-      return titulo.includes(searchTerm) || descripcion.includes(searchTerm);
+      const techs = job.data?.technology ?? [];
+      return techs.map((t) => t.toLowerCase()).includes(tech);
     });
 
     // verifico que la condicion se cumpla
@@ -353,5 +352,19 @@ describe("GET /jobs con paginación", () => {
       paginado.total,
       "el total debe ser el mismo aunque cambie el limit",
     );
+  });
+});
+
+describe("GET /jobs/:id", () => {
+  test("debe devolver el trabajo con el id especificado", async () => {
+    // id real del JSON
+    const id = "7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4";
+
+    const response = await fetch(`${BASE_URL}/jobs/${id}`);
+
+    assert.strictEqual(response.status, 200);
+
+    const json = await response.json();
+    assert.strictEqual(json.id, id);
   });
 });
