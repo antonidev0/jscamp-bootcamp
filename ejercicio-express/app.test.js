@@ -378,3 +378,60 @@ describe("GET /jobs/:id", () => {
   });
 });
 
+describe("POST /jobs validacion", () => {
+  // helper: un body base válido al que le cambiamos una cosa en cada test
+  const jobValido = {
+    titulo: "Trabajo valido",
+    empresa: "Empresa",
+    ubicacion: "Remoto",
+    descripcion: "Una descripcion",
+    data: { technology: ["node"] },
+  };
+
+  test("titulo con menos de 3 caracteres debe dar 400", async () => {
+    const response = await fetch(`${BASE_URL}/jobs`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...jobValido, titulo: "ab" }),
+    });
+    assert.strictEqual(response.status, 400);
+  });
+
+  test("titulo con más de 100 caracteres debe dar 400", async () => {
+    const response = await fetch(`${BASE_URL}/jobs`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...jobValido, titulo: "a".repeat(101) }),  
+    });
+    assert.strictEqual(response.status, 400);
+  });
+
+  test("sin titulo debe dar 400", async () => {
+    const { titulo, ...sinTitulo } = jobValido; // quito el titulo
+    const response = await fetch(`${BASE_URL}/jobs`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sinTitulo),
+    });
+    assert.strictEqual(response.status, 400);
+  });
+
+  test("titulo que no es string debe dar 400", async () => {
+    const response = await fetch(`${BASE_URL}/jobs`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...jobValido, titulo: 12345 }), // número, no string
+    });
+    assert.strictEqual(response.status, 400);
+  });
+
+  test("sin descripcion (opcional) debe dar 201", async () => {
+    const { descripcion, ...sinDescripcion } = jobValido; 
+    const response = await fetch(`${BASE_URL}/jobs`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sinDescripcion),
+    });
+    assert.strictEqual(response.status, 201);
+  });
+});
