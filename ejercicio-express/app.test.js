@@ -1,10 +1,10 @@
-import { test, describe, before, after } from "node:test";
+import { after, before, describe, test } from "node:test";
 // test define una prueba
 // describe agruupa pruebas relacionadas
 // before se corre una vez antes de los test
 // afte despues de los test
 
-import assert, { rejects } from "node:assert";
+import assert from "node:assert";
 // assert es el modulo para las comprobaciones
 
 import app from "./app.js";
@@ -86,7 +86,7 @@ describe("POST /jobs", () => {
 
     // tomamos la respuesta y la transformaaos en json
     const json = await response.json();
-
+    
     // el job creado debe tener un id y conservar el titulo que mandamos
     assert.ok(json.id, "el trabajo creado debe tener un id");
 
@@ -101,6 +101,8 @@ describe("PUT /jobs/:id", () => {
   test("debe reemplazar un trabajo existente y responder 204", async () => {
     // primero creo un job para tener un id real
     // asi el test no depende de los id fijos que no podrian existi
+
+    // NOTA: Excelente este enfoque! Una cosa que les estaba diciendo a los chicos es que podían obtener todos los jobs, agarrar uno random y hacer la modificación, así tenían casos de uso mutables. Pero este enfoque está muy bien :)
     const creado = await fetch(`${BASE_URL}/jobs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -261,6 +263,7 @@ describe("GET /jobs con filtro de texto", () => {
 
     // si todos coinciden dame true (gracias a .every( ))
 
+    // NOTA: Muy buen uso de every!
     const todosCoinciden = json.data.every((job) => {
       const techs = job.data?.technology ?? [];
       return techs.map((t) => t.toLowerCase()).includes(tech);
@@ -340,7 +343,40 @@ describe("GET /jobs con paginación", () => {
         "offset debe devolver un trabajo diferente",
       );
     }
+
+    // NOTA: Excelente! Te dejo otra propuesta que les he estado compartiendo a chicos en sus feedback + una aserción del código para no repetir tanto código entre tests (esto lo podes aplicar en todos los demás):
+    const OFFSET = 3
+
+    // 1. Obtenemos todos los resultados + resultados con offset
+    const [{ json: allJobs }, { json: offsetJobs }] = await Promise.all([
+      handleGetJsonAndCheckStatus({ path: '/jobs' }),
+      handleGetJsonAndCheckStatus({ path: `/jobs?offset=${OFFSET}` })
+    ])
+
+    // 2. Obtenemos el resultado número {OFFSET} de la lista de `allJobs`. Que debe ser igual al primer resultado de `offsetJobs`
+    const pickJobByOffset = allJobs?.data[OFFSET]
+    const firstOffsetResult = offsetJobs?.data[0]
+
+    // 3. Comparamos estos valores, deben tener mismo id
+    assert.strictEqual(pickJobByOffset.data.id, firstOffsetResult.data.id)
   });
+
+  // Esto lo podemos sacar fuera del `describe` y agregarlo como un helper de los tests
+  const handleGetJsonAndCheckStatus = async ({ path = '/', status = 200 }) => {
+    // 1. Normalizamos el path para que el desarrollador tenga libertad de pasarlo con `/` o sin
+    // ej. `/search` o `search`
+    const normalizedPath = path.startsWith('/') ? path : `/${path}`
+
+    // 2. Obtenemos la respuesta de la petición
+    const response = await fetch(`${BASE_URL}${path}`);
+
+    // 3. Hacemos un check del status
+    assert.strictEqual(response.status, status);
+
+    // 4. Retornamos el JSON
+    const json = await response.json();
+    return { json }
+  } 
 
   test("el total no cambia con la paginación", async () => {
     // total refleja TODOS los que cumplen el filtro, no solo la página
@@ -358,6 +394,7 @@ describe("GET /jobs con paginación", () => {
 describe("GET /jobs/:id", () => {
   test("debe devolver el trabajo con el id especificado", async () => {
     // id real del JSON
+    // NOTA: Muy bien! Una cosa que podemos hacer es obtener todos los jobs, y agarrar uno random. Hace que el test siempre agarre un test que existe, y cada vez que se corre se prueba con un valor diferente
     const id = "7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4";
 
     const response = await fetch(`${BASE_URL}/jobs/${id}`);
