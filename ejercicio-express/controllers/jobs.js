@@ -3,32 +3,37 @@ import { DEAFAULTS } from "../config.js";
 
 export class JobsControllers {
   static async getAll(req, res) {
-    const {
-      text,
-      titulo,
-      level,
-      limit = DEAFAULTS.LIMIT_PAGINATION,
-      technology,
-      offset = DEAFAULTS.LIMIT_OFFSET,
-    } = req.query;
+    try {
+  const {
+    text,
+    location,
+    experience,
+    limit = DEAFAULTS.LIMIT_PAGINATION,
+    technology,
+    offset = DEAFAULTS.LIMIT_OFFSET,
+  } = req.query;
 
     const paginatedJobs = await JobModel.getAll({
       text,
-      titulo,
-      level,
+      location,
+      experience,
       limit,
       technology,
       offset,
     });
 
     return res.json(paginatedJobs);
+    } catch(error) {
+       // si el model lanzo el error de validacion -> 400 (Bad Request)
+    return res.status(400).json({ message: error.message });
   }
-
+}
+  
   static async getId(req, res) {
     const { id } = req.params;
     const job = await JobModel.getId({ id });
 
-    if (!job) return res.status(404).json({ message: "Empleo no encontrado" });
+    if (!job) return res.status(404).json({ error: "Empleo no encontrado" });
     return res.json(job);
   }
 
@@ -61,7 +66,7 @@ export class JobsControllers {
       return res.status(404).json({ message: "Trabajo no encontrado" });
     }
 
-    return res.status(200).json(updatedJob);
+    return res.status(204).send();
   }
 
   static async partialUpdate(req, res) {
@@ -79,17 +84,19 @@ export class JobsControllers {
       return res.status(404).json({ message: "Trabajo no encontrado" });
     }
 
-    return res.status(200).json(updatedJob);
+    return res.status(204).send();
   }
 
   static async delete(req, res) {
     const { id } = req.params;
 
-    const index = await JobModel.delete({ id });
+    const deleteJob = await JobModel.delete({ id });
 
-    if (index === -1)
+    if (!deleteJob)
       return res.status(404).json({ message: "Trabajo no encontrado" });
 
-    return res.status(200).json({ message: "Job deleted" });
+    // cambio las respuestas a 204 y los.json a .send 
+    // ya que 204 no tiene body
+    return res.status(204).send();
   }
 }
