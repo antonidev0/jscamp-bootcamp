@@ -4,14 +4,12 @@ import { validateJobMiddleware, validatePartialJobMiddleware } from "../middlewa
 
 const jobsRouter = Router()
 
+// agrego el middleware
 jobsRouter.get("/", JobsControllers.getAll);
 jobsRouter.get("/:id", JobsControllers.getId);
-
-// agrego el middleware
 jobsRouter.post("/", validateJobMiddleware, JobsControllers.create);
 jobsRouter.put("/:id", validateJobMiddleware, JobsControllers.update);
-jobsRouter.patch("/:id", JobsControllers.partialUpdate);
-
+jobsRouter.patch("/:id", validatePartialJobMiddleware, JobsControllers.partialUpdate);
 jobsRouter.delete("/:id", JobsControllers.delete);
 
 export { jobsRouter };

@@ -21,6 +21,15 @@ export class JobModel {
       );
     }
 
+    /* validación para evitar no números o números negativos  */
+    const isInvalidNumber = (number) => {
+      return number < 0 || Number.isNaN(number);
+    };
+
+    /* Retornamos null para simplificar, pero lo mejor es un error especifico */
+    if (isInvalidNumber(limitNumber) || isInvalidNumber(offsetNumber))
+      return null;
+
     // filtro por ubicacion
     if (location) {
       // los transforo en inuscula
@@ -46,13 +55,12 @@ export class JobModel {
       // transforo en minuscula
       const tech = technology.toLowerCase();
       filteredJobs = filteredJobs.filter((job) => {
-
         // ve a job. Si data existe, entra y busca technology. Pero si data no existe
         // (es null o undefined), no te rompas, detente ahí y devuelve undefined.
         // Si obtuve null o undefined dame un array vacio
         const techs = job.data?.technology ?? [];
 
-        // Dime si es verdad (true) o es mentira (false) que dentro de 
+        // Dime si es verdad (true) o es mentira (false) que dentro de
         // este array hay alguna tecnologia que, en minusculas, sea igual a tech
         return techs.some((t) => t.toLowerCase() === tech);
       });
