@@ -1,10 +1,10 @@
-import { test, describe, before, after } from "node:test";
+import { after, before, describe, test } from "node:test";
 // test define una prueba
 // describe agruupa pruebas relacionadas
 // before se corre una vez antes de los test
 // afte despues de los test
 
-import assert, { rejects } from "node:assert";
+import assert from "node:assert";
 // assert es el modulo para las comprobaciones
 
 import app from "./app.js";
@@ -18,6 +18,26 @@ const PORT = 3456;
 
 // la direccion armada con ese puerto
 const BASE_URL = `http://localhost:${PORT}`;
+
+// Hago una funcion asincrona que recibe un obejto. 
+// Si no le pasamos el path usa "/" y si no le pasamos el status usa 200 por defecto
+const handleGetJsonAndCheckStatus = async ({ path = "/", status = 200 }) => {
+  // normalizo el que el path funcione con "/jobs" o "jobs"  
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+
+  // hago una peticion uniendo la url y la ruta base
+  const response = await fetch(`${BASE_URL}${normalizedPath}`);
+
+  // comparo las resupuestas
+  assert.strictEqual(response.status, status);
+
+  // lo transformo 
+  const json = await response.json();
+
+  // y retornamelo
+  return { json };
+};
+
 
 // me corres esto anes de iniciar los test
 before(async () => {
