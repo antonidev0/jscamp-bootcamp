@@ -327,22 +327,28 @@ describe("GET /jobs con paginación", () => {
   });
 
   test("offset debe saltar resultados", async () => {
-    // pido la primera página y la segunda con el mismo limit
-    const primera = await (
-      await fetch(`${BASE_URL}/jobs?limit=1&offset=0`)
-    ).json();
-    const segunda = await (
-      await fetch(`${BASE_URL}/jobs?limit=1&offset=1`)
-    ).json();
+    // definimos cuantos resultado squeremos saltarnos, puede ser cualquier cantidad
+    const OFFSET = 3;
 
-    // si hay al menos 2 jobs, el primero de cada página debe ser distinto
-    if (primera.total >= 2) {
-      assert.notStrictEqual(
-        primera.data[0].id,
-        segunda.data[0].id,
-        "offset debe devolver un trabajo diferente",
-      );
-    }
+    // pido todos los jobs y los jobs con offset EN PARALELO (Promise.all)
+    // destructuracion con renombrado para hacer ambas tareas a la vez
+    // ya que tendre dos variables con el mismo nombre
+    const [{ json: allJobs }, { json: offsetJobs }] = await Promise.all([
+      // ahora traemos la lista de trabajo
+      handleGetJsonAndCheckStatus({ path: "/jobs" }),
+      // y ahora la misma lista saltandose los tres primeros trabajos
+      handleGetJsonAndCheckStatus({ path: `/jobs?offset=${OFFSET}` }),
+    ]);
+
+    // Va a la lista completa  de trabajos y agarra el trabajo
+    //  que esta guardado justamente en la posicion 3 (indice 3)
+    const pickJobByOffset = allJobs.data[OFFSET];
+
+    // ve a la lista con saltos y toma el de el primmer indice
+    const firstOffsetResult = offsetJobs.data[0];
+
+    // si ambos tienen el mismo id, todo bien (comparo los id)
+    assert.strictEqual(pickJobByOffset.id, firstOffsetResult.id);
   });
 
   test("el total no cambia con la paginación", async () => {
