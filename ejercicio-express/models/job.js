@@ -21,15 +21,6 @@ export class JobModel {
       );
     }
 
-    /* validación para evitar no números o números negativos  */
-    const isInvalidNumber = (number) => {
-      return number < 0 || Number.isNaN(number);
-    };
-
-    /* Retornamos null para simplificar, pero lo mejor es un error especifico */
-    if (isInvalidNumber(limitNumber) || isInvalidNumber(offsetNumber))
-      return null;
-
     // filtro por ubicacion
     if (location) {
       // los transforo en inuscula

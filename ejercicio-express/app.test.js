@@ -19,10 +19,10 @@ const PORT = 3456;
 // la direccion armada con ese puerto
 const BASE_URL = `http://localhost:${PORT}`;
 
-// Hago una funcion asincrona que recibe un obejto. 
+// Hago una funcion asincrona que recibe un obejto.
 // Si no le pasamos el path usa "/" y si no le pasamos el status usa 200 por defecto
 const handleGetJsonAndCheckStatus = async ({ path = "/", status = 200 }) => {
-  // normalizo el que el path funcione con "/jobs" o "jobs"  
+  // normalizo el que el path funcione con "/jobs" o "jobs"
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
 
   // hago una peticion uniendo la url y la ruta base
@@ -31,13 +31,12 @@ const handleGetJsonAndCheckStatus = async ({ path = "/", status = 200 }) => {
   // comparo las resupuestas
   assert.strictEqual(response.status, status);
 
-  // lo transformo 
+  // lo transformo
   const json = await response.json();
 
   // y retornamelo
   return { json };
 };
-
 
 // me corres esto anes de iniciar los test
 before(async () => {
@@ -67,15 +66,8 @@ after(async () => {
 describe("GET /jobs", () => {
   // definimos una preuba individula
   test("debe responder con 200 y un array de trabajos", async () => {
-    // hago la peticion al endpoint y espero (await) la respuesta
-    const response = await fetch(`${BASE_URL}/jobs`);
-
-    // compruebo que el status sea EXACTAMENTE 200 (OK)
-    // si no es 200, el test falla aqui y no sigue
-    assert.strictEqual(response.status, 200);
-
-    // espera por la respuesta del objeto, y conviertela en json
-    const json = await response.json();
+    // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({ path: "/jobs" });
 
     // si la respuseta es un array ok, si no dame este un mensaje de error
     assert.ok(Array.isArray(json.data), "La respuesta debe ser un array");
@@ -268,13 +260,9 @@ describe("GET /jobs con filtro de texto", () => {
     // el termino que vamos a buscar
     const tech = "javascript";
 
-    // hago el get pasando como filtro el queryparams
-    const response = await fetch(`${BASE_URL}/jobs?technology=${tech}`);
-
-    assert.strictEqual(response.status, 200);
-
-    const json = await response.json();
-
+ // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs?technology=${tech}` });
+    
     // cada job devuelto debe contener el término en titulo o descripcion
 
     // (no asumo cuántos hay, solo que TODOS cumplen el filtro)
@@ -295,12 +283,11 @@ describe("GET /jobs con filtro de texto", () => {
 
   // test para devolver un array vacio
   test("un texto imposible debe devolver un array vacío", async () => {
-    const response = await fetch(`${BASE_URL}/jobs?text=xyzabc123noexiste`);
 
-    assert.strictEqual(response.status, 200);
-
-    const json = await response.json();
-
+     // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs?text=xyzabc123noexiste` });
+    
+    
     // el array de datos debe estar vacio (length 0)
     assert.strictEqual(json.data.length, 0, "no debe haber resultados");
 
@@ -310,11 +297,10 @@ describe("GET /jobs con filtro de texto", () => {
 
   test("sin filtro de texto debe devolver resultados", async () => {
     // GET normal, sin ningun queryparams
-    const response = await fetch(`${BASE_URL}/jobs`);
 
-    assert.strictEqual(response.status, 200);
-
-    const json = await response.json();
+     // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs` });
+    
 
     // la lista no esta vacia
     assert.ok(json.data.length > 0, "debe haber al menos un trabajo");
@@ -328,12 +314,9 @@ describe("GET /jobs con paginación", () => {
     // hacemos un limite
     const limit = 2;
 
-    // hacemos un get con el limite como queryparams
-    const response = await fetch(`${BASE_URL}/jobs?limit=${limit}`);
-
-    assert.strictEqual(response.status, 200);
-
-    const json = await response.json();
+     // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs?limit=${limit}` });
+    
 
     // no debe devolver MÁS de 'limit' resultados
     assert.ok(
@@ -421,7 +404,7 @@ describe("POST /jobs validacion", () => {
     const response = await fetch(`${BASE_URL}/jobs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...jobValido, titulo: "a".repeat(101) }),  
+      body: JSON.stringify({ ...jobValido, titulo: "a".repeat(101) }),
     });
     assert.strictEqual(response.status, 400);
   });
@@ -446,7 +429,7 @@ describe("POST /jobs validacion", () => {
   });
 
   test("sin descripcion (opcional) debe dar 201", async () => {
-    const { descripcion, ...sinDescripcion } = jobValido; 
+    const { descripcion, ...sinDescripcion } = jobValido;
     const response = await fetch(`${BASE_URL}/jobs`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
