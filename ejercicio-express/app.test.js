@@ -260,9 +260,11 @@ describe("GET /jobs con filtro de texto", () => {
     // el termino que vamos a buscar
     const tech = "javascript";
 
- // el helper hace la peticion, verifica el status 200 y devuelve el json
-    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs?technology=${tech}` });
-    
+    // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({
+      path: `/jobs?technology=${tech}`,
+    });
+
     // cada job devuelto debe contener el término en titulo o descripcion
 
     // (no asumo cuántos hay, solo que TODOS cumplen el filtro)
@@ -283,11 +285,11 @@ describe("GET /jobs con filtro de texto", () => {
 
   // test para devolver un array vacio
   test("un texto imposible debe devolver un array vacío", async () => {
+    // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({
+      path: `/jobs?text=xyzabc123noexiste`,
+    });
 
-     // el helper hace la peticion, verifica el status 200 y devuelve el json
-    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs?text=xyzabc123noexiste` });
-    
-    
     // el array de datos debe estar vacio (length 0)
     assert.strictEqual(json.data.length, 0, "no debe haber resultados");
 
@@ -298,9 +300,8 @@ describe("GET /jobs con filtro de texto", () => {
   test("sin filtro de texto debe devolver resultados", async () => {
     // GET normal, sin ningun queryparams
 
-     // el helper hace la peticion, verifica el status 200 y devuelve el json
+    // el helper hace la peticion, verifica el status 200 y devuelve el json
     const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs` });
-    
 
     // la lista no esta vacia
     assert.ok(json.data.length > 0, "debe haber al menos un trabajo");
@@ -314,9 +315,10 @@ describe("GET /jobs con paginación", () => {
     // hacemos un limite
     const limit = 2;
 
-     // el helper hace la peticion, verifica el status 200 y devuelve el json
-    const { json } = await handleGetJsonAndCheckStatus({ path: `/jobs?limit=${limit}` });
-    
+    // el helper hace la peticion, verifica el status 200 y devuelve el json
+    const { json } = await handleGetJsonAndCheckStatus({
+      path: `/jobs?limit=${limit}`,
+    });
 
     // no debe devolver MÁS de 'limit' resultados
     assert.ok(
@@ -352,11 +354,10 @@ describe("GET /jobs con paginación", () => {
   });
 
   test("el total no cambia con la paginación", async () => {
-
-    const [{ json: sinPaginar }, { json: paginado }] = await Promise.all([ 
-      handleGetJsonAndCheckStatus({ path: "/jobs" }), 
+    const [{ json: sinPaginar }, { json: paginado }] = await Promise.all([
+      handleGetJsonAndCheckStatus({ path: "/jobs" }),
       handleGetJsonAndCheckStatus({ path: `/jobs?limit=1` }),
-    ]); 
+    ]);
 
     assert.strictEqual(
       sinPaginar.total,
@@ -368,23 +369,33 @@ describe("GET /jobs con paginación", () => {
 
 describe("GET /jobs/:id", () => {
   test("debe devolver el trabajo con el id especificado", async () => {
-    // id real del JSON
-    const id = "7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4";
+    // traigo los trabajos
+    const { json: allJobs } = await handleGetJsonAndCheckStatus({
+      path: "/jobs",
+    });
 
-     const { json } = await handleGetJsonAndCheckStatus({
-       path: `/jobs/${id}`,
-     });
+    // la cantidad de trabajos total la vas a multiplicar por un numero al azar entre
+    // 0 y 1 y luego ese resultado me lo vas a redondear hacia abajo,
+    // ejemplo de: 6.2352 pasa a 6
+    const randomIndex = Math.floor(Math.random() * allJobs.data.length);
+
+    // toma el job en esa posicion aleatoria
+    const jobRandom = allJobs.data[randomIndex];
+
+    const { json } = await handleGetJsonAndCheckStatus({
+      path: `/jobs/${jobRandom.id}`,
+    });
  
-    assert.strictEqual(json.id, id);
+
+    assert.strictEqual(json.id, jobRandom.id);
   });
 
   test("debe responder 404 y un campo error si el id no existe", async () => {
+    const { json } = await handleGetJsonAndCheckStatus({
+      path: `/jobs/id-que-no-existe`,
+      status: 404,
+    });
 
-     const { json } = await handleGetJsonAndCheckStatus({
-       path: `/jobs/id-que-no-existe`,
-       status: 404,
-     });
-     
     assert.ok(json.error, "la respuesta debe contener un campo error");
   });
 });
