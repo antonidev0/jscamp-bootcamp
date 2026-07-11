@@ -327,7 +327,7 @@ describe("GET /jobs con paginación", () => {
   });
 
   test("offset debe saltar resultados", async () => {
-    // definimos cuantos resultado squeremos saltarnos, puede ser cualquier cantidad
+    // definimos cuantos resultados queremos saltarnos, puede ser cualquier cantidad
     const OFFSET = 3;
 
     // pido todos los jobs y los jobs con offset EN PARALELO (Promise.all)
@@ -352,9 +352,11 @@ describe("GET /jobs con paginación", () => {
   });
 
   test("el total no cambia con la paginación", async () => {
-    // total refleja TODOS los que cumplen el filtro, no solo la página
-    const sinPaginar = await (await fetch(`${BASE_URL}/jobs`)).json();
-    const paginado = await (await fetch(`${BASE_URL}/jobs?limit=1`)).json();
+
+    const [{ json: sinPaginar }, { json: paginado }] = await Promise.all([ 
+      handleGetJsonAndCheckStatus({ path: "/jobs" }), 
+      handleGetJsonAndCheckStatus({ path: `/jobs?limit=1` }),
+    ]); 
 
     assert.strictEqual(
       sinPaginar.total,
@@ -369,11 +371,10 @@ describe("GET /jobs/:id", () => {
     // id real del JSON
     const id = "7a4d1d8b-1e45-4d8c-9f1a-8c2f9a9121a4";
 
-    const response = await fetch(`${BASE_URL}/jobs/${id}`);
-
-    assert.strictEqual(response.status, 200);
-
-    const json = await response.json();
+     const { json } = await handleGetJsonAndCheckStatus({
+       path: `/jobs/${id}`,
+     });
+ 
     assert.strictEqual(json.id, id);
   });
 
