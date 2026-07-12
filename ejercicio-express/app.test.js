@@ -233,8 +233,7 @@ describe("DELETE /jobs/:id", () => {
     // lo borro
     const response = await fetch(`${BASE_URL}/jobs/${id}`, {
       method: "DELETE",
-    });
-    console.log(" EEEEEEEEEEEEEEe", response.status);
+    }); 
 
     assert.strictEqual(response.status, 204);
 

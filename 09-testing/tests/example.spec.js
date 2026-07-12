@@ -10,4 +10,5 @@ test('buscar empleos y aplicar ofertas', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Buscar' }).click()
   
+  const jobCards = page.locator('job-listing-card')
 })
