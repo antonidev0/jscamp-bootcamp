@@ -10,9 +10,12 @@ test('buscar empleos y aplicar ofertas', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Buscar' }).click()
   
-  const jobCards = page.locator('job-listing-card')
+  const jobCards = page.locator('.job-listing-card')
 
-  const firstJobTitle = jobCards.first().getByRole("heading", { level: 3 });
+  await expect(jobCards.first()).toBeVisible();
+
+  const firstJobTitle = jobCards.first().locator('h3');
+  
   await expect(firstJobTitle).toHaveText(/desarrollador/i);
 
   await page.getByRole("button", { name: "Iniciar sesión" }).click();
