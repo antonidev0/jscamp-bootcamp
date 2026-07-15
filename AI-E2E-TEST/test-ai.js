@@ -7,7 +7,8 @@ process.loadEnvFile();
 test("Un usuario puede entrar a la JSConf y adquirir dos entradas por  €287.98", async () => {
     const stagehand = new Stagehand({
       env: "LOCAL",
-      model: "openia/gpt-4o",
+      model: "openai/gpt-4o",
+      apiKey: process.env.OPENAI_API_KEY,
     });
 
     await stagehand.init()
