@@ -34,6 +34,25 @@ function DetailPageBreadcrumb ({ job }) {
   )
 }
 
+function DetailApplyButton() {
+  const { isLoggedIn } = useAuthStore();
+  const [aplicado, setAplicado] = useState(false);
+
+  return (
+    <button
+      disabled={!isLoggedIn}
+      className={styles.applyButton}
+      onClick={() => setAplicado(true)}
+    >
+      {!isLoggedIn
+        ? "Iniciar Sesion para Aplicar"
+        : aplicado
+          ? "Aplicado"
+          : "Aplicar ahora"}
+    </button>
+  );
+}
+
 function DetailPageHeader({ job }) {
  
   return (
@@ -51,16 +70,6 @@ function DetailPageHeader({ job }) {
         <DetailFavoriteButton jobId={job.id} />
       </header>
     </>
-  );
-}
-
-function DetailApplyButton() {
-  const { isLoggedIn } = useAuthStore();
-
-  return (
-    <button disabled={!isLoggedIn} className={styles.applyButton}>
-      {isLoggedIn ? "Aplicar ahora" : "Inicia sesión para aplicar"}
-    </button>
   );
 }
 
