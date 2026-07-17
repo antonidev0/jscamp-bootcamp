@@ -46,6 +46,8 @@ test("buscar empleos por tecnologia muestra resultados", async ({ page }) => {
   await expect(jobCards.first()).toBeVisible();
 });
 
+
+// cuarto ejercicio
 test(" Test de flujo completo de aplicacion", async ({ page }) => {
   // navego a la pagina principal
   await page.goto("http://localhost:5173/");
@@ -59,8 +61,8 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   const jobCards = page.locator(".job-listing-card");
   await expect(jobCards.first()).toBeVisible();
 
-  //   hago click en el primer resultado
-  await jobCards.first().click();
+  //   hago click para ver los detalles
+  await jobCards.first().getByRole("link", { name: /ver detalles/i }).click();
 
   // verifico que se muestre el detalle del empleo
   const jobTitle = page.locator("h3");
