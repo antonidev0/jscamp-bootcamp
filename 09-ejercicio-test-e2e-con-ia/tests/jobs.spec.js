@@ -46,7 +46,6 @@ test("buscar empleos por tecnologia muestra resultados", async ({ page }) => {
   await expect(jobCards.first()).toBeVisible();
 });
 
-
 // cuarto ejercicio
 test(" Test de flujo completo de aplicacion", async ({ page }) => {
   // navego a la pagina principal
@@ -62,19 +61,32 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   await expect(jobCards.first()).toBeVisible();
 
   //   hago click para ver los detalles
-  await jobCards.first().getByRole("link", { name: /ver detalles/i }).click();
+  await jobCards
+    .first()
+    .getByRole("link", { name: /ver detalles/i })
+    .click();
 
   // verifico que se muestre el detalle del empleo
   const jobTitle = page.locator("h3");
   await expect(jobTitle.first()).toBeVisible();
 
-    // hacemos click en iniciar sesion
+  // hacemos click en iniciar sesion
   await page.getByRole("button", { name: "Iniciar sesión" }).click();
 
-    // click en aplicar
+  // click en aplicar
   const applyButton = page.getByRole("button", { name: "Aplicar" }).first();
   await applyButton.click();
 
-//   verificar si el boton cambio a aplicar
+  //   verificar si el boton cambio a aplicar
   await expect(page.getByRole("button", { name: "Aplicado" })).toBeVisible();
+});
+
+test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
+  await page.goto("http://localhost:5173/");
+
+  await page.getByRole("link", { name: /empleos/i }).click();
+  await page.getByRole("link", { name: /empleos/i }).click();
+
+  await page.locator("#filter-location").selectOption("remoto");  
+
 });
