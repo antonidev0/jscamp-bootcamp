@@ -5,6 +5,7 @@
 // @ts-check
 import { test, expect } from "@playwright/test";
 
+// primero, segundo y tercer ejercicio
 test("buscar empleos y aplicar ofertas", async ({ page }) => {
   // ir a la pagina principal
   await page.goto("http://localhost:5173/");
@@ -84,9 +85,21 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
 test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
   await page.goto("http://localhost:5173/");
 
-  await page.getByRole("link", { name: /empleos/i }).click();
-  await page.getByRole("link", { name: /empleos/i }).click();
+  // busco el link solo dentro de la navegación
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: /empleos/i })
+    .click();
 
-  await page.locator("#filter-location").selectOption("remoto");  
+  await page.locator("#filter-location").selectOption("remoto");
 
+  await page.locator("#filter-location").selectOption("remoto");
+ 
+  const jobCards = page.locator(".job-listing-card");
+  await expect(jobCards.first()).toBeVisible();
+ 
+  const total = await jobCards.count();
+  for (let i = 0; i < total; i++) {
+    await expect(jobCards.nth(i)).toContainText(/remoto/i);
+  }
 });
