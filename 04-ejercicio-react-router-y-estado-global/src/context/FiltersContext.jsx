@@ -72,7 +72,7 @@ export function FilterProvider({ children }) {
         if (textToFilter) params.append("text", textToFilter);
         if (filters.technology) params.append("technology", filters.technology);
         if (filters.location) params.append("location", filters.location);
-        if (filters.experience) params.append("level", filters.experience);
+        if (filters.experience) params.append("experience", filters.experience);
 
         const offset = (currentPage - 1) * RESULTS_PER_PAGE;
         params.append("limit", RESULTS_PER_PAGE);

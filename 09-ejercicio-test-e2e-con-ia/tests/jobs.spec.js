@@ -82,6 +82,7 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   await expect(page.getByRole("button", { name: "Aplicado" })).toBeVisible();
 });
 
+// quinto ejercicio
 test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
   await page.goto("http://localhost:5173/");
 
@@ -108,5 +109,26 @@ test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
    // nth(i) accede a la tarjeta en la posicion i
    // y verifico que su texto contenga "remoto" (sin importar mayuscula)
     await expect(jobCards.nth(i)).toContainText(/remoto/i);
+  }
+});
+
+test("filtrar por nivel Senior muestra empleos senior", async ({ page }) => {
+  await page.goto("http://localhost:5173/");
+
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: /empleos/i })
+    .click();
+
+  // selecciono el filtro de nivel senior
+  await page.locator("#filter-experience-level").selectOption("senior");
+
+  const jobCards = page.locator(".job-listing-card");
+  await expect(jobCards.first()).toBeVisible();
+
+  // verifico que todos los resultados sean de nivel senior
+  const total = await jobCards.count();
+  for (let i = 0; i < total; i++) {
+    await expect(jobCards.nth(i)).toHaveAttribute("data-nivel", "senior");
   }
 });
