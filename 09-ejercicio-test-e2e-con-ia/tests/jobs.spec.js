@@ -91,15 +91,22 @@ test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
     .getByRole("link", { name: /empleos/i })
     .click();
 
-  await page.locator("#filter-location").selectOption("remoto");
-
+  // selecciono el filtro para buscar trabajos remotos
   await page.locator("#filter-location").selectOption("remoto");
  
+  // selecciona las tarjetas con los empleos
   const jobCards = page.locator(".job-listing-card");
+  // espera a que la primera sea visible en pantalla
   await expect(jobCards.first()).toBeVisible();
  
-  const total = await jobCards.count();
+  // cuento el total de empleos que hay 
+  const total = await jobCards.count(); 
+
+  // las recorro una por una empezando desde cero
   for (let i = 0; i < total; i++) {
+
+   // nth(i) accede a la tarjeta en la posicion i
+   // y verifico que su texto contenga "remoto" (sin importar mayuscula)
     await expect(jobCards.nth(i)).toContainText(/remoto/i);
   }
 });
