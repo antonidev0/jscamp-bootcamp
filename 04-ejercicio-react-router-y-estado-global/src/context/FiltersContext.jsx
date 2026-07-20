@@ -71,7 +71,7 @@ export function FilterProvider({ children }) {
         const params = new URLSearchParams();
         if (textToFilter) params.append("text", textToFilter);
         if (filters.technology) params.append("technology", filters.technology);
-        if (filters.location) params.append("type", filters.location);
+        if (filters.location) params.append("location", filters.location);
         if (filters.experience) params.append("level", filters.experience);
 
         const offset = (currentPage - 1) * RESULTS_PER_PAGE;
