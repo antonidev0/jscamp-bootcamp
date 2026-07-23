@@ -175,3 +175,68 @@ test("navegar a la siguiente página cambia los resultados", async ({
   // los resultados deben haber cambiado
   expect(tituloAntes).not.toBe(tituloDespues);
 });
+
+// septimo ejercicio
+// aunque se parece al cuarto
+test("muestra el detalle del empleo seleccionado", async ({ page }) => {
+  await page.goto("http://localhost:5173/");
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: /empleos/i })
+    .first()
+    .click();
+
+  const jobCards = page.locator(".job-listing-card");
+  await expect(jobCards.first()).toBeVisible();
+
+  // guardo el titulo del empleo antes de entrar
+  const tituloEnLista = await jobCards.first().locator("h3").textContent();
+
+  await jobCards
+    .first()
+    .getByRole("link", { name: /ver detalles/i })
+    .click();
+
+  // el detalle muestra el titulo en un h1 
+const tituloDetalle = page.locator("h1").nth(1);  
+
+  await expect(tituloDetalle).toBeVisible();
+
+  // y debe ser el MISMO empleo que elegi
+  await expect(tituloDetalle).toHaveText(tituloEnLista);
+});
+
+test("se puede aplicar a un empleo", async ({ page }) => {
+  await page.goto("http://localhost:5173/");
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: /empleos/i })
+    .first()
+    .click();
+
+  const jobCards = page.locator(".job-listing-card");
+  await expect(jobCards.first()).toBeVisible();
+  await jobCards
+    .first()
+    .getByRole("link", { name: /ver detalles/i })
+    .click();
+
+  // inicio sesion
+  await page.getByRole("button", { name: /iniciar sesión/i }).click();
+
+  // hay DOS botones de aplicar (header y footer), tomo el primero
+  const applyButton = page
+    .getByRole("button", { name: "Aplicar ahora" })
+    .first();
+  await expect(applyButton).toBeVisible();
+  await applyButton.click();
+
+  // el mismo boton ahora dice "Aplicado"
+  await expect(
+    page.getByRole("button", { name: "Aplicado" }).first(),
+  ).toBeVisible();
+
+   // ahora AMBOS botones deben decir "Aplicado" (comparten el mismo estado)
+  const botonesAplicado = page.getByRole("button", { name: "Aplicado" });
+  await expect(botonesAplicado).toHaveCount(2);
+});

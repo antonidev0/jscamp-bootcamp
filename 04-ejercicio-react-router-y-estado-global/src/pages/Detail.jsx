@@ -34,9 +34,8 @@ function DetailPageBreadcrumb ({ job }) {
   )
 }
 
-function DetailApplyButton() {
-  const { isLoggedIn } = useAuthStore();
-  const [aplicado, setAplicado] = useState(false);
+function DetailApplyButton({ aplicado, setAplicado }) {
+  const { isLoggedIn } = useAuthStore(); 
 
   return (
     <button
@@ -53,7 +52,7 @@ function DetailApplyButton() {
   );
 }
 
-function DetailPageHeader({ job }) {
+function DetailPageHeader({ job, aplicado, setAplicado }) {
  
   return (
     <>
@@ -66,7 +65,7 @@ function DetailPageHeader({ job }) {
             </p>
           </div>
         </div>
-        <DetailApplyButton />
+        <DetailApplyButton aplicado={aplicado} setAplicado={setAplicado} />
         <DetailFavoriteButton jobId={job.id} />
       </header>
     </>
@@ -94,6 +93,7 @@ export default function JobDetail() {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [aplicado, setAplicado] = useState(false); 
 
   useEffect(() => {
     fetch(`https://jscamp-api.vercel.app/api/jobs/${jobId}`)
@@ -139,7 +139,11 @@ export default function JobDetail() {
   return (
     <div className={styles.container}>
       <DetailPageBreadcrumb job={job} />
-      <DetailPageHeader job={job} />
+      <DetailPageHeader
+        job={job}
+        aplicado={aplicado}
+        setAplicado={setAplicado}
+      />
 
       {/* Aquí irán las secciones de contenido */}
 
@@ -157,7 +161,7 @@ export default function JobDetail() {
       </div>
 
       <div className={styles.footer}>
-        <DetailApplyButton />
+        <DetailApplyButton aplicado={aplicado} setAplicado={setAplicado} />
       </div>
     </div>
   );
