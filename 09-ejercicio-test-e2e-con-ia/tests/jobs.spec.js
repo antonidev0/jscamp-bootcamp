@@ -68,7 +68,7 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
     .click();
 
   // verifico que se muestre el detalle del empleo
-  const jobTitle = page.locator("h3");
+  const jobTitle = page.locator("h1");
   await expect(jobTitle.first()).toBeVisible();
 
   // hacemos click en iniciar sesion
@@ -79,7 +79,7 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   await applyButton.click();
 
   //   verificar si el boton cambio a aplicar
-  await expect(page.getByRole("button", { name: "Aplicado" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Aplicado" }).first()).toBeVisible();
 });
 
 // quinto ejercicio
@@ -121,6 +121,9 @@ test("filtrar por nivel Senior muestra empleos senior", async ({ page }) => {
 
   // selecciono el filtro de nivel senior
   await page.locator("#filter-experience-level").selectOption("senior");
+
+  // espero a que la URL refleje el filtro (la app ya reacciono)
+await page.waitForURL(/experience=senior/);
 
   const jobCards = page.locator(".job-listing-card");
   await expect(jobCards.first()).toBeVisible();
