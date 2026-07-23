@@ -94,20 +94,19 @@ test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
 
   // selecciono el filtro para buscar trabajos remotos
   await page.locator("#filter-location").selectOption("remoto");
- 
+
   // selecciona las tarjetas con los empleos
   const jobCards = page.locator(".job-listing-card");
   // espera a que la primera sea visible en pantalla
   await expect(jobCards.first()).toBeVisible();
- 
-  // cuento el total de empleos que hay 
-  const total = await jobCards.count(); 
+
+  // cuento el total de empleos que hay
+  const total = await jobCards.count();
 
   // las recorro una por una empezando desde cero
   for (let i = 0; i < total; i++) {
-
-   // nth(i) accede a la tarjeta en la posicion i
-   // y verifico que su texto contenga "remoto" (sin importar mayuscula)
+    // nth(i) accede a la tarjeta en la posicion i
+    // y verifico que su texto contenga "remoto" (sin importar mayuscula)
     await expect(jobCards.nth(i)).toContainText(/remoto/i);
   }
 });
@@ -131,4 +130,48 @@ test("filtrar por nivel Senior muestra empleos senior", async ({ page }) => {
   for (let i = 0; i < total; i++) {
     await expect(jobCards.nth(i)).toHaveAttribute("data-nivel", "senior");
   }
+});
+
+// Sexto ejercicio
+test("aparece la paginación cuando hay resultados suficientes", async ({
+  page,
+}) => {
+  // voy a la pagina principal
+  await page.goto("http://localhost:5173/");
+
+  // abro la pagina de empleos
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: /empleos/i })
+    .click();
+
+  // verifico que el componente de paginacion es visible
+  const pagination = page.getByRole("navigation", { name: /paginacion/i });
+  await expect(pagination).toBeVisible();
+});
+
+test("navegar a la siguiente página cambia los resultados", async ({
+  page,
+}) => {
+  await page.goto("http://localhost:5173/");
+  await page
+    .getByRole("navigation")
+    .getByRole("link", { name: /empleos/i })
+    .click();
+
+  const jobCards = page.locator(".job-listing-card");
+  await expect(jobCards.first()).toBeVisible();
+
+  // guardo el titulo del primer resultado de la pagina 1
+  const tituloAntes = await jobCards.first().locator("h3").textContent();
+
+  // hago clic en "Siguiente"
+  await page.getByRole("link", { name: /siguiente/i }).click();
+
+  // espero a que carguen los nuevos resultados y comparo
+  await expect(jobCards.first()).toBeVisible();
+  const tituloDespues = await jobCards.first().locator("h3").textContent();
+
+  // los resultados deben haber cambiado
+  expect(tituloAntes).not.toBe(tituloDespues);
 });

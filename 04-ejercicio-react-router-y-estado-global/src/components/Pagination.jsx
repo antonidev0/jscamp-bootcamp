@@ -37,9 +37,14 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
 
 
   return (
-    <nav className={styles.pagination}>
+    <nav className={styles.pagination} aria-label="Paginacion">
       {!isFirstPage && (
-        <a href={buildPageUrl(currentPage - 1)} className="disabled" onClick={handlePrevClick}>
+        <a
+          href={buildPageUrl(currentPage - 1)}
+          className="disabled"
+          onClick={handlePrevClick}
+          aria-label="Anterior"
+        >
           <svg
             width="16"
             height="16"
@@ -57,16 +62,22 @@ const Pagination = ({ currentPage = 1, totalPages = 10, onPageChange }) => {
       )}
 
       {pages.map((page) => (
-        <a href={buildPageUrl(page)}
-        key={page}
-        className={page === currentPage ? "is-active" : ""}
-        onClick={(event) => handleChangePage(event, page)}>
+        <a
+          href={buildPageUrl(page)}
+          key={page}
+          className={page === currentPage ? "is-active" : ""}
+          onClick={(event) => handleChangePage(event, page)}
+        >
           {page}
         </a>
       ))}
 
       {!isLastPage && (
-        <a href={buildPageUrl(currentPage + 1)} onClick={handleNextClick}>
+        <a
+          href={buildPageUrl(currentPage + 1)}
+          onClick={handleNextClick}
+          aria-label="Siguiente"
+        >
           <svg
             width="16"
             height="16"
