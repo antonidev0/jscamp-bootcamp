@@ -7,9 +7,12 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "devDependencies": {
     "@playwright/test": "1.58.2",
     "@types/node": "25.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
   }
 }
