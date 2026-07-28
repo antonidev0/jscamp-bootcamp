@@ -78,3 +78,7 @@ type Product2 = {
   price: number;
   category: Category;
 };
+
+// literal types crea valores en concreto de tipo string, number o boolean
+type Direction = "up" | "down" | "left" | "right";
+type SiNo = "si" | "no" | true | false | 1 | 0;
