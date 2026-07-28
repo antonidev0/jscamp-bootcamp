@@ -28,3 +28,17 @@ const hobbies: string[] = ["Correr", "Dormir", "Comer"]
 hobbies.push("Estudiar")
 
 const mixto: (string | number)[] = ["Juan", 30, "Pedro", 25]
+
+// objeto
+
+type User = {
+  readonly name: string;
+  age: number;
+  email?: string;
+};
+
+const user: User = {
+  name: "Juan",
+  age: 30,
+  email: "juan@example.com"
+};
