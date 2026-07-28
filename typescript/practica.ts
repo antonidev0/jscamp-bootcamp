@@ -42,3 +42,39 @@ const user: User = {
   age: 30,
   email: "juan@example.com"
 };
+
+
+// muy util para definir la estructura de un objeto y
+// sus propiedades, incluyendo si son opcionales o de solo lectura
+// muy util para la ia
+type Configuration = {
+    readonly apiKey: string;
+    readonly baseUrl: string;
+};
+
+// tipo anidado
+
+// puede ser
+type Product = {
+    id: number;
+    name: string;
+    price: number;
+    category: {
+        id: number;
+        name: string;
+    };
+};
+
+// pero la mejor forma es usar interfaces
+
+type Category = {
+  id: number;
+  name: string;
+};
+
+type Product2 = {
+  id: number;
+  name: string;
+  price: number;
+  category: Category;
+};
