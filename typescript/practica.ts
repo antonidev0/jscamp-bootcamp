@@ -87,15 +87,22 @@ const ciudad = "Madrid";
 
 
 type UserId = {
-  readonly string | number;
+  readonly id: string | number;
 
 }
 
 export type User = {
-  id: userId;
+  id: UserId;
   name: string;
   age: number;
   email?: string;
 };
 
-type userEntity = User & userId
+type userEntity = User & UserId
+
+const userEntity: userEntity = {
+  id: 123,
+  name: "Juan",
+  age: 30,
+  email: "Email",
+};
