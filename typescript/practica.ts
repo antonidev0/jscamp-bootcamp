@@ -37,12 +37,7 @@ const mixto: (string | number)[] = ["Juan", 30, "Pedro", 25]
 //   email?: string;
 // };
 
-const user: User = {
-  name: "Juan",
-  age: 30,
-  email: "juan@example.com"
-};
-
+ 
 
 // muy util para definir la estructura de un objeto y
 // sus propiedades, incluyendo si son opcionales o de solo lectura
@@ -86,10 +81,7 @@ type SiNo = "si" | "no" | true | false | 1 | 0;
 const ciudad = "Madrid"; 
 
 
-type UserId = {
-  readonly id: string | number;
-
-}
+type UserId = string | number; 
 
 export type User = {
   id: UserId;
@@ -98,7 +90,7 @@ export type User = {
   email?: string;
 };
 
-type userEntity = User & UserId
+type userEntity = User & { id: UserId };
 
 const userEntity: userEntity = {
   id: 123,
