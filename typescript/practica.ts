@@ -98,3 +98,14 @@ const userEntity: userEntity = {
   age: 30,
   email: "Email",
 };
+
+// obejtos dinamicos
+
+type Dictionary = {
+  [key: string]: string  
+} 
+
+const dictionary: Dictionary = {
+hola: "Hello",
+adios: "Goodbye",
+}
