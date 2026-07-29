@@ -31,11 +31,11 @@ const mixto: (string | number)[] = ["Juan", 30, "Pedro", 25]
 
 // objeto
 
-type User = {
-  readonly name: string;
-  age: number;
-  email?: string;
-};
+// type User = {
+//   readonly name: string;
+//   age: number;
+//   email?: string;
+// };
 
 const user: User = {
   name: "Juan",
@@ -82,3 +82,20 @@ type Product2 = {
 // literal types crea valores en concreto de tipo string, number o boolean
 type Direction = "up" | "down" | "left" | "right";
 type SiNo = "si" | "no" | true | false | 1 | 0;
+
+const ciudad = "Madrid"; 
+
+
+type UserId = {
+  readonly string | number;
+
+}
+
+export type User = {
+  id: userId;
+  name: string;
+  age: number;
+  email?: string;
+};
+
+type userEntity = User & userId
