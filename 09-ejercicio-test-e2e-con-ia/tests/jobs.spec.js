@@ -3,7 +3,7 @@
 // @ts-check
 // import { test, expect } from '@playwright/test'
 // @ts-check
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 // primero, segundo y tercer ejercicio
 test("buscar empleos y aplicar ofertas", async ({ page }) => {
