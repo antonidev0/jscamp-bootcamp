@@ -19,7 +19,10 @@ test("buscar empleos y aplicar ofertas", async ({ page }) => {
 
   await expect(jobCards.first()).toBeVisible();
 
-  const firstJobTitle = jobCards.first().locator("h3");
+  const firstJobTitle = jobCards.first().getByRole("heading", {
+    level: 3,
+    name: /desarrollador/i,
+  });
 
   await expect(firstJobTitle).toHaveText(/desarrollador/i);
 
@@ -43,8 +46,10 @@ test("buscar empleos por tecnologia muestra resultados", async ({ page }) => {
   await page.getByRole("button", { name: "Buscar" }).click();
 
   // verifico que aparecen resultados y el primero es visible
-  const jobCards = page.locator(".job-listing-card");
+   await page.waitForTimeout(1000);
+  const jobCards = page.getByRole("article");
   await expect(jobCards.first()).toBeVisible();
+ 
 });
 
 // cuarto ejercicio
@@ -52,7 +57,7 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   // navego a la pagina principal
   await page.goto("http://localhost:5173/");
 
-  // usco empleos con "JavaScript"
+  // Busco empleos con "JavaScript"
   const searchInput = page.getByRole("searchbox");
   await searchInput.fill("JavaScript");
   await page.getByRole("button", { name: "Buscar" }).click();
@@ -61,15 +66,21 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   const jobCards = page.locator(".job-listing-card");
   await expect(jobCards.first()).toBeVisible();
 
-  //   hago click para ver los detalles
+  // guardo el titulo del primer empleo (de la lista, en su h3)
+  const tituloEnLista = (
+    await jobCards.first().getByRole("heading", { level: 3 }).textContent()
+  ).trim();
+
+  // hago clic para ver los detalles
   await jobCards
     .first()
     .getByRole("link", { name: /ver detalles/i })
     .click();
 
-  // verifico que se muestre el detalle del empleo
-  const jobTitle = page.locator("h1");
-  await expect(jobTitle.first()).toBeVisible();
+  // verifico que el detalle muestra ESE mismo titulo en un h1
+  await expect(
+    page.getByRole("heading", { level: 1, name: tituloEnLista }),
+  ).toBeVisible();
 
   // hacemos click en iniciar sesion
   await page.getByRole("button", { name: "Iniciar sesión" }).click();
@@ -78,8 +89,10 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   const applyButton = page.getByRole("button", { name: "Aplicar" }).first();
   await applyButton.click();
 
-  //   verificar si el boton cambio a aplicar
-  await expect(page.getByRole("button", { name: "Aplicado" }).first()).toBeVisible();
+  // verificar si el botón cambio a "Aplicado"
+  await expect(
+    page.getByRole("button", { name: "Aplicado" }).first(),
+  ).toBeVisible();
 });
 
 // quinto ejercicio
@@ -123,7 +136,7 @@ test("filtrar por nivel Senior muestra empleos senior", async ({ page }) => {
   await page.locator("#filter-experience-level").selectOption("senior");
 
   // espero a que la URL refleje el filtro (la app ya reacciono)
-await page.waitForURL(/experience=senior/);
+  await page.waitForURL(/experience=senior/);
 
   const jobCards = page.locator(".job-listing-card");
   await expect(jobCards.first()).toBeVisible();
@@ -200,8 +213,8 @@ test("muestra el detalle del empleo seleccionado", async ({ page }) => {
     .getByRole("link", { name: /ver detalles/i })
     .click();
 
-  // el detalle muestra el titulo en un h1 
-const tituloDetalle = page.locator("h1").nth(1);  
+  // el detalle muestra el titulo en un h1
+  const tituloDetalle = page.locator("h1").nth(1);
 
   await expect(tituloDetalle).toBeVisible();
 
@@ -239,7 +252,7 @@ test("se puede aplicar a un empleo", async ({ page }) => {
     page.getByRole("button", { name: "Aplicado" }).first(),
   ).toBeVisible();
 
-   // ahora AMBOS botones deben decir "Aplicado" (comparten el mismo estado)
+  // ahora AMBOS botones deben decir "Aplicado" (comparten el mismo estado)
   const botonesAplicado = page.getByRole("button", { name: "Aplicado" });
   await expect(botonesAplicado).toHaveCount(2);
 });

@@ -44,6 +44,7 @@ export function JobCard({ job }) {
   return (
     <article
       className="job-listing-card"
+      aria-label={`Empleo: ${job.titulo}`}
       data-modalidad={job.data.modalidad}
       data-nivel={job.data.nivel}
       data-technology={job.data.technology}
