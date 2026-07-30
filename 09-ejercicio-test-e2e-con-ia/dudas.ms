@@ -1,1 +1,0 @@
-No puedo hacer el ejercicio extra, mi laptop no alcanza para correrla
