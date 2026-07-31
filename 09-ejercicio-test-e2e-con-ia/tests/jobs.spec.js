@@ -63,7 +63,7 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   await page.getByRole("button", { name: "Buscar" }).click();
 
   // espero a que aparezcan los resultados (la primera tarjeta visible)
-  const jobCards = page.locator(".job-listing-card");
+  const jobCards = page.getByRole("article", { name: /empleo:/i });
   await expect(jobCards.first()).toBeVisible();
 
   // guardo el titulo del primer empleo (de la lista, en su h3)
