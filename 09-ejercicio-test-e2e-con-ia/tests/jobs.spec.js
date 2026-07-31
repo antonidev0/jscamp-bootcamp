@@ -18,7 +18,8 @@ test("buscar empleos y aplicar ofertas", async ({ page }) => {
 
   await page.getByRole("button", { name: "Buscar" }).click();
 
-  const jobCards = page.locator(".job-listing-card");
+const jobCards = getJobCards(page);
+await expect(jobCards.first()).toBeVisible();
 
   await expect(jobCards.first()).toBeVisible();
 
@@ -107,12 +108,12 @@ test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
     .getByRole("link", { name: /empleos/i })
     .click();
 
-   await page
-     .getByRole("combobox", { name: /ubicacion/i })
+  await page
+    .getByRole("combobox", { name: /ubicacion/i })
     .selectOption("Remoto");
-  
+
   // selecciona las tarjetas con los empleos
-  const jobCards = getJobCards(page); 
+  const jobCards = getJobCards(page);
   // espera a que la primera sea visible en pantalla
   await expect(jobCards.first()).toBeVisible();
 
@@ -180,7 +181,7 @@ test("navegar a la siguiente página cambia los resultados", async ({
     .getByRole("link", { name: /empleos/i })
     .click();
 
-  const jobCards = page.locator(".job-listing-card");
+  const jobCards = getJobCards(page);
   await expect(jobCards.first()).toBeVisible();
 
   // guardo el titulo del primer resultado de la pagina 1
@@ -207,7 +208,7 @@ test("muestra el detalle del empleo seleccionado", async ({ page }) => {
     .first()
     .click();
 
-  const jobCards = page.locator(".job-listing-card");
+  const jobCards = getJobCards(page);
   await expect(jobCards.first()).toBeVisible();
 
   // guardo el titulo del empleo antes de entrar
@@ -235,8 +236,9 @@ test("se puede aplicar a un empleo", async ({ page }) => {
     .first()
     .click();
 
-  const jobCards = page.locator(".job-listing-card");
+  const jobCards = getJobCards(page);
   await expect(jobCards.first()).toBeVisible();
+
   await jobCards
     .first()
     .getByRole("link", { name: /ver detalles/i })
