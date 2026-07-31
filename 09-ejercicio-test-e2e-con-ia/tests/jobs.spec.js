@@ -5,6 +5,9 @@
 // @ts-check
 import { expect, test } from "@playwright/test";
 
+// para entrar en "ver detalles"
+const getJobCards = (page) => page.getByRole("article", { name: /empleo:/i });
+
 // primero, segundo y tercer ejercicio
 test("buscar empleos y aplicar ofertas", async ({ page }) => {
   // ir a la pagina principal
@@ -46,10 +49,9 @@ test("buscar empleos por tecnologia muestra resultados", async ({ page }) => {
   await page.getByRole("button", { name: "Buscar" }).click();
 
   // verifico que aparecen resultados y el primero es visible
-   await page.waitForTimeout(1000);
-  const jobCards = page.getByRole("article");
+  await page.waitForTimeout(1000);
+  const jobCards = getJobCards(page);
   await expect(jobCards.first()).toBeVisible();
- 
 });
 
 // cuarto ejercicio
@@ -63,7 +65,7 @@ test(" Test de flujo completo de aplicacion", async ({ page }) => {
   await page.getByRole("button", { name: "Buscar" }).click();
 
   // espero a que aparezcan los resultados (la primera tarjeta visible)
-  const jobCards = page.getByRole("article", { name: /empleo:/i });
+  const jobCards = getJobCards(page);
   await expect(jobCards.first()).toBeVisible();
 
   // guardo el titulo del primer empleo (de la lista, en su h3)
@@ -133,12 +135,14 @@ test("filtrar por nivel Senior muestra empleos senior", async ({ page }) => {
     .click();
 
   // selecciono el filtro de nivel senior
-  await page.locator("#filter-experience-level").selectOption("senior");
+  await page
+    .getByRole("combobox", { name: /nivel de experiencia/i })
+    .selectOption("senior");
 
   // espero a que la URL refleje el filtro (la app ya reacciono)
   await page.waitForURL(/experience=senior/);
 
-  const jobCards = page.locator(".job-listing-card");
+  const jobCards = getJobCards(page);
   await expect(jobCards.first()).toBeVisible();
 
   // verifico que todos los resultados sean de nivel senior

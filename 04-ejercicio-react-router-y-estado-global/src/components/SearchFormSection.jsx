@@ -52,6 +52,7 @@ const SearchFormSection = (initialText) => {
         <div className="search-filters">
           <select
             id="filter-technology"
+            aria-label="Tecnologia"
             value={filters.technology}
             onChange={handleTechnologyChange}
           >
@@ -74,6 +75,7 @@ const SearchFormSection = (initialText) => {
 
           <select
             id="filter-location"
+            aria-label="Ubicacion"
             value={filters.location}
             onChange={handleLocationChange}
           >
@@ -87,6 +89,7 @@ const SearchFormSection = (initialText) => {
 
           <select
             id="filter-experience-level"
+            aria-label="nivel de experiencia"
             value={filters.experience}
             onChange={handleExperienceChange}
           >
