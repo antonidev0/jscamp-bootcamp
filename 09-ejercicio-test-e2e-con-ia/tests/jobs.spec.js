@@ -185,14 +185,20 @@ test("navegar a la siguiente página cambia los resultados", async ({
   await expect(jobCards.first()).toBeVisible();
 
   // guardo el titulo del primer resultado de la pagina 1
-  const tituloAntes = await jobCards.first().locator("h3").textContent();
+  const tituloAntes = await jobCards
+    .first()
+    .getByRole("heading", { level: 3 })
+    .textContent();
 
   // hago clic en "Siguiente"
   await page.getByRole("link", { name: /siguiente/i }).click();
 
   // espero a que carguen los nuevos resultados y comparo
   await expect(jobCards.first()).toBeVisible();
-  const tituloDespues = await jobCards.first().locator("h3").textContent();
+  const tituloDespues = await jobCards
+    .first()
+    .getByRole("heading", { level: 3 })
+    .textContent();
 
   // los resultados deben haber cambiado
   expect(tituloAntes).not.toBe(tituloDespues);
