@@ -107,11 +107,12 @@ test("filtrar por ubicación Remoto muestra solo remotos", async ({ page }) => {
     .getByRole("link", { name: /empleos/i })
     .click();
 
-  // selecciono el filtro para buscar trabajos remotos
-  await page.locator("#filter-location").selectOption("remoto");
-
+   await page
+     .getByRole("combobox", { name: /ubicacion/i })
+    .selectOption("Remoto");
+  
   // selecciona las tarjetas con los empleos
-  const jobCards = page.locator(".job-listing-card");
+  const jobCards = getJobCards(page); 
   // espera a que la primera sea visible en pantalla
   await expect(jobCards.first()).toBeVisible();
 
