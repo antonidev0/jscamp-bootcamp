@@ -1,0 +1,18 @@
+import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import { BrowserRouter } from "/node_modules/.vite/deps/react-router.js?v=8120c648";
+import __vite__cjsImport2_reactDom_client from "/node_modules/.vite/deps/react-dom_client.js?v=8120c648"; const createRoot = __vite__cjsImport2_reactDom_client["createRoot"];
+import "/src/index.css";
+import App from "/src/App.jsx?t=1785533184589";
+createRoot(document.getElementById("root")).render(/*#__PURE__*/ _jsxDEV(BrowserRouter, {
+    children: /*#__PURE__*/ _jsxDEV(App, {}, void 0, false, {
+        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/main.jsx",
+        lineNumber: 8,
+        columnNumber: 7
+    }, this)
+}, void 0, false, {
+    fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/main.jsx",
+    lineNumber: 7,
+    columnNumber: 3
+}, this));
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1haW4uanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEJyb3dzZXJSb3V0ZXIgfSBmcm9tIFwicmVhY3Qtcm91dGVyXCI7XHJcbmltcG9ydCB7IGNyZWF0ZVJvb3QgfSBmcm9tIFwicmVhY3QtZG9tL2NsaWVudFwiOyBcclxuaW1wb3J0IFwiLi9pbmRleC5jc3NcIjtcclxuaW1wb3J0IEFwcCBmcm9tIFwiLi9BcHAuanN4XCI7XHJcblxyXG5jcmVhdGVSb290KGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKFwicm9vdFwiKSkucmVuZGVyKFxyXG4gIDxCcm93c2VyUm91dGVyPiBcclxuICAgICAgPEFwcCAvPiBcclxuICA8L0Jyb3dzZXJSb3V0ZXI+LFxyXG4pO1xyXG4iXSwibmFtZXMiOlsiQnJvd3NlclJvdXRlciIsImNyZWF0ZVJvb3QiLCJBcHAiLCJkb2N1bWVudCIsImdldEVsZW1lbnRCeUlkIiwicmVuZGVyIl0sIm1hcHBpbmdzIjoiO0FBQUEsU0FBU0EsYUFBYSxRQUFRLGVBQWU7QUFDN0MsU0FBU0MsVUFBVSxRQUFRLG1CQUFtQjtBQUM5QyxPQUFPLGNBQWM7QUFDckIsT0FBT0MsU0FBUyxZQUFZO0FBRTVCRCxXQUFXRSxTQUFTQyxjQUFjLENBQUMsU0FBU0MsTUFBTSxlQUNoRCxRQUFDTDtjQUNHLGNBQUEsUUFBQ0UifQ==

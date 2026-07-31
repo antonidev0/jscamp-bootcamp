@@ -1,0 +1,16 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/JobCard.module.css");import { updateStyle as __vite__updateStyle, removeStyle as __vite__removeStyle } from "/@vite/client"
+const __vite__id = "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobCard.module.css"
+const __vite__css = "._cardLink_zqvgz_1 {\r\n  text-decoration: none;\r\n  color: inherit;\r\n  display: block;\r\n  transition: transform 0.2s ease;\r\n}\r\n\r\n._cardLink_zqvgz_1:hover {\r\n  transform: translateY(-4px);\r\n}\r\n\r\n._cardLink_zqvgz_1:hover ._card_zqvgz_1 {\r\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);\r\n}\r\n\r\n._card_zqvgz_1 {\r\n  background: white;\r\n  border-radius: 8px;\r\n  padding: 1.5rem;\r\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\r\n  transition: box-shadow 0.2s ease;\r\n}\r\n\r\n._actions_zqvgz_47{\r\ndisplay: flex;\r\nflex-direction: column;\r\ngap: 0.5rem;\r\ntext-align: center;\r\n}\r\n\r\n._details_zqvgz_61{\r\n    color: #09f;\r\n    background: none;\r\n    cursor: pointer;\r\n    font-size: 1rem;\r\n    text-decoration: none;\r\n    &:hover{\r\n        text-decoration: underline;\r\n    }\r\n}"
+__vite__updateStyle(__vite__id, __vite__css)
+export const cardLink = "_cardLink_zqvgz_1";
+export const card = "_card_zqvgz_1";
+export const actions = "_actions_zqvgz_47";
+export const details = "_details_zqvgz_61";
+export default {
+	cardLink: cardLink,
+	card: card,
+	actions: actions,
+	details: details
+};
+
+import.meta.hot.prune(() => __vite__removeStyle(__vite__id))

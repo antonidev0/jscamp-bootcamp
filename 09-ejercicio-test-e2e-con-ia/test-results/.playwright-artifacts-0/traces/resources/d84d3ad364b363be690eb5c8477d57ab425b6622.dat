@@ -1,0 +1,170 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Header.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"]; const _Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"];
+var _s = $RefreshSig$();
+import { Link } from "/src/components/Link.jsx";
+import { useAuthStore } from "/src/store/authStore.js";
+import { MenuHamburguesa } from "/src/components/MenuHamburguesa.jsx";
+import styles from "/src/components/MenuHamburguesa.module.css";
+import { useFavoritesStore } from "/src/store/favoritesStore.js";
+export default function Header() {
+    _s();
+    const { isLoggedIn, login, logout } = useAuthStore();
+    const { countFavorites } = useFavoritesStore();
+    const numFavorites = countFavorites();
+    return /*#__PURE__*/ _jsxDEV(_Fragment, {
+        children: /*#__PURE__*/ _jsxDEV("header", {
+            children: [
+                /*#__PURE__*/ _jsxDEV(Link, {
+                    href: "/",
+                    style: {
+                        textDecoration: "none"
+                    },
+                    children: /*#__PURE__*/ _jsxDEV("h1", {
+                        style: {
+                            color: "white"
+                        },
+                        children: [
+                            /*#__PURE__*/ _jsxDEV("svg", {
+                                fill: "none",
+                                stroke: "currentColor",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                strokeWidth: "2",
+                                viewBox: "0 0 24 24",
+                                xmlns: "http://www.w3.org/2000/svg",
+                                children: [
+                                    /*#__PURE__*/ _jsxDEV("polyline", {
+                                        points: "16 18 22 12 16 6"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                                        lineNumber: 27,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("polyline", {
+                                        points: "8 6 2 12 8 18"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                                        lineNumber: 28,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                                lineNumber: 18,
+                                columnNumber: 13
+                            }, this),
+                            "DevJobs"
+                        ]
+                    }, void 0, true, {
+                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                        lineNumber: 17,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                    lineNumber: 16,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ _jsxDEV(MenuHamburguesa, {
+                    children: [
+                        /*#__PURE__*/ _jsxDEV("nav", {
+                            children: [
+                                /*#__PURE__*/ _jsxDEV(Link, {
+                                    href: "/search",
+                                    children: "Empleos"
+                                }, void 0, false, {
+                                    fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                                    lineNumber: 36,
+                                    columnNumber: 13
+                                }, this),
+                                isLoggedIn && /*#__PURE__*/ _jsxDEV(Link, {
+                                    className: ({ isActive })=>isActive ? "nav-link-active" : "",
+                                    to: "profile",
+                                    children: [
+                                        "Favoritos (🧡",
+                                        numFavorites,
+                                        ")"
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                                    lineNumber: 39,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ _jsxDEV(Link, {
+                                    href: "/contact",
+                                    children: "Contacto"
+                                }, void 0, false, {
+                                    fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                                    lineNumber: 45,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                            lineNumber: 35,
+                            columnNumber: 11
+                        }, this),
+                        isLoggedIn ? /*#__PURE__*/ _jsxDEV("button", {
+                            className: styles.transparence,
+                            onClick: logout,
+                            children: "Cerrar sesión"
+                        }, void 0, false, {
+                            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                            lineNumber: 49,
+                            columnNumber: 13
+                        }, this) : /*#__PURE__*/ _jsxDEV("button", {
+                            className: styles.transparence,
+                            onClick: login,
+                            children: "Iniciar sesión"
+                        }, void 0, false, {
+                            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                            lineNumber: 53,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+                    lineNumber: 34,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx",
+            lineNumber: 15,
+            columnNumber: 7
+        }, this)
+    }, void 0, false);
+}
+_s(Header, "GYwwt/XoqPBnsiemOkXcJw/CyE8=", false, function() {
+    return [
+        useAuthStore,
+        useFavoritesStore
+    ];
+});
+_c = Header;
+;
+var _c;
+$RefreshReg$(_c, "Header");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Header.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkhlYWRlci5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTGluayB9IGZyb20gXCIuL0xpbmtcIjsgIFxyXG5pbXBvcnQgeyB1c2VBdXRoU3RvcmUgfSBmcm9tIFwiLi4vc3RvcmUvYXV0aFN0b3JlLmpzXCI7XHJcbmltcG9ydCB7IE1lbnVIYW1idXJndWVzYSB9IGZyb20gXCIuL01lbnVIYW1idXJndWVzYS5qc3hcIjtcclxuaW1wb3J0IHN0eWxlcyBmcm9tIFwiLi9NZW51SGFtYnVyZ3Vlc2EubW9kdWxlLmNzc1wiO1xyXG5pbXBvcnQgeyB1c2VGYXZvcml0ZXNTdG9yZSB9IGZyb20gXCIuLi9zdG9yZS9mYXZvcml0ZXNTdG9yZS5qc1wiO1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gSGVhZGVyKCkge1xyXG4gIFxyXG4gIGNvbnN0IHsgaXNMb2dnZWRJbiwgbG9naW4sIGxvZ291dCB9ID0gdXNlQXV0aFN0b3JlKCk7XHJcbiAgY29uc3QgeyBjb3VudEZhdm9yaXRlcyB9ID0gdXNlRmF2b3JpdGVzU3RvcmUoKTtcclxuICBjb25zdCBudW1GYXZvcml0ZXMgPSBjb3VudEZhdm9yaXRlcygpO1xyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPD5cclxuICAgICAgPGhlYWRlcj5cclxuICAgICAgICA8TGluayBocmVmPVwiL1wiIHN0eWxlPXt7IHRleHREZWNvcmF0aW9uOiBcIm5vbmVcIiB9fT5cclxuICAgICAgICAgIDxoMSBzdHlsZT17eyBjb2xvcjogXCJ3aGl0ZVwiIH19PlxyXG4gICAgICAgICAgICA8c3ZnXHJcbiAgICAgICAgICAgICAgZmlsbD1cIm5vbmVcIlxyXG4gICAgICAgICAgICAgIHN0cm9rZT1cImN1cnJlbnRDb2xvclwiXHJcbiAgICAgICAgICAgICAgc3Ryb2tlTGluZWNhcD1cInJvdW5kXCJcclxuICAgICAgICAgICAgICBzdHJva2VMaW5lam9pbj1cInJvdW5kXCJcclxuICAgICAgICAgICAgICBzdHJva2VXaWR0aD1cIjJcIlxyXG4gICAgICAgICAgICAgIHZpZXdCb3g9XCIwIDAgMjQgMjRcIlxyXG4gICAgICAgICAgICAgIHhtbG5zPVwiaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmdcIlxyXG4gICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgPHBvbHlsaW5lIHBvaW50cz1cIjE2IDE4IDIyIDEyIDE2IDZcIj48L3BvbHlsaW5lPlxyXG4gICAgICAgICAgICAgIDxwb2x5bGluZSBwb2ludHM9XCI4IDYgMiAxMiA4IDE4XCI+PC9wb2x5bGluZT5cclxuICAgICAgICAgICAgPC9zdmc+XHJcbiAgICAgICAgICAgIERldkpvYnNcclxuICAgICAgICAgIDwvaDE+XHJcbiAgICAgICAgPC9MaW5rPlxyXG5cclxuICAgICAgICA8TWVudUhhbWJ1cmd1ZXNhPlxyXG4gICAgICAgICAgPG5hdj5cclxuICAgICAgICAgICAgPExpbmsgaHJlZj1cIi9zZWFyY2hcIj5FbXBsZW9zPC9MaW5rPlxyXG5cclxuICAgICAgICAgICAge2lzTG9nZ2VkSW4gJiYgKFxyXG4gICAgICAgICAgICAgIDxMaW5rIGNsYXNzTmFtZT17KHsgaXNBY3RpdmUgfSkgPT4gaXNBY3RpdmUgPyBcIm5hdi1saW5rLWFjdGl2ZVwiIDogXCJcIn1cclxuICAgICAgICAgICAgICB0bz1cInByb2ZpbGVcIj5cclxuICAgICAgICAgICAgICAgIEZhdm9yaXRvcyAo8J+noXtudW1GYXZvcml0ZXN9KVxyXG4gICAgICAgICAgICAgIDwvTGluaz5cclxuICAgICAgICAgICAgKX1cclxuXHJcbiAgICAgICAgICAgIDxMaW5rIGhyZWY9XCIvY29udGFjdFwiPkNvbnRhY3RvPC9MaW5rPlxyXG4gICAgICAgICAgPC9uYXY+XHJcblxyXG4gICAgICAgICAge2lzTG9nZ2VkSW4gPyAoXHJcbiAgICAgICAgICAgIDxidXR0b24gY2xhc3NOYW1lPXtzdHlsZXMudHJhbnNwYXJlbmNlfSBvbkNsaWNrPXtsb2dvdXR9PlxyXG4gICAgICAgICAgICAgIENlcnJhciBzZXNpw7NuXHJcbiAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgKSA6IChcclxuICAgICAgICAgICAgPGJ1dHRvbiBjbGFzc05hbWU9e3N0eWxlcy50cmFuc3BhcmVuY2V9IG9uQ2xpY2s9e2xvZ2lufT5cclxuICAgICAgICAgICAgICBJbmljaWFyIHNlc2nDs25cclxuICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgICAgICApfVxyXG4gICAgICAgIDwvTWVudUhhbWJ1cmd1ZXNhPlxyXG4gICAgICA8L2hlYWRlcj5cclxuICAgIDwvPlxyXG4gICk7XHJcbn07XHJcblxyXG4iXSwibmFtZXMiOlsiTGluayIsInVzZUF1dGhTdG9yZSIsIk1lbnVIYW1idXJndWVzYSIsInN0eWxlcyIsInVzZUZhdm9yaXRlc1N0b3JlIiwiSGVhZGVyIiwiaXNMb2dnZWRJbiIsImxvZ2luIiwibG9nb3V0IiwiY291bnRGYXZvcml0ZXMiLCJudW1GYXZvcml0ZXMiLCJoZWFkZXIiLCJocmVmIiwic3R5bGUiLCJ0ZXh0RGVjb3JhdGlvbiIsImgxIiwiY29sb3IiLCJzdmciLCJmaWxsIiwic3Ryb2tlIiwic3Ryb2tlTGluZWNhcCIsInN0cm9rZUxpbmVqb2luIiwic3Ryb2tlV2lkdGgiLCJ2aWV3Qm94IiwieG1sbnMiLCJwb2x5bGluZSIsInBvaW50cyIsIm5hdiIsImNsYXNzTmFtZSIsImlzQWN0aXZlIiwidG8iLCJidXR0b24iLCJ0cmFuc3BhcmVuY2UiLCJvbkNsaWNrIl0sIm1hcHBpbmdzIjoiOztBQUFBLFNBQVNBLElBQUksUUFBUSxTQUFTO0FBQzlCLFNBQVNDLFlBQVksUUFBUSx3QkFBd0I7QUFDckQsU0FBU0MsZUFBZSxRQUFRLHdCQUF3QjtBQUN4RCxPQUFPQyxZQUFZLCtCQUErQjtBQUNsRCxTQUFTQyxpQkFBaUIsUUFBUSw2QkFBNkI7QUFFL0QsZUFBZSxTQUFTQzs7SUFFdEIsTUFBTSxFQUFFQyxVQUFVLEVBQUVDLEtBQUssRUFBRUMsTUFBTSxFQUFFLEdBQUdQO0lBQ3RDLE1BQU0sRUFBRVEsY0FBYyxFQUFFLEdBQUdMO0lBQzNCLE1BQU1NLGVBQWVEO0lBRXJCLHFCQUNFO2tCQUNFLGNBQUEsUUFBQ0U7OzhCQUNDLFFBQUNYO29CQUFLWSxNQUFLO29CQUFJQyxPQUFPO3dCQUFFQyxnQkFBZ0I7b0JBQU87OEJBQzdDLGNBQUEsUUFBQ0M7d0JBQUdGLE9BQU87NEJBQUVHLE9BQU87d0JBQVE7OzBDQUMxQixRQUFDQztnQ0FDQ0MsTUFBSztnQ0FDTEMsUUFBTztnQ0FDUEMsZUFBYztnQ0FDZEMsZ0JBQWU7Z0NBQ2ZDLGFBQVk7Z0NBQ1pDLFNBQVE7Z0NBQ1JDLE9BQU07O2tEQUVOLFFBQUNDO3dDQUFTQyxRQUFPOzs7Ozs7a0RBQ2pCLFFBQUNEO3dDQUFTQyxRQUFPOzs7Ozs7Ozs7Ozs7NEJBQ2I7Ozs7Ozs7Ozs7Ozs4QkFLVixRQUFDeEI7O3NDQUNDLFFBQUN5Qjs7OENBQ0MsUUFBQzNCO29DQUFLWSxNQUFLOzhDQUFVOzs7Ozs7Z0NBRXBCTiw0QkFDQyxRQUFDTjtvQ0FBSzRCLFdBQVcsQ0FBQyxFQUFFQyxRQUFRLEVBQUUsR0FBS0EsV0FBVyxvQkFBb0I7b0NBQ2xFQyxJQUFHOzt3Q0FBVTt3Q0FDR3BCO3dDQUFhOzs7Ozs7OzhDQUkvQixRQUFDVjtvQ0FBS1ksTUFBSzs4Q0FBVzs7Ozs7Ozs7Ozs7O3dCQUd2Qk4sMkJBQ0MsUUFBQ3lCOzRCQUFPSCxXQUFXekIsT0FBTzZCLFlBQVk7NEJBQUVDLFNBQVN6QjtzQ0FBUTs7Ozs7aURBSXpELFFBQUN1Qjs0QkFBT0gsV0FBV3pCLE9BQU82QixZQUFZOzRCQUFFQyxTQUFTMUI7c0NBQU87Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFRcEU7R0F0RHdCRjs7UUFFZ0JKO1FBQ1hHOzs7S0FITEMifQ==

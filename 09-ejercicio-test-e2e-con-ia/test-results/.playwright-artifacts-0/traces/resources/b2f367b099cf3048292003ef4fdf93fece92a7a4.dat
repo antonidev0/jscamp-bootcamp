@@ -1,0 +1,38 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Spinner.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+import "/src/components/Spinner.css";
+export function Spinner() {
+    return /*#__PURE__*/ _jsxDEV("div", {
+        className: "spinner"
+    }, void 0, false, {
+        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Spinner.jsx",
+        lineNumber: 4,
+        columnNumber: 10
+    }, this);
+}
+_c = Spinner;
+var _c;
+$RefreshReg$(_c, "Spinner");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Spinner.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Spinner.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Spinner.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlNwaW5uZXIuanN4Il0sInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBcIi4vU3Bpbm5lci5jc3NcIjtcclxuXHJcbmV4cG9ydCBmdW5jdGlvbiBTcGlubmVyKCkge1xyXG4gIHJldHVybiA8ZGl2IGNsYXNzTmFtZT1cInNwaW5uZXJcIj48L2Rpdj47XHJcbn1cclxuIl0sIm5hbWVzIjpbIlNwaW5uZXIiLCJkaXYiLCJjbGFzc05hbWUiXSwibWFwcGluZ3MiOiI7QUFBQSxPQUFPLGdCQUFnQjtBQUV2QixPQUFPLFNBQVNBO0lBQ2QscUJBQU8sUUFBQ0M7UUFBSUMsV0FBVTs7Ozs7O0FBQ3hCO0tBRmdCRiJ9

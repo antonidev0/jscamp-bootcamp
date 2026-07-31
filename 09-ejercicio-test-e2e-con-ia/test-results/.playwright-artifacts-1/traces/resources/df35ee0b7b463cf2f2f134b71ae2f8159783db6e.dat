@@ -1,0 +1,58 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/MenuHamburguesa.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"]; const _Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"];
+var _s = $RefreshSig$();
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=8120c648"; const useState = __vite__cjsImport1_react["useState"];
+import styles from "/src/components/MenuHamburguesa.module.css";
+export function MenuHamburguesa({ children }) {
+    _s();
+    const [menuOpen, setMenuOpen] = useState(false);
+    return /*#__PURE__*/ _jsxDEV(_Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxDEV("button", {
+                className: styles.toggle,
+                onClick: ()=>setMenuOpen(!menuOpen),
+                "aria-label": "Menú",
+                children: menuOpen ? "✕" : "☰"
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/MenuHamburguesa.jsx",
+                lineNumber: 9,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDEV("div", {
+                className: `${styles.menu} ${menuOpen ? styles.open : ""}`,
+                children: children
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/MenuHamburguesa.jsx",
+                lineNumber: 17,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true);
+}
+_s(MenuHamburguesa, "K77eQVFAaxZgbvGoNWFAiCE7OTY=");
+_c = MenuHamburguesa;
+var _c;
+$RefreshReg$(_c, "MenuHamburguesa");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/MenuHamburguesa.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/MenuHamburguesa.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/MenuHamburguesa.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIk1lbnVIYW1idXJndWVzYS5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgdXNlU3RhdGUgfSBmcm9tIFwicmVhY3RcIjtcclxuaW1wb3J0IHN0eWxlcyBmcm9tIFwiLi9NZW51SGFtYnVyZ3Vlc2EubW9kdWxlLmNzc1wiO1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIE1lbnVIYW1idXJndWVzYSh7IGNoaWxkcmVuIH0pIHtcclxuICBjb25zdCBbbWVudU9wZW4sIHNldE1lbnVPcGVuXSA9IHVzZVN0YXRlKGZhbHNlKTtcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDw+XHJcbiAgICAgIDxidXR0b25cclxuICAgICAgICBjbGFzc05hbWU9e3N0eWxlcy50b2dnbGV9XHJcbiAgICAgICAgb25DbGljaz17KCkgPT4gc2V0TWVudU9wZW4oIW1lbnVPcGVuKX1cclxuICAgICAgICBhcmlhLWxhYmVsPVwiTWVuw7pcIlxyXG4gICAgICA+XHJcbiAgICAgICAge21lbnVPcGVuID8gXCLinJVcIiA6IFwi4piwXCJ9XHJcbiAgICAgIDwvYnV0dG9uPlxyXG5cclxuICAgICAgPGRpdiBjbGFzc05hbWU9e2Ake3N0eWxlcy5tZW51fSAke21lbnVPcGVuID8gc3R5bGVzLm9wZW4gOiBcIlwifWB9PlxyXG4gICAgICAgIHtjaGlsZHJlbn1cclxuICAgICAgPC9kaXY+XHJcbiAgICA8Lz5cclxuICApO1xyXG59XHJcbiJdLCJuYW1lcyI6WyJ1c2VTdGF0ZSIsInN0eWxlcyIsIk1lbnVIYW1idXJndWVzYSIsImNoaWxkcmVuIiwibWVudU9wZW4iLCJzZXRNZW51T3BlbiIsImJ1dHRvbiIsImNsYXNzTmFtZSIsInRvZ2dsZSIsIm9uQ2xpY2siLCJhcmlhLWxhYmVsIiwiZGl2IiwibWVudSIsIm9wZW4iXSwibWFwcGluZ3MiOiI7O0FBQUEsU0FBU0EsUUFBUSxRQUFRLFFBQVE7QUFDakMsT0FBT0MsWUFBWSwrQkFBK0I7QUFFbEQsT0FBTyxTQUFTQyxnQkFBZ0IsRUFBRUMsUUFBUSxFQUFFOztJQUMxQyxNQUFNLENBQUNDLFVBQVVDLFlBQVksR0FBR0wsU0FBUztJQUV6QyxxQkFDRTs7MEJBQ0UsUUFBQ007Z0JBQ0NDLFdBQVdOLE9BQU9PLE1BQU07Z0JBQ3hCQyxTQUFTLElBQU1KLFlBQVksQ0FBQ0Q7Z0JBQzVCTSxjQUFXOzBCQUVWTixXQUFXLE1BQU07Ozs7OzswQkFHcEIsUUFBQ087Z0JBQUlKLFdBQVcsR0FBR04sT0FBT1csSUFBSSxDQUFDLENBQUMsRUFBRVIsV0FBV0gsT0FBT1ksSUFBSSxHQUFHLElBQUk7MEJBQzVEVjs7Ozs7Ozs7QUFJVDtHQWxCZ0JEO0tBQUFBIn0=

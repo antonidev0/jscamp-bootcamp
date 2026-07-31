@@ -1,0 +1,51 @@
+{"version":8,"type":"context-options","origin":"testRunner","browserName":"","playwrightVersion":"1.58.2","options":{},"platform":"win32","wallTime":1785535106166,"monotonicTime":19711.42,"sdkLanguage":"javascript"}
+{"type":"before","callId":"hook@1","stepId":"hook@1","startTime":19713.5,"class":"Test","method":"hook","title":"Before Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@23","stepId":"fixture@23","parentId":"hook@1","startTime":19732.733,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@24","stepId":"pw:api@24","parentId":"fixture@23","startTime":19734.591,"class":"Test","method":"pw:api","title":"Create context","params":{"selectorEngines":"[]","testIdAttributeName":"data-testid","acceptDownloads":"accept","bypassCSP":"false","colorScheme":"light","deviceScaleFactor":"1","hasTouch":"false","ignoreHTTPSErrors":"false","isMobile":"false","javaScriptEnabled":"true","locale":"en-US","offline":"false","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36","viewport":"Object","serviceWorkers":"allow","noDefaultViewport":"false","extraHTTPHeaders":"undefined","storageState":"undefined","reducedMotion":"undefined","forcedColors":"undefined","contrast":"undefined","clientCertificates":"undefined"},"stack":[]}
+{"type":"after","callId":"pw:api@24","endTime":19740.096,"annotations":[]}
+{"type":"after","callId":"fixture@23","endTime":19742.948,"annotations":[]}
+{"type":"before","callId":"fixture@25","stepId":"fixture@25","parentId":"hook@1","startTime":19743.876,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@26","stepId":"pw:api@26","parentId":"fixture@25","startTime":19746.705,"class":"Test","method":"pw:api","title":"Create page","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@26","endTime":20031.358,"annotations":[]}
+{"type":"after","callId":"fixture@25","endTime":20031.652,"annotations":[]}
+{"type":"after","callId":"hook@1","endTime":20031.779,"annotations":[]}
+{"type":"before","callId":"pw:api@27","stepId":"pw:api@27","startTime":20035.114,"class":"Test","method":"pw:api","title":"Navigate to \"/\"","params":{"url":"http://localhost:5173/","waitUntil":"load","timeout":"0"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":103,"column":14}]}
+{"type":"after","callId":"pw:api@27","endTime":20562.492,"annotations":[]}
+{"type":"before","callId":"pw:api@28","stepId":"pw:api@28","startTime":20566.139,"class":"Test","method":"pw:api","title":"Click getByRole('navigation').getByRole('link', { name: /empleos/i })","params":{"selector":"internal:role=navigation >> internal:role=link[name=/empleos/i]","strict":"true","timeout":"0"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":109,"column":6}]}
+{"type":"after","callId":"pw:api@28","endTime":20937.916,"annotations":[]}
+{"type":"before","callId":"pw:api@29","stepId":"pw:api@29","startTime":20942.354,"class":"Test","method":"pw:api","title":"Select option getByRole('combobox', { name: /ubicacion/i })","params":{"selector":"internal:role=combobox[name=/ubicacion/i]","options":"[Object]","strict":"true","timeout":"0"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":113,"column":6}]}
+{"type":"after","callId":"pw:api@29","endTime":21264.287,"annotations":[]}
+{"type":"before","callId":"expect@30","stepId":"expect@30","startTime":21266.959,"class":"Test","method":"expect","title":"Expect \"toBeVisible\"","params":{},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":118,"column":34}]}
+{"type":"after","callId":"expect@30","endTime":22302.289,"annotations":[]}
+{"type":"before","callId":"pw:api@31","stepId":"pw:api@31","startTime":22304.777,"class":"Test","method":"pw:api","title":"Query count getByRole('article', { name: /empleo:/i })","params":{"selector":"internal:role=article[name=/empleo:/i]"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":121,"column":32}]}
+{"type":"after","callId":"pw:api@31","endTime":22319.692,"annotations":[]}
+{"type":"before","callId":"expect@32","stepId":"expect@32","startTime":22321.979,"class":"Test","method":"expect","title":"Expect \"toContainText\"","params":{"expected":"Object"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":127,"column":35}]}
+{"type":"after","callId":"expect@32","endTime":22341.653,"annotations":[]}
+{"type":"before","callId":"expect@33","stepId":"expect@33","startTime":22344.097,"class":"Test","method":"expect","title":"Expect \"toContainText\"","params":{"expected":"Object"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":127,"column":35}]}
+{"type":"after","callId":"expect@33","endTime":22359.072,"annotations":[]}
+{"type":"before","callId":"expect@34","stepId":"expect@34","startTime":22361.53,"class":"Test","method":"expect","title":"Expect \"toContainText\"","params":{"expected":"Object"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":127,"column":35}]}
+{"type":"after","callId":"expect@34","endTime":22378.231,"annotations":[]}
+{"type":"before","callId":"expect@35","stepId":"expect@35","startTime":22380.797,"class":"Test","method":"expect","title":"Expect \"toContainText\"","params":{"expected":"Object"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":127,"column":35}]}
+{"type":"after","callId":"expect@35","endTime":22402.894,"annotations":[]}
+{"type":"before","callId":"expect@36","stepId":"expect@36","startTime":22406.247,"class":"Test","method":"expect","title":"Expect \"toContainText\"","params":{"expected":"Object"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":127,"column":35}]}
+{"type":"after","callId":"expect@36","endTime":22431.653,"annotations":[]}
+{"type":"before","callId":"hook@37","stepId":"hook@37","startTime":22432.49,"class":"Test","method":"hook","title":"After Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@38","stepId":"fixture@38","parentId":"hook@37","startTime":22433.625,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"after","callId":"fixture@38","endTime":22433.826,"annotations":[]}
+{"type":"before","callId":"fixture@39","stepId":"fixture@39","parentId":"hook@37","startTime":22434.585,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@40","stepId":"pw:api@40","parentId":"fixture@39","startTime":22665.029,"class":"Test","method":"pw:api","title":"Close context","params":{"reason":"Test ended."},"stack":[]}
+{"type":"after","callId":"pw:api@40","endTime":22675.044,"annotations":[]}
+{"type":"after","callId":"fixture@39","endTime":22675.318,"annotations":[]}
+{"type":"before","callId":"fixture@46","stepId":"fixture@46","parentId":"hook@37","startTime":22680.073,"class":"Test","method":"fixture","title":"Fixture \"userAgent\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@46","endTime":22680.155,"annotations":[]}
+{"type":"before","callId":"fixture@48","stepId":"fixture@48","parentId":"hook@37","startTime":22681.336,"class":"Test","method":"fixture","title":"Fixture \"viewport\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@48","endTime":22681.398,"annotations":[]}
+{"type":"before","callId":"fixture@55","stepId":"fixture@55","parentId":"hook@37","startTime":22683.284,"class":"Test","method":"fixture","title":"Fixture \"isMobile\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@55","endTime":22683.331,"annotations":[]}
+{"type":"before","callId":"fixture@59","stepId":"fixture@59","parentId":"hook@37","startTime":22684.698,"class":"Test","method":"fixture","title":"Fixture \"hasTouch\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@59","endTime":22684.741,"annotations":[]}
+{"type":"before","callId":"fixture@61","stepId":"fixture@61","parentId":"hook@37","startTime":22685.25,"class":"Test","method":"fixture","title":"Fixture \"deviceScaleFactor\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@61","endTime":22685.285,"annotations":[]}
+{"type":"after","callId":"hook@37","endTime":22688.228,"annotations":[]}
+{"type":"before","callId":"attach@7db68c9d2200fe5c23a62ab0a3057d90","stepId":"attach@7db68c9d2200fe5c23a62ab0a3057d90","startTime":22873.708,"class":"Test","method":"test.attach","title":"Attach \"trace\"","params":{},"stack":[]}
+{"type":"after","callId":"attach@7db68c9d2200fe5c23a62ab0a3057d90","endTime":22874.086,"attachments":[]}

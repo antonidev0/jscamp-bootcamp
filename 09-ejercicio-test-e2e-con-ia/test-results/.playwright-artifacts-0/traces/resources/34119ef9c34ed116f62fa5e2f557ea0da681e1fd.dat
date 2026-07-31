@@ -1,0 +1,75 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/JobListings.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"]; const _Fragment = __vite__cjsImport0_react_jsxDevRuntime["Fragment"];
+import { JobCard } from "/src/components/JobCard.jsx?t=1785411088782";
+export default function JobListings({ jobs }) {
+    if (jobs.length === 0) {
+        return /*#__PURE__*/ _jsxDEV("div", {
+            className: "no-jobs",
+            children: /*#__PURE__*/ _jsxDEV("p", {
+                children: "No hay trabajos disponibles en este momento."
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx",
+                lineNumber: 8,
+                columnNumber: 12
+            }, this)
+        }, void 0, false, {
+            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx",
+            lineNumber: 7,
+            columnNumber: 10
+        }, this);
+    }
+    return /*#__PURE__*/ _jsxDEV(_Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxDEV("h2", {
+                style: {
+                    textAlign: "center"
+                },
+                children: "Resultados de búsqueda"
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx",
+                lineNumber: 14,
+                columnNumber: 9
+            }, this),
+            /*#__PURE__*/ _jsxDEV("div", {
+                className: "jobs-listings",
+                children: jobs.map((job)=>/*#__PURE__*/ _jsxDEV(JobCard, {
+                        job: job
+                    }, job.id, false, {
+                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx",
+                        lineNumber: 17,
+                        columnNumber: 13
+                    }, this))
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx",
+                lineNumber: 15,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true);
+}
+_c = JobListings;
+var _c;
+$RefreshReg$(_c, "JobListings");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/JobListings.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkpvYkxpc3RpbmdzLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBKb2JDYXJkIH0gZnJvbSBcIi4vSm9iQ2FyZC5qc3hcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IGZ1bmN0aW9uIEpvYkxpc3RpbmdzKHsgam9icyB9KSB7XHJcbiBcclxuICAgICBpZiAoam9icy5sZW5ndGggPT09IDApIHtcclxuICAgICAgIHJldHVybiAoXHJcbiAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwibm8tam9ic1wiPlxyXG4gICAgICAgICAgIDxwPk5vIGhheSB0cmFiYWpvcyBkaXNwb25pYmxlcyBlbiBlc3RlIG1vbWVudG8uPC9wPlxyXG4gICAgICAgICA8L2Rpdj5cclxuICAgICAgICk7XHJcbiAgICAgfVxyXG4gICAgcmV0dXJuIChcclxuICAgICAgPD5cclxuICAgICAgICA8aDIgc3R5bGU9e3sgdGV4dEFsaWduOiBcImNlbnRlclwiIH19PlJlc3VsdGFkb3MgZGUgYsO6c3F1ZWRhPC9oMj5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImpvYnMtbGlzdGluZ3NcIj5cclxuICAgICAgICAgIHtqb2JzLm1hcCgoam9iKSA9PiAoXHJcbiAgICAgICAgICAgIDxKb2JDYXJkIGtleT17am9iLmlkfSBqb2I9e2pvYn0gLz5cclxuICAgICAgICAgICkpfVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICA8Lz5cclxuICAgICk7XHJcbn0iXSwibmFtZXMiOlsiSm9iQ2FyZCIsIkpvYkxpc3RpbmdzIiwiam9icyIsImxlbmd0aCIsImRpdiIsImNsYXNzTmFtZSIsInAiLCJoMiIsInN0eWxlIiwidGV4dEFsaWduIiwibWFwIiwiam9iIiwiaWQiXSwibWFwcGluZ3MiOiI7QUFBQSxTQUFTQSxPQUFPLFFBQVEsZ0JBQWdCO0FBRXhDLGVBQWUsU0FBU0MsWUFBWSxFQUFFQyxJQUFJLEVBQUU7SUFFdkMsSUFBSUEsS0FBS0MsTUFBTSxLQUFLLEdBQUc7UUFDckIscUJBQ0UsUUFBQ0M7WUFBSUMsV0FBVTtzQkFDYixjQUFBLFFBQUNDOzBCQUFFOzs7Ozs7Ozs7OztJQUdUO0lBQ0QscUJBQ0U7OzBCQUNFLFFBQUNDO2dCQUFHQyxPQUFPO29CQUFFQyxXQUFXO2dCQUFTOzBCQUFHOzs7Ozs7MEJBQ3BDLFFBQUNMO2dCQUFJQyxXQUFVOzBCQUNaSCxLQUFLUSxHQUFHLENBQUMsQ0FBQ0Msb0JBQ1QsUUFBQ1g7d0JBQXFCVyxLQUFLQTt1QkFBYkEsSUFBSUMsRUFBRTs7Ozs7Ozs7Ozs7O0FBS2hDO0tBbkJ3QlgifQ==

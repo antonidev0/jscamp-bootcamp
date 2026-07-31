@@ -1,0 +1,392 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/SearchFormSection.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import __vite__cjsImport1_react from "/node_modules/.vite/deps/react.js?v=8120c648"; const React = __vite__cjsImport1_react.__esModule ? __vite__cjsImport1_react.default : __vite__cjsImport1_react;
+import { useSearchForm } from "/src/hooks/useSearchForm.jsx";
+const SearchFormSection = (initialText)=>{
+    _s();
+    const { filters, textToFilter, hasActiveFilters, clearFilters, handleTextChange, handleTechnologyChange, handleLocationChange, handleExperienceChange, handleSubmit } = useSearchForm();
+    return /*#__PURE__*/ _jsxDEV("section", {
+        className: "jobs-search",
+        children: [
+            /*#__PURE__*/ _jsxDEV("h1", {
+                children: "Encuentra tu próximo trabajo"
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                lineNumber: 22,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDEV("p", {
+                children: "Explora miles de oportunidades en el sector tecnológico."
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                lineNumber: 23,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDEV("form", {
+                id: "empleos-search-form",
+                role: "search",
+                onSubmit: handleSubmit,
+                children: [
+                    /*#__PURE__*/ _jsxDEV("div", {
+                        className: "search-bar",
+                        children: [
+                            /*#__PURE__*/ _jsxDEV("svg", {
+                                xmlns: "http://www.w3.org/2000/svg",
+                                width: "24",
+                                height: "24",
+                                viewBox: "0 0 24 24",
+                                fill: "none",
+                                stroke: "currentColor",
+                                strokeWidth: "1",
+                                strokeLinecap: "round",
+                                strokeLinejoin: "round",
+                                children: [
+                                    /*#__PURE__*/ _jsxDEV("path", {
+                                        stroke: "none",
+                                        d: "M0 0h24v24H0z",
+                                        fill: "none"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 38,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("path", {
+                                        d: "M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 39,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("path", {
+                                        d: "M21 21l-6 -6"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 40,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                lineNumber: 27,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDEV("input", {
+                                id: "empleos-search-input",
+                                type: "text",
+                                value: textToFilter,
+                                placeholder: "Buscar trabajos, empresas o habilidades",
+                                onChange: handleTextChange
+                            }, void 0, false, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                lineNumber: 43,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                        lineNumber: 26,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ _jsxDEV("div", {
+                        className: "search-filters",
+                        children: [
+                            /*#__PURE__*/ _jsxDEV("select", {
+                                id: "filter-technology",
+                                "aria-label": "Tecnologia",
+                                value: filters.technology,
+                                onChange: handleTechnologyChange,
+                                children: [
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "",
+                                        children: "Tecnología"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 59,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("optgroup", {
+                                        label: "Tecnologías populares",
+                                        children: [
+                                            /*#__PURE__*/ _jsxDEV("option", {
+                                                value: "javascript",
+                                                children: "JavaScript"
+                                            }, void 0, false, {
+                                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                                lineNumber: 61,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDEV("option", {
+                                                value: "python",
+                                                children: "Python"
+                                            }, void 0, false, {
+                                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                                lineNumber: 62,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDEV("option", {
+                                                value: "react",
+                                                children: "React"
+                                            }, void 0, false, {
+                                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                                lineNumber: 63,
+                                                columnNumber: 15
+                                            }, this),
+                                            /*#__PURE__*/ _jsxDEV("option", {
+                                                value: "nodejs",
+                                                children: "Node.js"
+                                            }, void 0, false, {
+                                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                                lineNumber: 64,
+                                                columnNumber: 15
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 60,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "java",
+                                        children: "Java"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 66,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("hr", {}, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 67,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "csharp",
+                                        children: "C#"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 68,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "c",
+                                        children: "C"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 69,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "c++",
+                                        children: "C++"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 70,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("hr", {}, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 71,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "ruby",
+                                        children: "Ruby"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 72,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "php",
+                                        children: "PHP"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 73,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                lineNumber: 53,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDEV("select", {
+                                id: "filter-location",
+                                "aria-label": "Ubicacion",
+                                value: filters.location,
+                                onChange: handleLocationChange,
+                                children: [
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "",
+                                        children: "Ubicación"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 82,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "remoto",
+                                        children: "Remoto"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 83,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "cdmx",
+                                        children: "Ciudad de México"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 84,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "guadalajara",
+                                        children: "Guadalajara"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 85,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "monterrey",
+                                        children: "Monterrey"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 86,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "barcelona",
+                                        children: "Barcelona"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 87,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                lineNumber: 76,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ _jsxDEV("select", {
+                                id: "filter-experience-level",
+                                "aria-label": "nivel de experiencia",
+                                value: filters.experience,
+                                onChange: handleExperienceChange,
+                                children: [
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "",
+                                        children: "Nivel de experiencia"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 96,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "junior",
+                                        children: "Junior"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 97,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "mid",
+                                        children: "Mid-level"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 98,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "senior",
+                                        children: "Senior"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 99,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ _jsxDEV("option", {
+                                        value: "lead",
+                                        children: "Lead"
+                                    }, void 0, false, {
+                                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                        lineNumber: 100,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                lineNumber: 90,
+                                columnNumber: 11
+                            }, this),
+                            hasActiveFilters && /*#__PURE__*/ _jsxDEV("button", {
+                                type: "button",
+                                className: "btn-clear",
+                                onClick: clearFilters,
+                                children: "Limpiar filtros"
+                            }, void 0, false, {
+                                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                                lineNumber: 104,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                        lineNumber: 52,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                lineNumber: 25,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ _jsxDEV("span", {
+                id: "filter-selected-value"
+            }, void 0, false, {
+                fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+                lineNumber: 111,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx",
+        lineNumber: 21,
+        columnNumber: 5
+    }, this);
+};
+_s(SearchFormSection, "00KOOPkQmRdbGtWfhXQYHgGmd4o=", false, function() {
+    return [
+        useSearchForm
+    ];
+});
+_c = SearchFormSection;
+export default SearchFormSection;
+var _c;
+$RefreshReg$(_c, "SearchFormSection");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/SearchFormSection.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlNlYXJjaEZvcm1TZWN0aW9uLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSBcInJlYWN0XCI7XHJcbmltcG9ydCB7IHVzZVNlYXJjaEZvcm0gfSBmcm9tIFwiLi4vaG9va3MvdXNlU2VhcmNoRm9ybS5qc3hcIjtcclxuXHJcblxyXG5jb25zdCBTZWFyY2hGb3JtU2VjdGlvbiA9IChpbml0aWFsVGV4dCkgPT4ge1xyXG5cclxuICBjb25zdCB7XHJcbiAgICBmaWx0ZXJzLFxyXG4gICAgdGV4dFRvRmlsdGVyLFxyXG4gICAgaGFzQWN0aXZlRmlsdGVycyxcclxuICAgIGNsZWFyRmlsdGVycyxcclxuICAgIGhhbmRsZVRleHRDaGFuZ2UsXHJcbiAgICBoYW5kbGVUZWNobm9sb2d5Q2hhbmdlLFxyXG4gICAgaGFuZGxlTG9jYXRpb25DaGFuZ2UsXHJcbiAgICBoYW5kbGVFeHBlcmllbmNlQ2hhbmdlLFxyXG4gICAgaGFuZGxlU3VibWl0LFxyXG4gIH0gPSB1c2VTZWFyY2hGb3JtKCk7XHJcblxyXG5cclxuICByZXR1cm4gKFxyXG4gICAgPHNlY3Rpb24gY2xhc3NOYW1lPVwiam9icy1zZWFyY2hcIj5cclxuICAgICAgPGgxPkVuY3VlbnRyYSB0dSBwcsOzeGltbyB0cmFiYWpvPC9oMT5cclxuICAgICAgPHA+RXhwbG9yYSBtaWxlcyBkZSBvcG9ydHVuaWRhZGVzIGVuIGVsIHNlY3RvciB0ZWNub2zDs2dpY28uPC9wPlxyXG5cclxuICAgICAgPGZvcm0gaWQ9XCJlbXBsZW9zLXNlYXJjaC1mb3JtXCIgcm9sZT1cInNlYXJjaFwiIG9uU3VibWl0PXtoYW5kbGVTdWJtaXR9PlxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwic2VhcmNoLWJhclwiPlxyXG4gICAgICAgICAgPHN2Z1xyXG4gICAgICAgICAgICB4bWxucz1cImh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnXCJcclxuICAgICAgICAgICAgd2lkdGg9XCIyNFwiXHJcbiAgICAgICAgICAgIGhlaWdodD1cIjI0XCJcclxuICAgICAgICAgICAgdmlld0JveD1cIjAgMCAyNCAyNFwiXHJcbiAgICAgICAgICAgIGZpbGw9XCJub25lXCJcclxuICAgICAgICAgICAgc3Ryb2tlPVwiY3VycmVudENvbG9yXCJcclxuICAgICAgICAgICAgc3Ryb2tlV2lkdGg9XCIxXCJcclxuICAgICAgICAgICAgc3Ryb2tlTGluZWNhcD1cInJvdW5kXCJcclxuICAgICAgICAgICAgc3Ryb2tlTGluZWpvaW49XCJyb3VuZFwiXHJcbiAgICAgICAgICA+XHJcbiAgICAgICAgICAgIDxwYXRoIHN0cm9rZT1cIm5vbmVcIiBkPVwiTTAgMGgyNHYyNEgwelwiIGZpbGw9XCJub25lXCIgLz5cclxuICAgICAgICAgICAgPHBhdGggZD1cIk0xMCAxMG0tNyAwYTcgNyAwIDEgMCAxNCAwYTcgNyAwIDEgMCAtMTQgMFwiIC8+XHJcbiAgICAgICAgICAgIDxwYXRoIGQ9XCJNMjEgMjFsLTYgLTZcIiAvPlxyXG4gICAgICAgICAgPC9zdmc+XHJcblxyXG4gICAgICAgICAgPGlucHV0XHJcbiAgICAgICAgICAgIGlkPVwiZW1wbGVvcy1zZWFyY2gtaW5wdXRcIlxyXG4gICAgICAgICAgICB0eXBlPVwidGV4dFwiXHJcbiAgICAgICAgICAgIHZhbHVlPXt0ZXh0VG9GaWx0ZXJ9XHJcbiAgICAgICAgICAgIHBsYWNlaG9sZGVyPVwiQnVzY2FyIHRyYWJham9zLCBlbXByZXNhcyBvIGhhYmlsaWRhZGVzXCJcclxuICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZVRleHRDaGFuZ2V9XHJcbiAgICAgICAgICAvPlxyXG4gICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInNlYXJjaC1maWx0ZXJzXCI+XHJcbiAgICAgICAgICA8c2VsZWN0XHJcbiAgICAgICAgICAgIGlkPVwiZmlsdGVyLXRlY2hub2xvZ3lcIlxyXG4gICAgICAgICAgICBhcmlhLWxhYmVsPVwiVGVjbm9sb2dpYVwiXHJcbiAgICAgICAgICAgIHZhbHVlPXtmaWx0ZXJzLnRlY2hub2xvZ3l9XHJcbiAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVUZWNobm9sb2d5Q2hhbmdlfVxyXG4gICAgICAgICAgPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwiXCI+VGVjbm9sb2fDrWE8L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGdyb3VwIGxhYmVsPVwiVGVjbm9sb2fDrWFzIHBvcHVsYXJlc1wiPlxyXG4gICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJqYXZhc2NyaXB0XCI+SmF2YVNjcmlwdDwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJweXRob25cIj5QeXRob248L29wdGlvbj5cclxuICAgICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwicmVhY3RcIj5SZWFjdDwvb3B0aW9uPlxyXG4gICAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJub2RlanNcIj5Ob2RlLmpzPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDwvb3B0Z3JvdXA+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJqYXZhXCI+SmF2YTwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8aHIgLz5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImNzaGFycFwiPkMjPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJjXCI+Qzwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwiYysrXCI+QysrPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDxociAvPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwicnVieVwiPlJ1Ynk8L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cInBocFwiPlBIUDwvb3B0aW9uPlxyXG4gICAgICAgICAgPC9zZWxlY3Q+XHJcblxyXG4gICAgICAgICAgPHNlbGVjdFxyXG4gICAgICAgICAgICBpZD1cImZpbHRlci1sb2NhdGlvblwiXHJcbiAgICAgICAgICAgIGFyaWEtbGFiZWw9XCJVYmljYWNpb25cIlxyXG4gICAgICAgICAgICB2YWx1ZT17ZmlsdGVycy5sb2NhdGlvbn1cclxuICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUxvY2F0aW9uQ2hhbmdlfVxyXG4gICAgICAgICAgPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwiXCI+VWJpY2FjacOzbjwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwicmVtb3RvXCI+UmVtb3RvPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJjZG14XCI+Q2l1ZGFkIGRlIE3DqXhpY288L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cImd1YWRhbGFqYXJhXCI+R3VhZGFsYWphcmE8L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cIm1vbnRlcnJleVwiPk1vbnRlcnJleTwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwiYmFyY2Vsb25hXCI+QmFyY2Vsb25hPC9vcHRpb24+XHJcbiAgICAgICAgICA8L3NlbGVjdD5cclxuXHJcbiAgICAgICAgICA8c2VsZWN0XHJcbiAgICAgICAgICAgIGlkPVwiZmlsdGVyLWV4cGVyaWVuY2UtbGV2ZWxcIlxyXG4gICAgICAgICAgICBhcmlhLWxhYmVsPVwibml2ZWwgZGUgZXhwZXJpZW5jaWFcIlxyXG4gICAgICAgICAgICB2YWx1ZT17ZmlsdGVycy5leHBlcmllbmNlfVxyXG4gICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlRXhwZXJpZW5jZUNoYW5nZX1cclxuICAgICAgICAgID5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cIlwiPk5pdmVsIGRlIGV4cGVyaWVuY2lhPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJqdW5pb3JcIj5KdW5pb3I8L29wdGlvbj5cclxuICAgICAgICAgICAgPG9wdGlvbiB2YWx1ZT1cIm1pZFwiPk1pZC1sZXZlbDwvb3B0aW9uPlxyXG4gICAgICAgICAgICA8b3B0aW9uIHZhbHVlPVwic2VuaW9yXCI+U2VuaW9yPC9vcHRpb24+XHJcbiAgICAgICAgICAgIDxvcHRpb24gdmFsdWU9XCJsZWFkXCI+TGVhZDwvb3B0aW9uPlxyXG4gICAgICAgICAgPC9zZWxlY3Q+XHJcblxyXG4gICAgICAgICAge2hhc0FjdGl2ZUZpbHRlcnMgJiYgKFxyXG4gICAgICAgICAgICA8YnV0dG9uIHR5cGU9XCJidXR0b25cIiBjbGFzc05hbWU9XCJidG4tY2xlYXJcIiBvbkNsaWNrPXtjbGVhckZpbHRlcnN9PlxyXG4gICAgICAgICAgICAgIExpbXBpYXIgZmlsdHJvc1xyXG4gICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICAgICl9XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICAgIDwvZm9ybT5cclxuXHJcbiAgICAgIDxzcGFuIGlkPVwiZmlsdGVyLXNlbGVjdGVkLXZhbHVlXCI+PC9zcGFuPlxyXG4gICAgPC9zZWN0aW9uPlxyXG4gICk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBTZWFyY2hGb3JtU2VjdGlvbjtcclxuIl0sIm5hbWVzIjpbIlJlYWN0IiwidXNlU2VhcmNoRm9ybSIsIlNlYXJjaEZvcm1TZWN0aW9uIiwiaW5pdGlhbFRleHQiLCJmaWx0ZXJzIiwidGV4dFRvRmlsdGVyIiwiaGFzQWN0aXZlRmlsdGVycyIsImNsZWFyRmlsdGVycyIsImhhbmRsZVRleHRDaGFuZ2UiLCJoYW5kbGVUZWNobm9sb2d5Q2hhbmdlIiwiaGFuZGxlTG9jYXRpb25DaGFuZ2UiLCJoYW5kbGVFeHBlcmllbmNlQ2hhbmdlIiwiaGFuZGxlU3VibWl0Iiwic2VjdGlvbiIsImNsYXNzTmFtZSIsImgxIiwicCIsImZvcm0iLCJpZCIsInJvbGUiLCJvblN1Ym1pdCIsImRpdiIsInN2ZyIsInhtbG5zIiwid2lkdGgiLCJoZWlnaHQiLCJ2aWV3Qm94IiwiZmlsbCIsInN0cm9rZSIsInN0cm9rZVdpZHRoIiwic3Ryb2tlTGluZWNhcCIsInN0cm9rZUxpbmVqb2luIiwicGF0aCIsImQiLCJpbnB1dCIsInR5cGUiLCJ2YWx1ZSIsInBsYWNlaG9sZGVyIiwib25DaGFuZ2UiLCJzZWxlY3QiLCJhcmlhLWxhYmVsIiwidGVjaG5vbG9neSIsIm9wdGlvbiIsIm9wdGdyb3VwIiwibGFiZWwiLCJociIsImxvY2F0aW9uIiwiZXhwZXJpZW5jZSIsImJ1dHRvbiIsIm9uQ2xpY2siLCJzcGFuIl0sIm1hcHBpbmdzIjoiOztBQUFBLE9BQU9BLFdBQVcsUUFBUTtBQUMxQixTQUFTQyxhQUFhLFFBQVEsNkJBQTZCO0FBRzNELE1BQU1DLG9CQUFvQixDQUFDQzs7SUFFekIsTUFBTSxFQUNKQyxPQUFPLEVBQ1BDLFlBQVksRUFDWkMsZ0JBQWdCLEVBQ2hCQyxZQUFZLEVBQ1pDLGdCQUFnQixFQUNoQkMsc0JBQXNCLEVBQ3RCQyxvQkFBb0IsRUFDcEJDLHNCQUFzQixFQUN0QkMsWUFBWSxFQUNiLEdBQUdYO0lBR0oscUJBQ0UsUUFBQ1k7UUFBUUMsV0FBVTs7MEJBQ2pCLFFBQUNDOzBCQUFHOzs7Ozs7MEJBQ0osUUFBQ0M7MEJBQUU7Ozs7OzswQkFFSCxRQUFDQztnQkFBS0MsSUFBRztnQkFBc0JDLE1BQUs7Z0JBQVNDLFVBQVVSOztrQ0FDckQsUUFBQ1M7d0JBQUlQLFdBQVU7OzBDQUNiLFFBQUNRO2dDQUNDQyxPQUFNO2dDQUNOQyxPQUFNO2dDQUNOQyxRQUFPO2dDQUNQQyxTQUFRO2dDQUNSQyxNQUFLO2dDQUNMQyxRQUFPO2dDQUNQQyxhQUFZO2dDQUNaQyxlQUFjO2dDQUNkQyxnQkFBZTs7a0RBRWYsUUFBQ0M7d0NBQUtKLFFBQU87d0NBQU9LLEdBQUU7d0NBQWdCTixNQUFLOzs7Ozs7a0RBQzNDLFFBQUNLO3dDQUFLQyxHQUFFOzs7Ozs7a0RBQ1IsUUFBQ0Q7d0NBQUtDLEdBQUU7Ozs7Ozs7Ozs7OzswQ0FHVixRQUFDQztnQ0FDQ2hCLElBQUc7Z0NBQ0hpQixNQUFLO2dDQUNMQyxPQUFPL0I7Z0NBQ1BnQyxhQUFZO2dDQUNaQyxVQUFVOUI7Ozs7Ozs7Ozs7OztrQ0FJZCxRQUFDYTt3QkFBSVAsV0FBVTs7MENBQ2IsUUFBQ3lCO2dDQUNDckIsSUFBRztnQ0FDSHNCLGNBQVc7Z0NBQ1hKLE9BQU9oQyxRQUFRcUMsVUFBVTtnQ0FDekJILFVBQVU3Qjs7a0RBRVYsUUFBQ2lDO3dDQUFPTixPQUFNO2tEQUFHOzs7Ozs7a0RBQ2pCLFFBQUNPO3dDQUFTQyxPQUFNOzswREFDZCxRQUFDRjtnREFBT04sT0FBTTswREFBYTs7Ozs7OzBEQUMzQixRQUFDTTtnREFBT04sT0FBTTswREFBUzs7Ozs7OzBEQUN2QixRQUFDTTtnREFBT04sT0FBTTswREFBUTs7Ozs7OzBEQUN0QixRQUFDTTtnREFBT04sT0FBTTswREFBUzs7Ozs7Ozs7Ozs7O2tEQUV6QixRQUFDTTt3Q0FBT04sT0FBTTtrREFBTzs7Ozs7O2tEQUNyQixRQUFDUzs7Ozs7a0RBQ0QsUUFBQ0g7d0NBQU9OLE9BQU07a0RBQVM7Ozs7OztrREFDdkIsUUFBQ007d0NBQU9OLE9BQU07a0RBQUk7Ozs7OztrREFDbEIsUUFBQ007d0NBQU9OLE9BQU07a0RBQU07Ozs7OztrREFDcEIsUUFBQ1M7Ozs7O2tEQUNELFFBQUNIO3dDQUFPTixPQUFNO2tEQUFPOzs7Ozs7a0RBQ3JCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFNOzs7Ozs7Ozs7Ozs7MENBR3RCLFFBQUNHO2dDQUNDckIsSUFBRztnQ0FDSHNCLGNBQVc7Z0NBQ1hKLE9BQU9oQyxRQUFRMEMsUUFBUTtnQ0FDdkJSLFVBQVU1Qjs7a0RBRVYsUUFBQ2dDO3dDQUFPTixPQUFNO2tEQUFHOzs7Ozs7a0RBQ2pCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFTOzs7Ozs7a0RBQ3ZCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFPOzs7Ozs7a0RBQ3JCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFjOzs7Ozs7a0RBQzVCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFZOzs7Ozs7a0RBQzFCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFZOzs7Ozs7Ozs7Ozs7MENBRzVCLFFBQUNHO2dDQUNDckIsSUFBRztnQ0FDSHNCLGNBQVc7Z0NBQ1hKLE9BQU9oQyxRQUFRMkMsVUFBVTtnQ0FDekJULFVBQVUzQjs7a0RBRVYsUUFBQytCO3dDQUFPTixPQUFNO2tEQUFHOzs7Ozs7a0RBQ2pCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFTOzs7Ozs7a0RBQ3ZCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFNOzs7Ozs7a0RBQ3BCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFTOzs7Ozs7a0RBQ3ZCLFFBQUNNO3dDQUFPTixPQUFNO2tEQUFPOzs7Ozs7Ozs7Ozs7NEJBR3RCOUIsa0NBQ0MsUUFBQzBDO2dDQUFPYixNQUFLO2dDQUFTckIsV0FBVTtnQ0FBWW1DLFNBQVMxQzswQ0FBYzs7Ozs7Ozs7Ozs7Ozs7Ozs7OzBCQU96RSxRQUFDMkM7Z0JBQUtoQyxJQUFHOzs7Ozs7Ozs7Ozs7QUFHZjtHQTdHTWhCOztRQVlBRDs7O0tBWkFDO0FBK0dOLGVBQWVBLGtCQUFrQiJ9

@@ -1,0 +1,43 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/Footer.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+export default function Footer() {
+    return /*#__PURE__*/ _jsxDEV("footer", {
+        children: /*#__PURE__*/ _jsxDEV("small", {
+            children: "© 2025 DevJobs. Todos los derechos reservados."
+        }, void 0, false, {
+            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Footer.jsx",
+            lineNumber: 4,
+            columnNumber: 9
+        }, this)
+    }, void 0, false, {
+        fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Footer.jsx",
+        lineNumber: 3,
+        columnNumber: 11
+    }, this);
+}
+_c = Footer;
+var _c;
+$RefreshReg$(_c, "Footer");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Footer.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Footer.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/Footer.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkZvb3Rlci5qc3giXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gRm9vdGVyKCl7XHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgICAgPGZvb3Rlcj5cclxuICAgICAgICA8c21hbGw+JmNvcHk7IDIwMjUgRGV2Sm9icy4gVG9kb3MgbG9zIGRlcmVjaG9zIHJlc2VydmFkb3MuPC9zbWFsbD5cclxuICAgICAgICA8L2Zvb3Rlcj5cclxuICAgIClcclxufVxyXG4gIl0sIm5hbWVzIjpbIkZvb3RlciIsImZvb3RlciIsInNtYWxsIl0sIm1hcHBpbmdzIjoiO0FBQUEsZUFBZSxTQUFTQTtJQUNwQixxQkFDTSxRQUFDQztrQkFDSCxjQUFBLFFBQUNDO3NCQUFNOzs7Ozs7Ozs7OztBQUdmO0tBTndCRiJ9

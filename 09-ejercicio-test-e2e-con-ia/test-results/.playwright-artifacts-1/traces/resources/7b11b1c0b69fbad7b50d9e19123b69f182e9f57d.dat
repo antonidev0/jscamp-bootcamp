@@ -1,0 +1,51 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/components/ProtectedRoute.jsx");import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=8120c648"; const _jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import { Navigate } from "/node_modules/.vite/deps/react-router.js?v=8120c648";
+import { useAuthStore } from "/src/store/authStore.js";
+export function ProtectedRoute({ children, redirectTo = '/login' }) {
+    _s();
+    const { isLoggedIn } = useAuthStore();
+    if (!isLoggedIn) {
+        return /*#__PURE__*/ _jsxDEV(Navigate, {
+            to: redirectTo,
+            replace: true
+        }, void 0, false, {
+            fileName: "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/ProtectedRoute.jsx",
+            lineNumber: 7,
+            columnNumber: 16
+        }, this);
+    }
+    return children;
+}
+_s(ProtectedRoute, "FWGapnNH06tQI46HuxTFEdlInco=", false, function() {
+    return [
+        useAuthStore
+    ];
+});
+_c = ProtectedRoute;
+var _c;
+$RefreshReg$(_c, "ProtectedRoute");
+
+
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react-swc can't detect preamble. Something is wrong."
+    );
+  }
+
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/ProtectedRoute.jsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/ProtectedRoute.jsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) { return RefreshRuntime.register(type, "C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/04-ejercicio-react-router-y-estado-global/src/components/ProtectedRoute.jsx" + ' ' + id) }
+function $RefreshSig$() { return RefreshRuntime.createSignatureFunctionForTransform(); }
+
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlByb3RlY3RlZFJvdXRlLmpzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOYXZpZ2F0ZSB9IGZyb20gXCJyZWFjdC1yb3V0ZXJcIjtcclxuaW1wb3J0IHsgdXNlQXV0aFN0b3JlIH0gZnJvbSBcIi4uL3N0b3JlL2F1dGhTdG9yZS5qc1wiO1xyXG5cclxuZXhwb3J0IGZ1bmN0aW9uIFByb3RlY3RlZFJvdXRlKHsgY2hpbGRyZW4sIHJlZGlyZWN0VG89Jy9sb2dpbicgfSkge1xyXG4gICAgY29uc3QgeyBpc0xvZ2dlZEluIH0gPSB1c2VBdXRoU3RvcmUoKTtcclxuICAgIGlmICghaXNMb2dnZWRJbikge1xyXG4gICAgICAgIHJldHVybiA8TmF2aWdhdGUgdG89e3JlZGlyZWN0VG99IHJlcGxhY2UgLz47XHJcbiAgICB9XHJcbiAgICByZXR1cm4gY2hpbGRyZW47XHJcbn0iXSwibmFtZXMiOlsiTmF2aWdhdGUiLCJ1c2VBdXRoU3RvcmUiLCJQcm90ZWN0ZWRSb3V0ZSIsImNoaWxkcmVuIiwicmVkaXJlY3RUbyIsImlzTG9nZ2VkSW4iLCJ0byIsInJlcGxhY2UiXSwibWFwcGluZ3MiOiI7O0FBQUEsU0FBU0EsUUFBUSxRQUFRLGVBQWU7QUFDeEMsU0FBU0MsWUFBWSxRQUFRLHdCQUF3QjtBQUVyRCxPQUFPLFNBQVNDLGVBQWUsRUFBRUMsUUFBUSxFQUFFQyxhQUFXLFFBQVEsRUFBRTs7SUFDNUQsTUFBTSxFQUFFQyxVQUFVLEVBQUUsR0FBR0o7SUFDdkIsSUFBSSxDQUFDSSxZQUFZO1FBQ2IscUJBQU8sUUFBQ0w7WUFBU00sSUFBSUY7WUFBWUcsT0FBTzs7Ozs7O0lBQzVDO0lBQ0EsT0FBT0o7QUFDWDtHQU5nQkQ7O1FBQ1dEOzs7S0FEWEMifQ==

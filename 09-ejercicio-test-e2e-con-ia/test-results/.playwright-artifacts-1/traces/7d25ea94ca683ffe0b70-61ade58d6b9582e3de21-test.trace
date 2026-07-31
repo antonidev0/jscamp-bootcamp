@@ -1,0 +1,45 @@
+{"version":8,"type":"context-options","origin":"testRunner","browserName":"","playwrightVersion":"1.58.2","options":{},"platform":"win32","wallTime":1785535101181,"monotonicTime":14725.98,"sdkLanguage":"javascript"}
+{"type":"before","callId":"hook@1","stepId":"hook@1","startTime":14736.528,"class":"Test","method":"hook","title":"Before Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@28","stepId":"fixture@28","parentId":"hook@1","startTime":14782.415,"class":"Test","method":"fixture","title":"Fixture \"browser\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@29","stepId":"pw:api@29","parentId":"fixture@28","startTime":14802.342,"class":"Test","method":"pw:api","title":"Launch browser","params":{"handleSIGINT":"false","tracesDir":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\test-results\\.playwright-artifacts-1\\traces","headless":"true","ignoreDefaultArgs":"undefined","ignoreAllDefaultArgs":"false","env":"undefined","timeout":"180000"},"stack":[]}
+{"type":"after","callId":"pw:api@29","endTime":15673.816,"annotations":[]}
+{"type":"after","callId":"fixture@28","endTime":15674.388,"annotations":[]}
+{"type":"before","callId":"fixture@32","stepId":"fixture@32","parentId":"hook@1","startTime":15678.671,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@33","stepId":"pw:api@33","parentId":"fixture@32","startTime":15683.101,"class":"Test","method":"pw:api","title":"Create context","params":{"selectorEngines":"[]","testIdAttributeName":"data-testid","acceptDownloads":"accept","bypassCSP":"false","colorScheme":"light","deviceScaleFactor":"1","hasTouch":"false","ignoreHTTPSErrors":"false","isMobile":"false","javaScriptEnabled":"true","locale":"en-US","offline":"false","userAgent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.7632.6 Safari/537.36","viewport":"Object","serviceWorkers":"allow","noDefaultViewport":"false","extraHTTPHeaders":"undefined","storageState":"undefined","reducedMotion":"undefined","forcedColors":"undefined","contrast":"undefined","clientCertificates":"undefined"},"stack":[]}
+{"type":"after","callId":"pw:api@33","endTime":15707.273,"annotations":[]}
+{"type":"after","callId":"fixture@32","endTime":15716.158,"annotations":[]}
+{"type":"before","callId":"fixture@34","stepId":"fixture@34","parentId":"hook@1","startTime":15717.75,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@35","stepId":"pw:api@35","parentId":"fixture@34","startTime":15723.148,"class":"Test","method":"pw:api","title":"Create page","params":{},"stack":[]}
+{"type":"after","callId":"pw:api@35","endTime":15971.193,"annotations":[]}
+{"type":"after","callId":"fixture@34","endTime":15971.609,"annotations":[]}
+{"type":"after","callId":"hook@1","endTime":15971.773,"annotations":[]}
+{"type":"before","callId":"pw:api@36","stepId":"pw:api@36","startTime":15982.321,"class":"Test","method":"pw:api","title":"Navigate to \"/\"","params":{"url":"http://localhost:5173/","waitUntil":"load","timeout":"0"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":43,"column":14}]}
+{"type":"after","callId":"pw:api@36","endTime":16571.695,"annotations":[]}
+{"type":"before","callId":"pw:api@37","stepId":"pw:api@37","startTime":16581.113,"class":"Test","method":"pw:api","title":"Fill \"React\" getByRole('searchbox')","params":{"selector":"internal:role=searchbox","value":"React","strict":"true","timeout":"0"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":47,"column":21}]}
+{"type":"after","callId":"pw:api@37","endTime":17127.585,"annotations":[]}
+{"type":"before","callId":"pw:api@38","stepId":"pw:api@38","startTime":17132.015,"class":"Test","method":"pw:api","title":"Click getByRole('button', { name: 'Buscar' })","params":{"selector":"internal:role=button[name=\"Buscar\"i]","strict":"true","timeout":"0"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":50,"column":54}]}
+{"type":"after","callId":"pw:api@38","endTime":17247.122,"annotations":[]}
+{"type":"before","callId":"pw:api@39","stepId":"pw:api@39","startTime":17250.624,"class":"Test","method":"pw:api","title":"Wait for timeout","params":{"waitTimeout":"1000"},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":53,"column":14}]}
+{"type":"after","callId":"pw:api@39","endTime":18296.525,"annotations":[]}
+{"type":"before","callId":"expect@40","stepId":"expect@40","startTime":18303.815,"class":"Test","method":"expect","title":"Expect \"toBeVisible\"","params":{},"stack":[{"file":"C:\\Users\\user\\Documents\\html\\jscamp\\jscamp-bootcamp\\09-ejercicio-test-e2e-con-ia\\tests\\jobs.spec.js","line":55,"column":34}]}
+{"type":"after","callId":"expect@40","endTime":18335.758,"annotations":[]}
+{"type":"before","callId":"hook@41","stepId":"hook@41","startTime":18336.797,"class":"Test","method":"hook","title":"After Hooks","params":{},"stack":[]}
+{"type":"before","callId":"fixture@42","stepId":"fixture@42","parentId":"hook@41","startTime":18339.151,"class":"Test","method":"fixture","title":"Fixture \"page\"","params":{},"stack":[]}
+{"type":"after","callId":"fixture@42","endTime":18339.749,"annotations":[]}
+{"type":"before","callId":"fixture@43","stepId":"fixture@43","parentId":"hook@41","startTime":18340.952,"class":"Test","method":"fixture","title":"Fixture \"context\"","params":{},"stack":[]}
+{"type":"before","callId":"pw:api@44","stepId":"pw:api@44","parentId":"fixture@43","startTime":18687.103,"class":"Test","method":"pw:api","title":"Close context","params":{"reason":"Test ended."},"stack":[]}
+{"type":"after","callId":"pw:api@44","endTime":18710.588,"annotations":[]}
+{"type":"after","callId":"fixture@43","endTime":18711.045,"annotations":[]}
+{"type":"before","callId":"fixture@50","stepId":"fixture@50","parentId":"hook@41","startTime":18716.684,"class":"Test","method":"fixture","title":"Fixture \"userAgent\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@50","endTime":18716.779,"annotations":[]}
+{"type":"before","callId":"fixture@52","stepId":"fixture@52","parentId":"hook@41","startTime":18717.872,"class":"Test","method":"fixture","title":"Fixture \"viewport\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@52","endTime":18717.953,"annotations":[]}
+{"type":"before","callId":"fixture@59","stepId":"fixture@59","parentId":"hook@41","startTime":18722.712,"class":"Test","method":"fixture","title":"Fixture \"isMobile\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@59","endTime":18722.826,"annotations":[]}
+{"type":"before","callId":"fixture@63","stepId":"fixture@63","parentId":"hook@41","startTime":18726.77,"class":"Test","method":"fixture","title":"Fixture \"hasTouch\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@63","endTime":18726.852,"annotations":[]}
+{"type":"before","callId":"fixture@65","stepId":"fixture@65","parentId":"hook@41","startTime":18728.037,"class":"Test","method":"fixture","title":"Fixture \"deviceScaleFactor\"","params":{},"stack":[{"file":"project#chromium","line":1,"column":1}],"group":"configuration"}
+{"type":"after","callId":"fixture@65","endTime":18728.13,"annotations":[]}
+{"type":"after","callId":"hook@41","endTime":18735.335,"annotations":[]}
+{"type":"before","callId":"attach@daa30719bed13d3c9bffa1d6ee5a4469","stepId":"attach@daa30719bed13d3c9bffa1d6ee5a4469","startTime":19706.988,"class":"Test","method":"test.attach","title":"Attach \"trace\"","params":{},"stack":[]}
+{"type":"after","callId":"attach@daa30719bed13d3c9bffa1d6ee5a4469","endTime":19707.129,"attachments":[]}

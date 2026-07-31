@@ -18,8 +18,8 @@ test("buscar empleos y aplicar ofertas", async ({ page }) => {
 
   await page.getByRole("button", { name: "Buscar" }).click();
 
-const jobCards = getJobCards(page);
-await expect(jobCards.first()).toBeVisible();
+  const jobCards = getJobCards(page);
+  await expect(jobCards.first()).toBeVisible();
 
   await expect(jobCards.first()).toBeVisible();
 
@@ -218,7 +218,10 @@ test("muestra el detalle del empleo seleccionado", async ({ page }) => {
   await expect(jobCards.first()).toBeVisible();
 
   // guardo el titulo del empleo antes de entrar
-  const tituloEnLista = await jobCards.first().locator("h3").textContent();
+  const tituloEnLista = await jobCards
+    .first()
+    .getByRole("heading", { level: 3 })
+    .textContent();
 
   await jobCards
     .first()
@@ -226,7 +229,10 @@ test("muestra el detalle del empleo seleccionado", async ({ page }) => {
     .click();
 
   // el detalle muestra el titulo en un h1
-  const tituloDetalle = page.locator("h1").nth(1);
+  const tituloDetalle = page.getByRole("heading", {
+    level: 1,
+    name: tituloEnLista,
+  });
 
   await expect(tituloDetalle).toBeVisible();
 
