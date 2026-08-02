@@ -22,7 +22,9 @@ export type Technology =
   | "rust"
   | "php"
   | "ruby"
-  | "c#";
+  | "c#"
+  | "tailwind"
+  | "css";
   
 
 // const test1: WorkMode = "remoto";       
