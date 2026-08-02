@@ -25,5 +25,5 @@ export type Technology =
   | "c#";
   
 
-const test1: WorkMode = "remoto";       
-const test2: WorkMode = "desde-casa";   
+// const test1: WorkMode = "remoto";       
+// const test2: WorkMode = "desde-casa";   
