@@ -23,3 +23,7 @@ export type Technology =
   | "php"
   | "ruby"
   | "c#";
+  
+
+const test1: WorkMode = "remoto";       
+const test2: WorkMode = "desde-casa";   
