@@ -2,14 +2,34 @@
  
 import type { ExperienceLevel, WorkMode, Technology } from './types.ts'
 
-export Job = {
-    id: string;
-    title: string;
-    description: string;
-    company: Company;
-    location: string;
-    salary?: number;
-    experienceLevel: ExperienceLevel;
+export type Job = {
+  id: string
+  title: string
+  company: string
+  location: string
+  description: string
+  salary?: number // Opcional
+  technologies: Technology[]
+  experienceLevel: ExperienceLevel
+  workMode: WorkMode
+  isActive: boolean
+  postedDate: Date
 }
-export type Company = 
-export type Candidate =  
+
+export type Company = {
+    id: string
+  name: string
+  description: string
+  website?: string
+  employees: number
+  foundedYear: number
+}
+export type Candidate = {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  skills: Technology[];
+  experienceYears: number;
+  resume?: string;
+};
