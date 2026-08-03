@@ -1,5 +1,8 @@
 /* Aquí deberás tipar los parámetros y el valor de retorno de las funciones, teniendo en cuenta que existen parámetros opcionales y valores por defecto */
 
+import type { Job } from "./objects";
+import type { ExperienceLevel, Technology, WorkMode } from "./types.ts";
+
 import {
   searchJobs,
   filterByExperience,
