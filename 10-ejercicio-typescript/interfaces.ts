@@ -40,8 +40,7 @@ export interface JobApplication {
 }
 
 // Interface que extiende Job con propiedades adicionales
-export interface DetailedJob {
-  joba: Job;
+export interface DetailedJob extends Job {
   benefits: string[];
   requirements: string[];
   applicationDeadline?: Date;
