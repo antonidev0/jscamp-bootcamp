@@ -7,11 +7,12 @@ Tendrás que tipar la función safeSearch y displaySearchResults, verificando qu
 */
 
 import { searchJobs } from './functions.ts'
+import type { Job } from './objects.ts'
 
 export type SearchResult = any
 
 // Función que devuelve SearchResult
-export function safeSearch(jobs: any[], searchTerm: any): SearchResult {
+export function safeSearch(jobs: Job[], searchTerm: any): SearchResult {
   if (!searchTerm || searchTerm.trim().length === 0) {
     return {
       success: false,
