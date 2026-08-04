@@ -2,10 +2,10 @@
 
 import type { Job } from './objects.ts'
 // Tupla para coordenadas de ubicación
-export type Coordinates = [number, number] // [latitud, longitud]
+export type Coordinates = [lat: number, lng: number] 
 
 // Tupla para rango de salario
-export type SalaryRange = [number, number] // [mínimo, máximo]
+export type SalaryRange = [min: number, max: number] 
 
 // Función que devuelve el rango de salarios
 export function getSalaryRange(jobs: Job[]): SalaryRange {
