@@ -1,0 +1,424 @@
+/* ============================================
+   ProfilePage.module.css
+   Dark theme · Sidebar + Cards layout
+   ============================================ */
+
+.wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ---- Grid layout ---- */
+.profileGrid {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* ============================================
+   Sidebar
+   ============================================ */
+.sidebar {
+  background: rgba(20, 24, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: sticky;
+  top: 5rem;
+}
+
+.avatarSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.avatarRing {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #0099ff, #6c47ff, #0099ff);
+  background-size: 200% 200%;
+  animation: ringShift 4s ease infinite;
+  margin-bottom: 1.25rem;
+}
+
+@keyframes ringShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #1a1f35, #252b45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.avatar svg {
+  width: 48px;
+  height: 48px;
+}
+
+.name {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.role {
+  font-size: 0.875rem;
+  color: #0099ff;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.email {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* ---- Stats ---- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.statNumber {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+}
+
+.statLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+/* ---- Sidebar Actions ---- */
+.sidebarActions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.editButton {
+  width: 100%;
+  background: #0099ff;
+  color: white;
+  border: none;
+  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: -0.01em;
+}
+
+.editButton:hover {
+  background: #007acc;
+  box-shadow: 0 4px 16px rgba(0, 153, 255, 0.25);
+  transform: translateY(-1px);
+}
+
+.logoutButton {
+  width: 100%;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.logoutButton:hover {
+  background: rgba(255, 59, 48, 0.08);
+  border-color: rgba(255, 59, 48, 0.25);
+  color: #ff453a;
+}
+
+/* ============================================
+   Main content
+   ============================================ */
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* ---- Cards ---- */
+.card {
+  background: rgba(20, 24, 36, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1rem;
+  padding: 1.75rem;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.cardTitle {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.cardDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0099ff;
+  opacity: 0.7;
+}
+
+/* ---- Info grid ---- */
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.85rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  transition: border-color 0.2s;
+}
+
+.infoItem:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.infoLabel {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.infoValue {
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* ---- Timeline ---- */
+.timeline {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    #0099ff,
+    rgba(0, 153, 255, 0.1)
+  );
+}
+
+.timelineItem {
+  position: relative;
+  padding-bottom: 1.75rem;
+}
+
+.timelineItem:last-child {
+  padding-bottom: 0;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -1.75rem;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #0e1420;
+  border: 2px solid #0099ff;
+}
+
+.timelineItem:last-child .timelineDot {
+  border-color: rgba(0, 153, 255, 0.35);
+}
+
+.timelineContent {
+  padding-left: 0.25rem;
+}
+
+.timelineHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  background: rgba(0, 153, 255, 0.12);
+  color: #0099ff;
+  border: 1px solid rgba(0, 153, 255, 0.2);
+}
+
+.experienceTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.experienceCompany {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.experienceDescription {
+  color: var(--text-secondary, var(--text-muted));
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+/* ---- Skills ---- */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill {
+  background: rgba(0, 153, 255, 0.06);
+  border: 1px solid rgba(0, 153, 255, 0.15);
+  color: #5ab8ff;
+  padding: 0.45rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.skill:hover {
+  background: rgba(0, 153, 255, 0.14);
+  border-color: rgba(0, 153, 255, 0.35);
+  color: #80ccff;
+  transform: translateY(-1px);
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+@media (max-width: 860px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .avatarSection {
+    width: 100%;
+  }
+
+  .stats {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 1rem 0;
+  }
+
+  .sidebarActions {
+    width: 100%;
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 580px) {
+  .wrapper {
+    padding: 1rem 0.75rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebarActions {
+    flex-direction: column;
+  }
+
+  .name {
+    font-size: 1.15rem;
+  }
+
+  .avatarRing {
+    width: 90px;
+    height: 90px;
+  }
+
+  .avatar svg {
+    width: 38px;
+    height: 38px;
+  }
+}
