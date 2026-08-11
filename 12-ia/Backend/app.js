@@ -8,6 +8,7 @@ import { aiRouter } from "./routes/ia.js";
 
 const isProduction = process.env.NODE_ENV === "production";
 
+// commit
 if (!isProduction) {
   process.loadEnvFile();
 }
