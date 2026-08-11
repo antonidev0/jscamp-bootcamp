@@ -4,6 +4,7 @@ import { logMiddleware, corsMiddleware } from "./middlewares/cors.js";
 import { jobsRouter } from "./routes/jobs.js";
 
 import jobs from "./jobs.json" with { type: "json" };
+import { aiRouter } from "./routes/ia.js";
 
 const isProduction = process.env.NODE_ENV === "production";
 
@@ -19,6 +20,7 @@ const app = express();
 app.use(corsMiddleware());
 app.use(express.json());
 app.use("/jobs", jobsRouter);
+app.use('/ai', aiRouter);
 
 console.log(PORT_SERVER);
 

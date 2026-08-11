@@ -1,42 +1,46 @@
 import { Router } from "express";
 import OpenAI from 'openai'
-import { JobModel } from "../models copy/job";
+import { JobModel } from "../models/job.js";
 
 process.loadEnvFile()
 
-export const aiRouter = Router({
-    apiKey: process.env.OPENAI_API_KEY
-})
+export const aiRouter = Router()
 
-aiRouter.get('summary/:id', async (req, res) => {
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,  
+});
+
+aiRouter.get('/summary/:id', async (req, res) => {
     const { id } = req.params
-    const job = await JobModel.getById(id)
+    const job = await JobModel.getId({ id });
+    console.log("ID buscado:", id, "| Job encontrado:");
 
     if (!job) {
         return res.status(404).json({ error: 'Job not Found' })
     }
 
-    const promt =[
-        `Resume en 4-6 frases la siguiente oferta de trabajo:`,
-        `incluye: rol, empresa. ubicacion y requisitos clave`,
-        `usa un tono claro y directo en español`,
-        `Titulo: ${job.titulo}`,
-        `Empresa: ${job.empresa}`,
-        `Ubicacion: ${job.ubicacion}`,
-        `Descripcion: ${job.descripcion}`        
-    ].join('\n')
+    const prompt = [
+      `Resume en 4-6 frases la siguiente oferta de trabajo:`,
+      `incluye: rol, empresa. ubicacion y requisitos clave`,
+      `usa un tono claro y directo en español`,
+      `Titulo: ${job.titulo}`,
+      `Empresa: ${job.empresa}`,
+      `Ubicacion: ${job.ubicacion}`,
+      `Descripcion: ${job.descripcion}`,
+    ].join("\n");
 
     try { 
-        const completion = await openia.chat.completion.create({
-            message: [
-                {
-                    role: 'user',
-                    content: promt
-                }
-            ]
-        })
+        const completion = await openai.chat.completions.create({
+          model: "gpt-4o-mini",
+          message: [
+            {
+              role: "user",
+              content: prompt,
+            },
+          ],
+        });
         console.log("OpenAI Respnoeseeeeee");
-        const summary = completion.choise?.[0]?.message?.content?.trim()
+        const summary = completion.choices?.[0]?.message?.content?.trim();
 
         if (!summary) {
             return res.status(502).json({ error: 'No summary generated'})
@@ -44,18 +48,11 @@ aiRouter.get('summary/:id', async (req, res) => {
 
         return res.json({summary})
         
-    } catch(error) {
+    } catch (error) { 
         return res.status(500).json({ error: 'error generating summary'})
     }
 })
 
 
-
-
-
-
-
-
-
-
-
+// Esto funciona, pero no tengo creditos y un agente local como ollama no puedo 
+// correlo en mi humilde laptop
