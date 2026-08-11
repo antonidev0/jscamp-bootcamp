@@ -1,10 +1,20 @@
 import { Router } from "express";
 import OpenAI from 'openai'
 import { JobModel } from "../models/job.js";
+import rateLimit from 'express-rate-limit'
 
 process.loadEnvFile()
 
+const aiRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 5,
+  message: 'Demasiadas solicitudes',
+  legacyHeaders: false,
+  standardHeaders: 'draft-8'
+})
+
 export const aiRouter = Router()
+aiRouter.use(aiRateLimiter)
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,  
@@ -49,6 +59,8 @@ aiRouter.get('/summary/:id', async (req, res) => {
         return res.json({summary})
         
     } catch (error) { 
+      console.log(error);
+      
         return res.status(500).json({ error: 'error generating summary'})
     }
 })

@@ -17,6 +17,8 @@ if (!isProduction) {
 const PORT_SERVER = process.env.PORT ?? 1234;
 
 const app = express();
+
+app.set('trust proxy', 1) 
  
 app.use(corsMiddleware());
 app.use(express.json());

@@ -34,6 +34,44 @@ function DetailPageBreadcrumb ({ job }) {
   )
 }
 
+function IASummary({ job }) {
+  const [summary, setSummary] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const generateSummary = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/ai/summary/${job.id}`);
+      if (!response.ok) throw new Error("Error generating summary");
+
+      const data = await response.json();
+      setSummary(data.summary ?? "No se pudo generar el resumen.");
+    } catch (err) {
+      console.error(err);
+      setError("Error al generar resumen.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div>
+      <button
+        onClick={generateSummary}
+        disabled={loading}
+        className={styles.summaryButton}
+      >
+        {loading ? "Generando resumen..." : "Generar resumen con IA"}
+      </button>
+
+      {error && <p className={styles.error}>{error}</p>}
+      {summary && <p className={styles.summary}>{summary}</p>}
+    </div>
+  );
+}
 function DetailApplyButton({ aplicado, setAplicado }) {
   const { isLoggedIn } = useAuthStore(); 
 
@@ -144,6 +182,8 @@ export default function JobDetail() {
         aplicado={aplicado}
         setAplicado={setAplicado}
       />
+
+      <IASummary job={job} />
 
       {/* Aquí irán las secciones de contenido */}
 
