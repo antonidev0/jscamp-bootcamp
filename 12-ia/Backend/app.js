@@ -1,11 +1,31 @@
-import express from 'express'
-import { jobsRouter } from './routes/jobs.js'
+import express from "express";
+import { DEAFAULTS } from "./config.js";
+import { logMiddleware, corsMiddleware } from "./middlewares/cors.js";
+import { jobsRouter } from "./routes/jobs.js";
 
-const PORT = 3000
-const app = express()
+import jobs from "./jobs.json" with { type: "json" };
 
-app.use('/jobs', jobsRouter)
+const isProduction = process.env.NODE_ENV === "production";
 
-app.listen(PORT, () => {
-  console.log(`Servidor levantado en http://localhost:${PORT}`)
-})
+if (!isProduction) {
+  process.loadEnvFile();
+}
+
+
+const PORT_SERVER = process.env.PORT ?? 1234;
+
+const app = express();
+ 
+app.use(corsMiddleware());
+app.use(express.json());
+app.use("/jobs", jobsRouter);
+
+console.log(PORT_SERVER);
+
+if (!isProduction) {
+  app.listen(PORT_SERVER, () => {
+    console.log(`Servidor escuchando en http://localhost:${PORT_SERVER}`);
+  });
+}
+
+export default app;
