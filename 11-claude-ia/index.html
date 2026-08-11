@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sistema Solar</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600;800&family=Libre+Barcode+128+Text&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div id="universe">
+    <canvas id="starfield"></canvas>
+
+    <div id="solar-system">
+      <!-- Sol -->
+      <div class="sun" id="sun">
+        <div class="sun-core"></div>
+        <div class="sun-corona"></div>
+        <div class="sun-flare"></div>
+      </div>
+
+      <!-- Planetas -->
+      <div class="orbit" data-planet="mercury">
+        <div class="planet-anchor">
+          <div class="planet" id="mercury">
+            <span class="planet-label">Mercurio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="venus">
+        <div class="planet-anchor">
+          <div class="planet" id="venus">
+            <span class="planet-label">Venus</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="earth">
+        <div class="planet-anchor">
+          <div class="planet" id="earth">
+            <div class="moon-orbit">
+              <div class="moon"></div>
+            </div>
+            <span class="planet-label">Tierra</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="mars">
+        <div class="planet-anchor">
+          <div class="planet" id="mars">
+            <span class="planet-label">Marte</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="jupiter">
+        <div class="planet-anchor">
+          <div class="planet" id="jupiter">
+            <div class="jupiter-band"></div>
+            <span class="planet-label">J&uacute;piter</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="saturn">
+        <div class="planet-anchor">
+          <div class="planet" id="saturn">
+            <div class="saturn-ring"></div>
+            <span class="planet-label">Saturno</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="uranus">
+        <div class="planet-anchor">
+          <div class="planet" id="uranus">
+            <div class="uranus-ring"></div>
+            <span class="planet-label">Urano</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="orbit" data-planet="neptune">
+        <div class="planet-anchor">
+          <div class="planet" id="neptune">
+            <span class="planet-label">Neptuno</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel de información -->
+    <div id="info-panel" class="info-panel hidden">
+      <div class="info-header">
+        <div class="info-icon"></div>
+        <h2 id="info-name"></h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Di&aacute;metro</span>
+          <span class="info-value" id="info-diameter"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Distancia al Sol</span>
+          <span class="info-value" id="info-distance"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Per&iacute;odo orbital</span>
+          <span class="info-value" id="info-period"></span>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Temperatura</span>
+          <span class="info-value" id="info-temp"></span>
+        </div>
+      </div>
+      <p class="info-desc" id="info-desc"></p>
+    </div>
+
+    <!-- Controles -->
+    <div id="controls">
+      <button id="btn-speed-down" title="Reducir velocidad">&laquo;</button>
+      <span id="speed-display">1x</span>
+      <button id="btn-speed-up" title="Aumentar velocidad">&raquo;</button>
+      <button id="btn-pause" title="Pausar / Reanudar">&#9646;&#9646;</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

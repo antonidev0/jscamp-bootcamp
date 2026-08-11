@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc)",
+      "Bash(npx tsc:*)",
+      "Bash(pnpm init:*)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm exec tsc:*)",
+      "Bash(start C:/Users/user/Documents/html/jscamp/jscamp-bootcamp/11-claude-ia/index.html)"
+    ]
+  }
+}
