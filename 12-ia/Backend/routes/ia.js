@@ -39,9 +39,13 @@ aiRouter.get('/summary/:id', async (req, res) => {
       `Descripcion: ${job.descripcion}`,
     ].join("\n");
 
-    try { 
-        const completion = await openai.chat.completions.create({
+  try { 
+      
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8')
+    res.setHeader('Transfer-Encoding', 'chunked')
+        const stream = await openai.chat.completions.create({
           model: "gpt-4o-mini",
+          stream: true,
           message: [
             {
               role: "user",
@@ -49,22 +53,31 @@ aiRouter.get('/summary/:id', async (req, res) => {
             },
           ],
         });
-        console.log("OpenAI Respnoeseeeeee");
-        const summary = completion.choices?.[0]?.message?.content?.trim();
-
-        if (!summary) {
-            return res.status(502).json({ error: 'No summary generated'})
+    
+      for await (const part of stream) {
+        const content = part.choices[0].delta.content
+        if (content) {
+          res.write(content)
         }
-
-        return res.json({summary})
+        }
+ 
+    return res.end()
         
-    } catch (error) { 
+  } catch (error) { 
+    
+    if (!res.headersSent) {
+      res.setHeader('Content-Type', 'application/json')
+      return res.status(500).json({ error: 'error generating summary'})
+    }
       console.log(error);
-      
-        return res.status(500).json({ error: 'error generating summary'})
+      return res.end()
     }
 })
 
 
-// Esto funciona, pero no tengo creditos y un agente local como ollama no puedo 
+// Esto funciona, pero no tengo creditos y un agente local como ollama no puedo
 // correlo en mi humilde laptop
+
+
+
+

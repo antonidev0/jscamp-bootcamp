@@ -42,13 +42,23 @@ function IASummary({ job }) {
   const generateSummary = async () => {
     setLoading(true);
     setError(null);
+    setSummary('');
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/ai/summary/${job.id}`);
       if (!response.ok) throw new Error("Error generating summary");
 
-      const data = await response.json();
-      setSummary(data.summary ?? "No se pudo generar el resumen.");
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value);
+         setSummary((prev) => prev + chunk);
+        }
     } catch (err) {
       console.error(err);
       setError("Error al generar resumen.");
