@@ -94,16 +94,50 @@ export class JobModel {
   // Obtener un job por ID
   static async getById(id: string): Promise<Job | undefined> {
     // TODO: Debemos hacer la consulta a la base de datos para obtener el job por ID
-    return undefined
+    const jobRow = selectJobById.get(id)
+    if (!jobRow) {
+      return undefined
+    }
+    return buldJob(jobRow)
   }
 
   // Crear un nuevo job
   static async create(input: CreateJobDTO): Promise<Job> {
+
     const newJob: Job = {
       id: crypto.randomUUID(),
       ...input,
     }
 
+    // inserto las tres tablas dentro de una transaccion
+    const insertAll = db.transaction(() => {
+      insertJob.run(
+        newJob.id,
+        newJob.title,
+        newJob.company,
+        newJob.location,
+        newJob.description,
+        newJob.data.modality,
+        newJob.data.level,
+      )
+
+      for (const tech of newJob.data.technology) { 
+        insertTechnology.run(newJob.id, tech)
+      }
+
+      if (newJob.content) { 
+        insertContent.run(
+          crypto.randomUUID(),
+          newJob.id,
+          newJob.content.description,
+          newJob.content.responsibilities,
+          newJob.content.requirements,
+          newJob.content.about,
+        )
+      }
+    })
+    
+    insertAll() // ejecuto la transaccion
     // TODO: Debemos insertar el job en la base de datos
     return newJob
   }
