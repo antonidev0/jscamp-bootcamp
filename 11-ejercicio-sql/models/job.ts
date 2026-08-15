@@ -33,6 +33,50 @@ const insertContent = db.prepare(`
   VALUES (?, ?, ?, ?, ?, ?)
 `);
 
+// reconstruye un objeto Job a partir de los datos de la base de datos
+// recibe las filas del trabajo job y los junta con las tecnologias y el contenido del trabajo
+
+function buldJob(jobRow: any): Job {
+
+  // busco en la tabla de tecnologias del job las fila de este por su id
+  // un job puede tener varias tecnologias, por eso el .all()
+
+  // hazme esta consulata con este id y traeme todas las filas que pertenezcan a este job
+  // cada fila en la tabla  de tecnologias sera un objeto de tipo string
+  const techRows = selectTechnologies.all(jobRow.id) as { technology: string }[]
+
+  // de cada fila de tecnologias, obtenme el valor de la columna technology
+  //  y guardamelo en un arreglo de strings
+  const technologies = techRows.map((row) => row.technology)
+
+  // busca el contenido del job en la tabla de contenido del job por su id
+  // que puede ser undefined si no tiene contenido
+  const contentRow = selectContent.get(jobRow.id) as any
+
+  // armo y devuelvo el objeto Job con los datos de la base de datos, las tecnologias y el contenido
+  return {
+    id: jobRow.id,  
+    title: jobRow.title,
+    company: jobRow.company,
+    location: jobRow.location,
+    description: jobRow.description,
+    data: {
+      technologies: technologies,
+      modality: jobRow.modality,
+      level: jobRow.level,
+    },
+    content: contentRow
+      ? {
+        description: contentRow.description,
+        responsibilities: contentRow.responsibilities,
+        requirements: contentRow.requirements,
+        about: contentRow.about,
+      }
+      : undefined,
+
+  }
+}
+
 export class JobModel {
   // Obtener todos los jobs con filtros opcionales
 
