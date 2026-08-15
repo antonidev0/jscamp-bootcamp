@@ -33,6 +33,8 @@ const insertContent = db.prepare(`
   VALUES (?, ?, ?, ?, ?, ?)
 `);
 
+const deleteJob = db.prepare(`DELETE FROM jobs WHERE id = ?`);
+
 // reconstruye un objeto Job a partir de los datos de la base de datos
 // recibe las filas del trabajo job y los junta con las tecnologias y el contenido del trabajo
 
@@ -144,8 +146,9 @@ export class JobModel {
 
   // Eliminar un job
   static async delete(id: string): Promise<boolean> {
-    // TODO: Debemos eliminar el job de la base de datos
-    return false
+    // TODO: Debemos eliminar el job de la base de dato
+    const result = deleteJob.run(id)
+    return result.changes > 0
   }
 
   // Actualizar un job
