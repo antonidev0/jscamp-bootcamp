@@ -34,5 +34,19 @@ db.exec(`
         about TEXT NOT NULL,
         FOREIGN KEY (job_id) REFERENCES jobs(id) ON DELETE CASCADE
     )
-
     `);
+const insertJob = db.prepare(`
+    INSERT INTO jobs (id, title, company, location, description, modality, level)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+`);
+
+const insertJobTechnology = db.prepare(`
+    INSERT INTO job_technologies (job_id, technology)
+    VALUES (?, ?)
+`);
+
+const insertJobContent = db.prepare(`
+    INSERT INTO jobs_content (id, job_id, description, responsibilities, requirements, about)
+    VALUES (?, ?, ?, ?, ?, ?)
+`);
+
