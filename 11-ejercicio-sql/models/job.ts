@@ -116,7 +116,7 @@ export class JobModel {
   // (que puede ser de tipo JobFilters o no pasarse nada). Al terminar,
   // devuelve una Promesa que se resuelve en un arreglo/lista de trabajos (Job[]
 
-  static async getAll(filters?: JobFilters): Promise<Job[]> {
+  static async getAll(filters?: JobFilters & { limit?: number; offset?: number; }): Promise<Job[]> {
     // TODO: Debemos hacer la consulta a la base de datos para obtener todos los resultados, y por cada filtro,
     // debemos agregarlo a la consulta
 
@@ -151,6 +151,17 @@ export class JobModel {
     // si hay condiciones, agregalas a la consulta
     if (conditions.length > 0) {
       sql += ` WHERE ` + conditions.join(` AND `);
+    }
+
+    // paginacion
+    if (filters?.limit !== undefined) {
+      sql += `LIMIT ?`;
+      params.push(filters.limit);
+
+      if (filters?.offset !== undefined) {
+        sql += ` OFFSET ?`;
+        params.push(filters.offset);
+      }
     }
 
     const jobRows = db.prepare(sql).all(...params);
