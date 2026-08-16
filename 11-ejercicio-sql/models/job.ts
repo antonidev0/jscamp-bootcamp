@@ -84,32 +84,30 @@ function buildJob(jobRow: any): Job {
 // utilizo void porque no me va a retornar nada
 function insertJobInDatabase(job: Job): void { 
         insertJob.run(
-          newJob.id,
-          newJob.title,
-          newJob.company,
-          newJob.location,
-          newJob.description,
-          newJob.data.modality,
-          newJob.data.level,
+          job.id,
+          job.title,
+          job.company,
+          job.location,
+          job.description,
+          job.data.modality,
+          job.data.level,
         );
 
-        for (const tech of newJob.data.technology) {
-          insertTechnology.run(newJob.id, tech);
+        for (const tech of job.data.technology) {
+          insertTechnology.run(job.id, tech);
         }
 
-        if (newJob.content) {
+        if (job.content) {
           insertContent.run(
             crypto.randomUUID(),
-            newJob.id,
-            newJob.content.description,
-            newJob.content.responsibilities,
-            newJob.content.requirements,
-            newJob.content.about,
+            job.id,
+            job.content.description,
+            job.content.responsibilities,
+            job.content.requirements,
+            job.content.about,
           );
         }
-      });
-
-}
+};
 
 export class JobModel {
   // Obtener todos los jobs con filtros opcionales
