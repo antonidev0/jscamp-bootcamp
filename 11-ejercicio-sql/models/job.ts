@@ -14,7 +14,7 @@ const selectTechnologies = db.prepare(
 );
 
 // consusulta para obtener el contenido de un job segun el id
-const selectContent = db.prepare(`SELECT * FROM jobs_content WHERE job_id = ?`);
+const selectContent = db.prepare(`SELECT * FROM job_content WHERE job_id = ?`);
 
 // consultas para insertar datos en la base de datos
 const insertJob = db.prepare(`
@@ -29,7 +29,7 @@ const insertTechnology = db.prepare(
 
 // consulta para insertar contenido de un job
 const insertContent = db.prepare(`
-  INSERT INTO jobs_content (id, job_id, description, responsibilities, requirements, about)
+  INSERT INTO job_content (id, job_id, description, responsibilities, requirements, about)
   VALUES (?, ?, ?, ?, ?, ?)
 `);
 
@@ -38,7 +38,7 @@ const deleteJob = db.prepare(`DELETE FROM jobs WHERE id = ?`);
 // reconstruye un objeto Job a partir de los datos de la base de datos
 // recibe las filas del trabajo job y los junta con las tecnologias y el contenido del trabajo
 
-function buldJob(jobRow: any): Job {
+function buildJob(jobRow: any): Job {
 
   // busco en la tabla de tecnologias del job las fila de este por su id
   // un job puede tener varias tecnologias, por eso el .all()
@@ -63,7 +63,7 @@ function buldJob(jobRow: any): Job {
     location: jobRow.location,
     description: jobRow.description,
     data: {
-      technologies: technologies,
+      technology: technologies,
       modality: jobRow.modality,
       level: jobRow.level,
     },
@@ -90,7 +90,7 @@ export class JobModel {
     // TODO: Debemos hacer la consulta a la base de datos para obtener todos los resultados, y por cada filtro,
     // debemos agregarlo a la consulta
     const jobRows = db.prepare(` SELECT * FROM jobs`).all()
-    return jobRows.map((row) => buldJob(row));
+    return jobRows.map((row) => buildJob(row));
   }
 
   // Obtener un job por ID
@@ -100,7 +100,7 @@ export class JobModel {
     if (!jobRow) {
       return undefined
     }
-    return buldJob(jobRow)
+    return buildJob(jobRow)
   }
 
   // Crear un nuevo job
