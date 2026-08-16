@@ -140,11 +140,15 @@ export class JobModel {
       id: crypto.randomUUID(),
       ...input,
     }
-
-    // inserto las tres tablas dentro de una transaccion
-    
-    insertAll() // ejecuto la transaccion
+ 
+    // haz esta funcion que al ejecutarse envuelve la insercion del 
+    // job en la base de datos en una transaccion
+    const doCreate = db.transaction(() => {
+      insertJobInDatabase(newJob)
+    });
+     
     // TODO: Debemos insertar el job en la base de datos
+    doCreate();
     return newJob
   }
 
