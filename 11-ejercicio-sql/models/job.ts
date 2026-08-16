@@ -119,9 +119,44 @@ export class JobModel {
   static async getAll(filters?: JobFilters): Promise<Job[]> {
     // TODO: Debemos hacer la consulta a la base de datos para obtener todos los resultados, y por cada filtro,
     // debemos agregarlo a la consulta
-    const jobRows = db.prepare(` SELECT * FROM jobs`).all();
+
+    // creo una variale sql que contenga la consulta para obtener todos los jobs de la base de datos
+    let sql = `SELECT * FROM jobs`;
+    // condicion de where
+    const conditions: string[] = [];
+    // valores de los filtros
+    const params: any[] = [];
+ 
+    // filtro por tecnologia
+    if (filters?.tech) { 
+      // traeme la tabla de tecnologias y juntala con la tabla de jobs
+      // y juntalos solo cuanod el id de un job sea igual al id del job de la tabla de tecnologias
+      sql += ` INNER JOIN job_technologies ON jobs.id = job_technologies.job_id`;
+    
+      // la columna technology de la tabla job_technologies debe ser igual al valor del filtro tech
+      conditions.push(`job_technologies.technology = ?`);
+      params.push(filters.tech);
+    }
+
+    if (filters?.modality) {
+      conditions.push(`jobs.modality = ?`);
+      params.push(filters.modality);
+    }
+
+    if (filters?.level) {
+      conditions.push(`jobs.level = ?`);
+      params.push(filters.level);
+    }
+
+    // si hay condiciones, agregalas a la consulta
+    if (conditions.length > 0) {
+      sql += ` WHERE ` + conditions.join(` AND `);
+    }
+
+    const jobRows = db.prepare(sql).all(...params);
     return jobRows.map((row) => buildJob(row));
   }
+
 
   // Obtener un job por ID
   static async getById(id: string): Promise<Job | undefined> {
@@ -184,5 +219,5 @@ export class JobModel {
     doUpdate();
     return updatedJob;
   }
-  
+
 }
