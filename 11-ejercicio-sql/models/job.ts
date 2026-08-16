@@ -79,6 +79,13 @@ function buildJob(jobRow: any): Job {
   }
 }
 
+// funcion para insertar un job en la base de datos,
+//  que recibe un objeto Job y lo inserta en las tres tablas de la base de datos
+// utilizo void porque no me va a retornar nada
+function insertJobInDatabase(job: Job): void { 
+
+}
+
 export class JobModel {
   // Obtener todos los jobs con filtros opcionales
 
