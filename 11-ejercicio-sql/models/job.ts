@@ -155,7 +155,7 @@ export class JobModel {
 
     // paginacion
     if (filters?.limit !== undefined) {
-      sql += `LIMIT ?`;
+      sql += ` LIMIT ?`;
       params.push(filters.limit);
 
       if (filters?.offset !== undefined) {
