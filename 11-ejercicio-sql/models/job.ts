@@ -83,6 +83,31 @@ function buildJob(jobRow: any): Job {
 //  que recibe un objeto Job y lo inserta en las tres tablas de la base de datos
 // utilizo void porque no me va a retornar nada
 function insertJobInDatabase(job: Job): void { 
+        insertJob.run(
+          newJob.id,
+          newJob.title,
+          newJob.company,
+          newJob.location,
+          newJob.description,
+          newJob.data.modality,
+          newJob.data.level,
+        );
+
+        for (const tech of newJob.data.technology) {
+          insertTechnology.run(newJob.id, tech);
+        }
+
+        if (newJob.content) {
+          insertContent.run(
+            crypto.randomUUID(),
+            newJob.id,
+            newJob.content.description,
+            newJob.content.responsibilities,
+            newJob.content.requirements,
+            newJob.content.about,
+          );
+        }
+      });
 
 }
 
@@ -119,32 +144,6 @@ export class JobModel {
     }
 
     // inserto las tres tablas dentro de una transaccion
-    const insertAll = db.transaction(() => {
-      insertJob.run(
-        newJob.id,
-        newJob.title,
-        newJob.company,
-        newJob.location,
-        newJob.description,
-        newJob.data.modality,
-        newJob.data.level,
-      )
-
-      for (const tech of newJob.data.technology) { 
-        insertTechnology.run(newJob.id, tech)
-      }
-
-      if (newJob.content) { 
-        insertContent.run(
-          crypto.randomUUID(),
-          newJob.id,
-          newJob.content.description,
-          newJob.content.responsibilities,
-          newJob.content.requirements,
-          newJob.content.about,
-        )
-      }
-    })
     
     insertAll() // ejecuto la transaccion
     // TODO: Debemos insertar el job en la base de datos
