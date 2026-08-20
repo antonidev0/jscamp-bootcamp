@@ -1,8 +1,7 @@
 import crypto from "node:crypto";
 import type { Job, CreateJobDTO, UpdateJobDTO, JobFilters } from "../types";
 // importo la base de datos
-import { db } from "../db/database";
-import e from "express";
+import { db } from "../db/database"; 
 
 // consultas
 // consulta para obtener todos los jobs segun el id
@@ -128,14 +127,14 @@ export class JobModel {
     const params: any[] = [];
  
     // filtro por tecnologia
-    if (filters?.tech) { 
+    if (filters?.technology) { 
       // traeme la tabla de tecnologias y juntala con la tabla de jobs
       // y juntalos solo cuanod el id de un job sea igual al id del job de la tabla de tecnologias
       sql += ` INNER JOIN job_technologies ON jobs.id = job_technologies.job_id`;
     
       // la columna technology de la tabla job_technologies debe ser igual al valor del filtro tech
       conditions.push(`job_technologies.technology = ?`);
-      params.push(filters.tech);
+      params.push(filters.technology);
     }
 
     if (filters?.modality) {

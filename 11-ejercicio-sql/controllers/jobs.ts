@@ -9,9 +9,9 @@ export class JobController {
     req: Request<{}, {}, {}, JobFilters & {limit?: string; offset?: string }>,
     res: Response,
   ): Promise<void> {
-    const { tech, modality, level, limit, offset } = req.query;
+    const { technology, modality, level, limit, offset } = req.query;
     const jobs = await JobModel.getAll({
-      tech,
+      technology,
       modality,
       level,
       limit: limit ? Number(limit) : undefined,
