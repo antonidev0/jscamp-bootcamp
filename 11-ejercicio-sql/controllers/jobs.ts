@@ -6,7 +6,7 @@ export class JobController {
   // GET /jobs
   // Query params tipados
   static async getAll(
-    req: Request<{}, {}, {}, JobFilters & {limit?: string; offset?: string }>,
+    req: Request<{}, {}, {}, JobFilters & { limit?: string; offset?: string }>,
     res: Response,
   ): Promise<void> {
     const { technology, modality, level, limit, offset } = req.query;

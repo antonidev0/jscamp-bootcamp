@@ -54,32 +54,37 @@ const insertJobContent = db.prepare(`
 //  una lista llamada jobList que su tipo debe ser igual a jobs
 
 const seedDatabase = db.transaction((jobList: typeof jobs) => {
-    for (const job of jobList) {
-        insertJob.run(
-            job.id,
-            job.title,
-            job.company,
-            job.location,
-            job.description,
-            job.modality,
-            job.level,
-        );
+  // Con esto vaciamos las tablas antes de insertar para que el seed sea repetible (ejecutarlo dos o más veces)
+  db.exec(
+    `DELETE FROM job_content; DELETE FROM job_technologies; DELETE FROM jobs;`,
+  );
 
-        for (const technology of job.technologies) {
-            insertJobTechnology.run(job.id, technology);
-        }
+  for (const job of jobList) {
+    insertJob.run(
+      job.id,
+      job.title,
+      job.company,
+      job.location,
+      job.description,
+      job.modality,
+      job.level,
+    );
 
-        if (job.content) {
-            insertJobContent.run(
-                randomUUID(),
-                job.id,
-                job.content.description,
-                job.content.responsibilities,
-                job.content.requirements,
-                job.content.about,
-            );
-        }
+    for (const technology of job.technologies) {
+      insertJobTechnology.run(job.id, technology);
     }
+
+    if (job.content) {
+      insertJobContent.run(
+        randomUUID(),
+        job.id,
+        job.content.description,
+        job.content.responsibilities,
+        job.content.requirements,
+        job.content.about,
+      );
+    }
+  }
 });
 
 seedDatabase(jobs);
