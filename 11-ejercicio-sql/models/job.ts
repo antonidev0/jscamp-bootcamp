@@ -3,6 +3,17 @@ import type { Job, CreateJobDTO, UpdateJobDTO, JobFilters } from "../types";
 // importo la base de datos
 import { db } from "../db/database"; 
 
+interface JobRow {
+  id: string;
+  title: string;
+  company: string;
+  location: string;
+  description: string;
+  modality: Job["data"]["modality"];
+  level: Job["data"]["level"];
+}
+
+
 // consultas
 // consulta para obtener todos los jobs segun el id
 const selectJobById = db.prepare(`SELECT * FROM jobs WHERE id = ?`);
@@ -37,7 +48,7 @@ const deleteJob = db.prepare(`DELETE FROM jobs WHERE id = ?`);
 // reconstruye un objeto Job a partir de los datos de la base de datos
 // recibe las filas del trabajo job y los junta con las tecnologias y el contenido del trabajo
 
-function buildJob(jobRow: any): Job {
+function buildJob(jobRow: JobRow): Job {
   // busco en la tabla de tecnologias del job las fila de este por su id
   // un job puede tener varias tecnologias, por eso el .all()
 
@@ -52,8 +63,14 @@ function buildJob(jobRow: any): Job {
   const technologies = techRows.map((row) => row.technology);
 
   // busca el contenido del job en la tabla de contenido del job por su id
-  // que puede ser undefined si no tiene contenido
-  const contentRow = selectContent.get(jobRow.id) as any;
+  const contentRow = selectContent.get(jobRow.id) as
+    | {
+        description: string;
+        responsibilities: string;
+        requirements: string;
+        about: string;
+      }
+    | undefined;
 
   // armo y devuelvo el objeto Job con los datos de la base de datos, las tecnologias y el contenido
   return {
@@ -124,7 +141,7 @@ export class JobModel {
     // condicion de where
     const conditions: string[] = [];
     // valores de los filtros
-    const params: any[] = [];
+    const params: (string | number)[] = [];
  
     // filtro por tecnologia
     if (filters?.technology) { 
@@ -163,17 +180,17 @@ export class JobModel {
       }
     }
 
-    const jobRows = db.prepare(sql).all(...params);
-    return jobRows.map((row) => buildJob(row));
+    const jobRows = db.prepare(sql).all(...params) as JobRow[];
+    return jobRows.map(buildJob);
   }
 
 
   // Obtener un job por ID
   static async getById(id: string): Promise<Job | undefined> {
     // TODO: Debemos hacer la consulta a la base de datos para obtener el job por ID
-    const jobRow = selectJobById.get(id);
+    const jobRow = selectJobById.get(id) as JobRow | undefined;
     if (!jobRow) {
-      return undefined;
+    return undefined;
     }
     return buildJob(jobRow);
   }
@@ -221,13 +238,44 @@ export class JobModel {
       },
     };
 
-    const doUpdate = db.transaction(() => {
-      deleteJob.run(id); //elimino el job existente
-      insertJobInDatabase(updatedJob); // inserto el job actualizado
+    const doUpdate = db.transaction(() => { 
+
+      db.prepare(
+        `UPDATE jobs
+         SET title = ?, company = ?, location = ?, description = ?, modality = ?, level = ?
+         WHERE id = ?`,
+      ).run(
+        updatedJob.title,
+        updatedJob.company,
+        updatedJob.location,
+        updatedJob.description,
+        updatedJob.data.modality,
+        updatedJob.data.level,
+        id,
+      );
+
+      // Remplazamos tecnologías y contenido (se borran y se vuelven a insertar)
+      db.prepare(`DELETE FROM job_technologies WHERE job_id = ?`).run(id);
+      for (const tech of updatedJob.data.technology) {
+        insertTechnology.run(id, tech);
+      }
+
+      db.prepare(`DELETE FROM job_content WHERE job_id = ?`).run(id);
+      if (updatedJob.content) {
+        insertContent.run(
+          crypto.randomUUID(),
+          id,
+          updatedJob.content.description,
+          updatedJob.content.responsibilities,
+          updatedJob.content.requirements,
+          updatedJob.content.about,
+        );
+      }
+
     });
 
     doUpdate();
-    return updatedJob;
+    return updatedJob; 
   }
 
 }
