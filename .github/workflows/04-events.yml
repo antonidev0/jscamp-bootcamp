@@ -1,0 +1,51 @@
+name: 04 - Events
+
+on:
+    issues: 
+        types: [opened, reopened]
+
+    issue_comment: 
+        types: [created]
+
+    pull_request_review_comment: 
+        types: [created]
+
+jobs:
+    inspect-event:
+        runs-on: ubuntu-24.04
+
+        permissions: 
+            issues: write
+
+        steps:
+          - name: Inspect event
+            run: |
+                echo "Event: ${{ github.event_name }}"
+                echo "Issue: ${{ github.event.issue.number }}"
+                echo "Comment: ${{ github.event.comment.body }}"
+
+          - name: Comentar como bot al abrir issue
+            if: github.event_name == 'issues' && github.event.action == 'opened'
+            run: gh issue comment ${{ github.event.issue.number }} --repo "${{ github.repository }}" --body "Gracias por el aporte,  Revisaremos tu issue pronto."
+            env:
+                GH_TOKEN: ${{ github.token }}
+
+          - name: Comentar como el autor de repositorio
+            if: github.event_name == 'issues' && github.event.action == 'opened'
+            env: 
+                AUTHOR_TOKEN: ${{ secrets.PERSONAL_ACCES_TOKEN }}
+                ISSUE_NUMBER: ${{ github.event.issue.number }}
+            run: |
+                if [[ -z "$AUTHOR_TOKEN" ]]; then
+                    echo "::warning:: No hay PERSONAL_ACCES_TOKEN configurado. Se omite el comentario como autor"
+                    exit 0
+                fi
+                GH_TOKEN="$AUTHOR_TOKEN" gh issue comment "$ISSUE_NUMBER" \
+                    --repo "${{ github.repository }}" \
+                    --body "Hola, soy el propietario del repositorio respondiendote de modo personal"
+
+
+
+
+
+

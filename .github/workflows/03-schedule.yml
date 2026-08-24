@@ -1,0 +1,22 @@
+name:  03 - Schedule
+
+on:
+    schedule:
+        - cron: '0 9 * * MON'
+
+jobs:
+    schedule:
+        runs-on: ubuntu-24.04
+        steps:
+            - name: Saludar
+              run: |
+               echo "Hola desde Github Actions."
+               echo "Que significa cada parte de cron:"
+               echo "* * * * *"
+               echo "│ │ │ │ │"
+               echo "│ │ │ │ └── Y el quinto para el día de la semana (Puenden escribirse en ingles)"
+               echo "│ │ │ └──── Cuarto para el Mes"
+               echo "│ │ └────── Tercero para los días del mes"
+               echo "│ └──────── Segunfo para las horas"
+               echo "└────────── El primero para los minutos"
+    
