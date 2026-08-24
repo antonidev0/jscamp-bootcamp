@@ -7,31 +7,56 @@ on:
         branches: [main]
     
 jobs:
-    ci:
+    frontend-lint:
         runs-on: ubuntu-24.04
-
-        defaults:
-          run:
-            working-directory: 12-ejercicio-cicd
         steps:
-            - name: Checkout code
-              uses: actions/checkout@v6
+          - name: Checkout code
+            uses: actions/checkout@v6
 
-            - name:   Preparar pnpm
-              uses: pnpm/action-setup@v6
-              with:
-                  version: 11
-                  run_install: false
-        
-            - name: Instalar dependencias
-              run: pnpm install --frozen-lockfile
+          - name: Setup pnpm and Node.js
+            uses: ./.github/actions/setup-pnpm-ci-cd
 
-            - name:  Lint
-              run: pnpm lint
+          - name:  Lint
+            run: pnpm lint:frontend
 
-            - name: Test
-              run: pnpm test
+    backend-lint:
+        runs-on: ubuntu-24.04
+        steps:
 
-            - name: Build
-              run: pnpm build
+          - name: Checkout code
+            uses: actions/checkout@v6
+
+          - name: Setup pnpm and Node.js
+            uses: ./.github/actions/setup-pnpm-ci-cd
+
+          - name:  Lint
+            run: pnpm lint:backend
  
+    frontend-test:
+        runs-on: ubuntu-24.04
+        steps:
+
+          - name: Checkout code
+            uses: actions/checkout@v6
+
+          - name: Setup pnpm and Node.js
+            uses: ./.github/actions/setup-pnpm-ci-cd
+
+          - name:  Test
+            run: pnpm test:frontend
+
+    backend-test:
+        runs-on: ubuntu-24.04
+        steps:
+
+          - name: Checkout code
+            uses: actions/checkout@v6
+            
+          - name: Setup pnpm and Node.js
+            uses: ./.github/actions/setup-pnpm-ci-cd
+
+          - name: Test
+            run: pnpm test:backend
+
+          - name: Build
+            run: pnpm build
