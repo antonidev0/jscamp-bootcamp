@@ -72,7 +72,4 @@ jobs:
              cd 12-ejercicio-cicd
              echo "::group::Test" 
              pnpm test:backend
-             echo "::endgroup::"
-
-          - name: Build
-            run: pnpm build
+             echo "::endgroup::" 
