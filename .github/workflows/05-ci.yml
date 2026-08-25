@@ -73,3 +73,6 @@ jobs:
              echo "::group::Test" 
              pnpm test:backend
              echo "::endgroup::" 
+
+          - name: Build
+            run: pnpm build
