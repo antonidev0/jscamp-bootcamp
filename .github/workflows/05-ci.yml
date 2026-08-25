@@ -75,4 +75,6 @@ jobs:
              echo "::endgroup::" 
 
           - name: Build
-            run: pnpm build
+            run: |
+             cd 12-ejercicio-cicd
+             pnpm build
