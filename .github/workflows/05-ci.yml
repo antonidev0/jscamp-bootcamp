@@ -111,5 +111,5 @@ jobs:
              echo "::group::Build backend" 
              pnpm build:backend
              pnpm start:backend
-             curl -X get http://localhost:3000/health
+             curl -X GET http://localhost:3000/health
              echo "::endgroup::"
