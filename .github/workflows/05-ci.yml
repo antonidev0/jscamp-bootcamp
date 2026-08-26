@@ -40,6 +40,20 @@ jobs:
               pnpm test:frontend
               echo "::endgroup::"
 
+    frontend-build:
+        needs: [frontend-lint, frontend-test]
+        runs-on: ubuntu-24.04
+        steps:
+          - uses: actions/checkout@v6
+          - uses: ./.github/actions/setup-pnpm-ci-cd
+
+          - name:  Build
+            run: |
+             cd 12-ejercicio-cicd
+             echo "::group::Build" 
+             pnpm frontend:build
+             echo "::endgroup::"
+ 
     backend-lint:
         runs-on: ubuntu-24.04
         steps:
@@ -58,6 +72,7 @@ jobs:
              echo "::endgroup::"
  
     backend-test:
+
         runs-on: ubuntu-24.04
         steps:
 
@@ -78,3 +93,23 @@ jobs:
             run: |
              cd 12-ejercicio-cicd
              pnpm build
+
+    backend-build-test:
+        needs: [backend-lint, backend-test]
+        runs-on: ubuntu-24.04
+        steps:
+
+          - name: Checkout code
+            uses: actions/checkout@v6
+
+          - name: Setup pnpm and Node.js
+            uses: ./.github/actions/setup-pnpm-ci-cd
+
+          - name: build test
+            run: |
+             cd 12-ejercicio-cicd
+             echo "::group::Build backend" 
+             pnpm build:backend
+             pnpm start:backend
+             curl -X get http://localhost:3000/health
+             echo "::endgroup::"
