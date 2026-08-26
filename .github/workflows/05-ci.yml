@@ -110,6 +110,7 @@ jobs:
              cd 12-ejercicio-cicd
              echo "::group::Build backend" 
              pnpm build:backend
-             pnpm start:backend
+             pnpm start:backend &
+             sleep 5
              curl -X GET http://localhost:3000/health
              echo "::endgroup::"
