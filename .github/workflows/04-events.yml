@@ -34,7 +34,7 @@ jobs:
             if: github.event_name == 'issues' && github.event.action == 'opened'
             env: 
                 AUTHOR_TOKEN: ${{ secrets.PERSONAL_ACCES_TOKEN }}
-                ISSUE_NUMBER: ${{ github.event.issue.number }}
+                ISSUE_NUMBER: ${{ github.event.issue.number }} 
             run: |
                 if [[ -z "$AUTHOR_TOKEN" ]]; then
                     echo "::warning:: No hay PERSONAL_ACCES_TOKEN configurado. Se omite el comentario como autor"
