@@ -51,7 +51,7 @@ jobs:
             run: |
              cd 12-ejercicio-cicd
              echo "::group::Build" 
-             pnpm frontend:build
+             pnpm build:frontend
              echo "::endgroup::"
  
     backend-lint:
