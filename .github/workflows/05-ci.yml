@@ -54,6 +54,30 @@ jobs:
              pnpm build:frontend
              echo "::endgroup::"
  
+    frontend-test-matrix:
+      runs-on: ${{ matrix.os }}
+      continue-on-error: true
+      strategy:
+        fail-fast: false
+        matrix:
+          os: [ubuntu-24.04, macos-latest, windows-latest]
+          node: ['22', '24']
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm and Node.js
+        uses: ./.github/actions/setup-pnpm-ci-cd
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Test frontend
+        run: |
+             cd 12-ejercicio-cicd
+             echo "::group::Test" 
+             pnpm test:frontend
+             echo "::endgroup::"
+
     backend-lint:
         runs-on: ubuntu-24.04
         steps:
