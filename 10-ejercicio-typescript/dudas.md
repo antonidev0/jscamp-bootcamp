@@ -20,6 +20,32 @@ export interface Job {
 
 para los Object, que son objetos complejos? no se si entendi bien esa parte
 
+**Respuesta:** Bien! Buena pregunta, para typar elementos simples, como lo es un objeto, puedes usar `type` o `interface`, no hay diferencia. En el 90% de los casos se pueden usar ambas.
+
+Hay algunas diferencias, algunas un poco más mundanas y otras mas complejas, vamos con las mundanas:
+
+Si queremos hacer una unión de valores, interface no nos va a dejar, pero type si:
+```ts
+type Estado = "activo" | "inactivo" | "pendiente"; // ❌ imposible con interface
+type ID = string | number;
+type Coordenada = [number, number];
+```
+
+Ambas pueden extender de otros tipos, pero lo hacen con sintaxis diferente:
+```ts
+interface Animal {
+  nombre: string;
+}
+interface Perro extends Animal {
+  raza: string;
+}
+
+type Animal = { nombre: string };
+type Perro = Animal & { raza: string }; // intersección en vez de extends
+```
+
+Mi recomendación es usar `type` para tipos simples y `interface` para objetos.
+
 ----------------
 entonces, para ver si estoy entendiendo>
 
