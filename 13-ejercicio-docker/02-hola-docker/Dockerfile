@@ -1,3 +1,3 @@
-FROM node:22-alpine
+FROM alpine
 
-CMD ["echo", "Hola, un saludo desede docker"]
+CMD ["echo", "Hola, un saludo desde docker"]
