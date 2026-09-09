@@ -1,0 +1,23 @@
+# Ejercicios JSCamp
+
+En este repositorio podrás ir entregando los ejercicios del bootcamp
+
+> ¡No modifiques este archivo! Se irá actualizando con los nuevos ejercicios a lo largo del curso.
+
+## Ejercicios
+
+| #   | Ejercicio    | Descripción                            | Código                                                                                                                 |
+| --- | ------------ | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| 1   | **html-css** | Desarrolla la página de `empleos.html` | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](01-ejercicio-html-css) |
+| 2   | **javascript**    | Desarrolla los retos de javascript | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](02-ejercicio-javascript)         |
+| 3   | **react**    | Desarrolla los retos de react | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](03-ejercicio-react)         |
+| 4   | **react router y estado global**    | Desarrolla los retos de react router y estado global | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](04-ejercicio-react-router-y-estado-global)         |
+| 5 | **cli con node.js** | Desarrolla los retos de cli con node.js | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](05-ejercicio-cli-con-node)         |
+| 6 | **servidor con node.js** | Desarrolla los retos de servidor con node.js | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](06-ejercicio-servidor-con-node)         |
+| 7 | **api rest con express y mvc** | Desarrolla los retos de api rest con express y mvc | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](07-ejercicio-api-rest-con-express-y-mvc)         |
+| 8 | **testing con node y zod** | Desarrolla los retos de testing con node y zod | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](08-ejercicio-testing-con-node-y-zod)         |
+| 9 | **testing e2e con playwright** | Desarrolla los retos de testing e2e con playwright | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](09-ejercicio-test-e2e-con-ia)         |
+| 10 | **typescript** | Desarrolla los retos de typescript | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](10-ejercicio-typescript) |
+| 11 | **sql** | Desarrolla los retos de sql | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](11-ejercicio-sql) |
+| 12 | **ci/cd** | Desarrolla los retos de ci/cd | [![GitHub Badge](https://img.shields.io/badge/estado-entregado-green)](12-ejercicio-cicd) |
+| 13 | **docker** | Desarrolla los retos de docker | [![GitHub Badge](https://img.shields.io/badge/estado-pendiente-yellow)](13-ejercicio-docker) |
